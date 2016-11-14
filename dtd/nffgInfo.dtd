@@ -6,7 +6,7 @@
         <!-- NETWORK_SERVICES -->
         <!ELEMENT NETWORK_SERVICES (NFFG*,POLICY*)>
         <!-- NFFG -->
-        <!ELEMENT NFFG (NODE*,LINK*)>
+        <!ELEMENT NFFG (NODE*,LINK*,POLICY*)>
         <!ATTLIST NFFG nffg_name_id ID #REQUIRED
                 last_update_time CDATA #REQUIRED>
         <!-- NODE -->

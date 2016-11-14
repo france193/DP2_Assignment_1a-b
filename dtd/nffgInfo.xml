@@ -18,29 +18,29 @@
         <LINK link_name_id="b" source_node="node_2" destination_node="node_3"/>
         <LINK link_name_id="c" source_node="node_3" destination_node="node_4"/>
         <LINK link_name_id="d" source_node="node_4" destination_node="node_5"/>
+        <!-- list of all POLICIES for this nffg -->
+        <POLICY policy_name_id="policy_1"
+                referring_nffg="service_1"
+                policy_kind="reachability"
+                verification_result="positive"
+                source_node="node_1"
+                destination_node="node_5"
+                last_update_time="2016-11-09T17:18:57+01:00"/>
+        <POLICY policy_name_id="policy_2"
+                referring_nffg="service_1"
+                policy_kind="traversal"
+                verification_result="positive"
+                source_node="node_1"
+                destination_node="node_5"
+                last_update_time="2016-11-09T17:19:27+01:00">
+            <TRAVERSAL_REQUESTED_NODE functional_type="firewall"/>
+        </POLICY>
+        <POLICY policy_name_id="policy_3"
+                referring_nffg="service_1"
+                policy_kind="reachability"
+                verification_result="positive"
+                source_node="node_5"
+                destination_node="node_1"
+                last_update_time="2016-11-09T17:25:50+01:00"/>
     </NFFG>
-    <!-- list of all POLICIES for this nffg -->
-    <POLICY policy_name_id="policy_1"
-            referring_nffg="service_1"
-            policy_kind="reachability"
-            verification_result="positive"
-            source_node="node_1"
-            destination_node="node_5"
-            last_update_time="2016-11-09T17:18:57+01:00"/>
-    <POLICY policy_name_id="policy_2"
-            referring_nffg="service_1"
-            policy_kind="traversal"
-            verification_result="positive"
-            source_node="node_1"
-            destination_node="node_5"
-            last_update_time="2016-11-09T17:19:27+01:00">
-        <TRAVERSAL_REQUESTED_NODE functional_type="firewall"/>
-    </POLICY>
-    <POLICY policy_name_id="policy_3"
-            referring_nffg="service_1"
-            policy_kind="reachability"
-            verification_result="positive"
-            source_node="node_5"
-            destination_node="node_1"
-            last_update_time="2016-11-09T17:25:50+01:00"/>
 </NETWORK_SERVICES>
