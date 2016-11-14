@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- syntax for external dtd -->
+<!DOCTYPE NETWORK_SERVICES SYSTEM "nffgInfo.dtd">
+<!-- network_services -->
+<NETWORK_SERVICES>
+    <!-- one nffg -->
+    <NFFG nffg_name_id="service_1"
+          last_update_time="2016-11-09T17:17:30+01:00">
+        <!-- list of nodes -->
+        <NODE node_name_id="node_1" functional_type="web-client"/>
+        <NODE node_name_id="node_2" functional_type="firewall"/>
+        <NODE node_name_id="node_3" functional_type="nat"/>
+        <NODE node_name_id="node_4" functional_type="firewall"/>
+        <NODE node_name_id="node_5" functional_type="web-server"/>
+        <!-- list of all CONNECTIONS between nodes for this nffg -->
+        <LINK link_name_id="a" source_node="node_1" destination_node="node_2"/>
+        <LINK link_name_id="b" source_node="node_2" destination_node="node_3"/>
+        <LINK link_name_id="c" source_node="node_3" destination_node="node_4"/>
+        <LINK link_name_id="d" source_node="node_4" destination_node="node_5"/>
+    </NFFG>
+    <!-- list of all POLICIES for this nffg -->
+    <POLICY policy_name_id="policy_1"
+            referring_nffg="service_1"
+            policy_kind="reachability"
+            verification_result="positive"
+            source_node="node_1"
+            destination_node="node_5"
+            last_update_time="2016-11-09T17:18:57+01:00"/>
+    <POLICY policy_name_id="policy_2"
+            referring_nffg="service_1"
+            policy_kind="traversal"
+            verification_result="positive"
+            source_node="node_1"
+            destination_node="node_5"
+            last_update_time="2016-11-09T17:19:27+01:00">
+        <TRAVERSAL_REQUESTED_NODE functional_type="firewall"/>
+    </POLICY>
+    <POLICY policy_name_id="policy_3"
+            referring_nffg="service_1"
+            policy_kind="reachability"
+            verification_result="positive"
+            source_node="node_5"
+            destination_node="node_1"
+            last_update_time="2016-11-09T17:25:50+01:00"/>
+</NETWORK_SERVICES>
