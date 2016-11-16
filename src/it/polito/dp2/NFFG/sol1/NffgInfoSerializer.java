@@ -1,18 +1,61 @@
 package it.polito.dp2.NFFG.sol1;
 
-import it.polito.dp2.NFFG.*;
-
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Set;
+
+import it.polito.dp2.NFFG.*;
+import it.polito.dp2.NFFG.sol1.jaxb.*;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+/************************************************************************
+ * ant -Doutput=file1.xml -Dseed=100000 -Dtestcase=1 NffgInfoSerializer *
+ ************************************************************************
+ *
+ * -Doutput
+ * give name to assign to the desidered xml file
+ *
+ * -Dseed
+ * use seed with a value of 100000 for pseudo-random generator
+ *
+ * -Dtestcase
+ * create only one nffg with no policies
+ *
+ * execute the target NffgInfoSerializer of the build.xml ant file
+ **/
+
+/******************************************************
+ * ant -Dseed=100000 -Dtestcase=1 NFFGInfo > out1.txt *
+ ******************************************************
+ *
+ * -Dseed
+ * use seed with a value of 100000 for pseudo-random generator
+ *
+ * -Dtestcase
+ * create only one nffg with no policies
+ *
+ * execute the target NFFGInfo of the build.xml ant file
+ **/
 
 /**
  * Created by FLDeviOS on 14/11/2016.
- */
+ * <p>
+ * Aim of this application is to read information passed from java classes
+ * and create a valid xml respecting constraints obtained from the previous
+ * created xsd schema
+ **/
 public class NffgInfoSerializer {
     private NffgVerifier monitor;
     private DateFormat dateFormat;
+
+    private static String xml_filename;
 
     /**
      * Default constructror
@@ -25,126 +68,57 @@ public class NffgInfoSerializer {
         dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     }
 
-    public NffgInfoSerializer(NffgVerifier monitor) {
-        super();
-        this.monitor = monitor;
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-    }
-
     /**
      * @param args
      */
     public static void main(String[] args) {
-        NffgInfoSerializer myNffgInfoSerializer;
+        NffgInfoSerializer myNFFG;
+
+        //read desidered name for new xml file
+        xml_filename = args[0].toString();
+
         try {
-            myNffgInfoSerializer = new NffgInfoSerializer();
-            myNffgInfoSerializer.printAll();
+            myNFFG = new NffgInfoSerializer();
+            myNFFG.printAll();
         } catch (NffgVerifierException e) {
-            System.err.println("Could not instantiate data generator.");
             e.printStackTrace();
-            System.exit(1);
         }
     }
 
     public void printAll() {
-        printAllNffgs();
+        printNffgs();
         //printPolicies();
     }
 
-    private void printPolicies() {
+    private void printNffgs() {
+        // get the list of NFFGs as a set
+        Set<NffgReader> nffgs_set = monitor.getNffgs();
 
-        // Get the list of policies
-        Set<PolicyReader> set = monitor.getPolicies();
+        // for each NFFG
+        for (NffgReader nffg : nffgs_set) {
 
-		/* Print the header of the table */
-        System.out.println("#");
-        System.out.println("#Number of Policies: " + set.size());
-        System.out.println("#");
-        String header = new String("#List of policies:");
-        printHeader(header);
+            // name
+            String nffg_name = nffg.getName();
+            // get last updated time
+            Calendar updateTime = nffg.getUpdateTime();
+            // get node set
+            Set<NodeReader> node_set = nffg.getNodes();
 
-        // For each policy print related data
-        for (PolicyReader pr : set) {
-            System.out.println("Policy name: " + pr.getName());
-            System.out.println("Policy nffg name: " + pr.getNffg().getName());
-            if (pr.isPositive())
-                System.out.println("Policy is positive.");
-            else
-                System.out.println("Policy is negative.");
-            printVerificationResult(pr.getResult());
-            System.out.println("#");
-        }
-        System.out.println("#End of Policies");
-        System.out.println("#");
-    }
+            // for each node
+            for (NodeReader node : node_set) {
+                // name
+                String node_name = node.getName();
 
-    private void printVerificationResult(VerificationResultReader result) {
-        if (result == null) {
-            System.out.println("No verification result for policy");
-            return;
-        }
-        if (result.getVerificationResult())
-            System.out.println("Policy result is true");
-        else
-            System.out.println("Policy result is false");
-        System.out.println("Verification result message: " + result.getVerificationResultMsg());
-        System.out.println("Verification time (in local time zone): " + dateFormat.format(result.getVerificationTime().getTime()));
-    }
+                Set<LinkReader> link_set = node.getLinks();
 
-    private void printAllNffgs() {
-        // Get the list of NFFGs
-        Set<NffgReader> set = monitor.getNffgs();
+                for (LinkReader link : link_set) {
+                    String link_name = link.getName();
+                    String link_src_node = link.getSourceNode().getName();
+                    String link_dest_node = link.getDestinationNode().getName();
 
-		/* Print the header of the table */
-        System.out.println("#");
-        System.out.println("#Number of Nffgs: " + set.size());
-        System.out.println("#");
-        String header = new String("#List of NFFgs:");
-        printHeader(header);
-
-        // For each NFFG print related data
-        for (NffgReader nffg_r : set) {
-            System.out.println();
-            printHeader("Data for NFFG " + nffg_r.getName());
-            System.out.println();
-            // Print update time
-            Calendar updateTime = nffg_r.getUpdateTime();
-            printHeader("Update time: " + dateFormat.format(updateTime.getTime()));
-
-            // Print nodes
-            Set<NodeReader> nodeSet = nffg_r.getNodes();
-            printHeader("Number of Nodes: " + nodeSet.size(), '%');
-            for (NodeReader nr : nodeSet) {
-                System.out.println("Node " + nr.getName() + "\tType: " + nr.getFuncType().toString() + "\tNumber of links: " + nr.getLinks().size());
-                Set<LinkReader> linkSet = nr.getLinks();
-                System.out.println("List of Links for node " + nr.getName());
-                printHeader("Link name \tsource \tdestination");
-                for (LinkReader lr : linkSet)
-                    System.out.println(lr.getName() + "\t" + lr.getSourceNode().getName() + "\t" + lr.getDestinationNode().getName());
-                System.out.println(makeLine('%'));
-                ;
+                    //TODO
+                }
             }
-            System.out.println("#");
         }
-        System.out.println("#End of Nodes");
-        System.out.println("#");
-    }
-
-    private void printHeader(String header, char c) {
-        System.out.println(header);
-        System.out.println(makeLine(c));
-    }
-
-    private StringBuffer makeLine(char c) {
-        StringBuffer line = new StringBuffer(132);
-
-        for (int i = 0; i < 132; ++i) {
-            line.append(c);
-        }
-        return line;
-    }
-
-    private void printHeader(String header) {
-        printHeader(header, '-');
     }
 }
