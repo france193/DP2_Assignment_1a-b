@@ -1,19 +1,37 @@
 package it.polito.dp2.NFFG.sol1;
 
-import java.io.File;
+/**
+ * Created by Francesco Longo on 14/11/2016.
+ * <p>
+ * Aim of this application is to read information passed from a NFFG random
+ * generator and fill java classes representing my xsd schema.
+ * Then Marshalling this document, it is possible to obtain a valid xml
+ * respecting constraints obtained from the previous created xsd schema
+ **/
+
+//library path
+
+import it.polito.dp2.NFFG.*;
+
+//generated path
+import it.polito.dp2.NFFG.sol1.jaxb_generated.*;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
-import it.polito.dp2.NFFG.*;
-import it.polito.dp2.NFFG.sol1.jaxb.*;
-
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.Marshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 /************************************************************************
  * ant -Doutput=file1.xml -Dseed=100000 -Dtestcase=1 NffgInfoSerializer *
@@ -44,16 +62,36 @@ import javax.xml.bind.Unmarshaller;
  * execute the target NFFGInfo of the build.xml ant file
  **/
 
-/**
- * Created by FLDeviOS on 14/11/2016.
- * <p>
- * Aim of this application is to read information passed from java classes
- * and create a valid xml respecting constraints obtained from the previous
- * created xsd schema
+/***************************************************************
+ *                   My XSD schema structure                   *
+ ***************************************************************
+ *
+ *    NETWORK_SERVICE
+ *           |
+ *           |-- NFFG(*) (nffg_name_id,
+ *                |       last_update_time)
+ *                |
+ *                |-- NODE(*) (node_name_id,
+ *                |            functional_type)
+ *                |
+ *                |-- LINK(*) (link_name_id,
+ *                |            link_source_node_name_id_refer,
+ *                |            link_destination_node_name_id_refer)
+ *                |
+ *                |-- POLICY(*) (policy_name_id,
+ *                      |        nffg_name_id_refer,
+ *                      |        policy_kind,
+ *                      |        verification_result,
+ *                      |        policy_source_node_name_id_refer,
+ *                      |        policy_destination_node_name_id_refer,
+ *                      |        last_update_time)
+ *                      |
+ *                      |-- TRAVERSAL_REQUESTED_NODE(?) (functional_type)
  **/
+
 public class NffgInfoSerializer {
     private NffgVerifier monitor;
-    private DateFormat dateFormat;
+    private NetworkService myNetworkService;
 
     private static String xml_filename;
 
@@ -65,60 +103,124 @@ public class NffgInfoSerializer {
     public NffgInfoSerializer() throws NffgVerifierException {
         NffgVerifierFactory factory = NffgVerifierFactory.newInstance();
         monitor = factory.newNffgVerifier();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        // create a new NetworkServices root element
+        myNetworkService = new NetworkService();
     }
 
     /**
      * @param args
      */
     public static void main(String[] args) {
-        NffgInfoSerializer myNFFG;
+        NffgInfoSerializer myInfoserializer;
 
         //read desidered name for new xml file
         xml_filename = args[0].toString();
 
         try {
-            myNFFG = new NffgInfoSerializer();
-            myNFFG.printAll();
+            myInfoserializer = new NffgInfoSerializer();
+            myInfoserializer.printAll();
+            myInfoserializer.printXMLOnConsole();
+            myInfoserializer.writeXMLToFile();
         } catch (NffgVerifierException e) {
             e.printStackTrace();
         }
     }
 
     public void printAll() {
-        printNffgs();
+        readNffgs();
         //printPolicies();
     }
 
-    private void printNffgs() {
+    private void readNffgs() {
         // get the list of NFFGs as a set
         Set<NffgReader> nffgs_set = monitor.getNffgs();
 
-        // for each NFFG
+        // for each Nffg read
         for (NffgReader nffg : nffgs_set) {
 
-            // name
-            String nffg_name = nffg.getName();
-            // get last updated time
-            Calendar updateTime = nffg.getUpdateTime();
-            // get node set
+            /** NFFG **/
+            /* create myNffg */
+            NetworkService.Nffg myNffg = new NetworkService.Nffg();
+            /* setting parameter on myNffg */
+            myNffg.setNffgNameId(nffg.getName());
+            try {
+                GregorianCalendar calendar = (GregorianCalendar) nffg.getUpdateTime();
+                XMLGregorianCalendar xmlCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+                myNffg.setLastUpdatedTime(xmlCal);
+            } catch (DatatypeConfigurationException e) {
+                e.printStackTrace();
+            }
+
+            /** NODES **/
+            /* take nodes of myNffg */
             Set<NodeReader> node_set = nffg.getNodes();
 
-            // for each node
+            /* for each node */
             for (NodeReader node : node_set) {
-                // name
-                String node_name = node.getName();
 
+                /* create myNode */
+                NetworkService.Nffg.Node myNode = new NetworkService.Nffg.Node();
+                /* setting parameter of myNode */
+                myNode.setNodeNameId(node.getName());
+                myNode.setFunctionalType(NodeFunctionalType.valueOf(node.getFuncType().value()));
+
+                /** LINKS **/
+                /* take links of every node and save it to my nffg */
                 Set<LinkReader> link_set = node.getLinks();
 
                 for (LinkReader link : link_set) {
-                    String link_name = link.getName();
-                    String link_src_node = link.getSourceNode().getName();
-                    String link_dest_node = link.getDestinationNode().getName();
+                    /* create myNode */
+                    NetworkService.Nffg.Link myLink = new NetworkService.Nffg.Link();
 
-                    //TODO
+                    /* setting parameter of myLink */
+                    myLink.setLinkNameId(link.getName());
+                    myLink.setLinkSourceNodeNameIdRefer(link.getSourceNode().getName());
+                    myLink.setLinkDestinationNodeNameIdRefer(link.getDestinationNode().getName());
+
+                    myNffg.getLink().add(myLink);
                 }
+
+                myNffg.getNode().add(myNode);
             }
+
+            /* add myNffg to my NetworkService */
+            myNetworkService.getNffg().add(myNffg);
+        }
+    }
+
+    private void printXMLOnConsole() {
+        try {
+            //Write it
+            JAXBContext ctx = JAXBContext.newInstance(NetworkService.class);
+            Marshaller m = ctx.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            StringWriter sw = new StringWriter();
+            m.marshal(myNetworkService, sw);
+            sw.close();
+
+            System.out.println(sw.toString());
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeXMLToFile() {
+        try {
+            //Write it
+            JAXBContext ctx = JAXBContext.newInstance(NetworkService.class);
+            Marshaller m = ctx.createMarshaller();
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            OutputStream os = new FileOutputStream(xml_filename);
+            m.marshal(myNetworkService, os);
+            os.close();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -92,7 +92,7 @@ public class NFFGInfo {
     private void printNffgs() {
         // Get the list of NFFGs
         Set<NffgReader> set = monitor.getNffgs();
-		
+
 		/* Print the header of the table */
         System.out.println("#");
         System.out.println("#Number of Nffgs: " + set.size());

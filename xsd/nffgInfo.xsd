@@ -3,7 +3,7 @@
 <!-- This XSD file was developed by Francesco Longo for the Assignment 1
 	 of the course Distributed Programming II in Politechnic University of Turin. -->
 
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
             targetNamespace="https://france193.wordpress.com"
             xmlns:flo="https://france193.wordpress.com"
             elementFormDefault="qualified">
@@ -13,7 +13,7 @@
     </xsd:annotation>
 
     <!-- ROOT ELEMENT: NETWORK_SERVICES -->
-    <xsd:element name="network_services">
+    <xsd:element name="network_service">
         <xsd:complexType>
             <xsd:sequence>
 
@@ -44,38 +44,15 @@
                             <!-- end link -->
 
                             <!-- policy -->
-                            <xsd:element name="policy" minOccurs="0" maxOccurs="unbounded">
-                                <xsd:complexType>
-                                    <xsd:sequence>
-
-                                        <!-- request_node -->
-                                        <xsd:element name="traversal_requested_node" minOccurs="0"
-                                                     maxOccurs="unbounded">
-                                            <xsd:complexType>
-                                                <xsd:attribute name="functional_type" type="flo:nodeFunctionalType"
-                                                               use="required"/>
-                                            </xsd:complexType>
-                                        </xsd:element>
-                                        <!-- end request_node -->
-
-                                    </xsd:sequence>
-                                    <xsd:attribute name="policy_name_id" type="xsd:string" use="required"/>
-                                    <xsd:attribute name="nffg_name_id_refer" type="xsd:string" use="required"/>
-                                    <xsd:attribute name="policy_kind" type="flo:policyKindType" use="required"/>
-                                    <xsd:attribute name="verification_result" type="flo:verificationResultType"
-                                                   use="required"/>
-                                    <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string"
-                                                   use="required"/>
-                                    <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string"
-                                                   use="required"/>
-                                    <xsd:attribute name="last_update_time" type="xsd:dateTime" use="required"/>
-                                </xsd:complexType>
-                            </xsd:element>
+                            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                                <xsd:element name="reachabilityPolicyType" type="flo:reachabilityPolicyType"/>
+                                <xsd:element name="traversalPolicyType" type="flo:traversalPolicyType"/>
+                            </xsd:choice>
                             <!-- end policy -->
 
                         </xsd:sequence>
                         <xsd:attribute name="nffg_name_id" type="xsd:string" use="required"/>
-                        <xsd:attribute name="last_update_time" type="xsd:dateTime" use="required"/>
+                        <xsd:attribute name="last_updated_time" type="xsd:dateTime" use="required"/>
                     </xsd:complexType>
 
                     <!-- KEYs -->
@@ -116,31 +93,57 @@
         </xsd:complexType>
     </xsd:element>
 
+    <!-- POLICIES -->
+
+    <!-- Policy Base Type -->
+    <xsd:complexType name="policyBaseType">
+        <xsd:attribute name="policy_name_id" type="xsd:string" use="required"/>
+        <xsd:attribute name="nffg_name_id_refer" type="xsd:string" use="required"/>
+        <xsd:attribute name="isVerified" type="xsd:boolean" use="required"/>
+        <xsd:attribute name="verification_time" type="xsd:dateTime" use="required"/>
+        <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string" use="required"/>
+        <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string" use="required"/>
+        <xsd:attribute name="last_updated_time" type="xsd:dateTime" use="required"/>
+    </xsd:complexType>
+
+    <!-- Reachability Policy Type (extension of Policy Base Type) -->
+    <xsd:complexType name="reachabilityPolicyType">
+        <xsd:complexContent>
+            <xsd:extension base="flo:policyBaseType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <!-- Traversal Policy Type (Policy Base Type) -->
+    <xsd:complexType name="traversalPolicyType">
+        <xsd:complexContent>
+            <xsd:extension base="flo:policyBaseType">
+                <xsd:sequence>
+                    <!-- request_node -->
+                    <xsd:element name="traversal_requested_node" minOccurs="0" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:attribute name="functional_type" type="flo:nodeFunctionalType" use="required"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <!-- end request_node -->
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
     <!-- CUSTOM TYPES -->
     <xsd:simpleType name="nodeFunctionalType">
         <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="firewall"/>
-            <xsd:enumeration value="dpi"/>
-            <xsd:enumeration value="nat"/>
-            <xsd:enumeration value="anti_spam"/>
-            <xsd:enumeration value="web_cache"/>
-            <xsd:enumeration value="vpn_gateway"/>
-            <xsd:enumeration value="web_server"/>
-            <xsd:enumeration value="web_client"/>
-            <xsd:enumeration value="mail_server"/>
-            <xsd:enumeration value="mail_client"/>
+            <xsd:enumeration value="CACHE"/>
+            <xsd:enumeration value="DPI"/>
+            <xsd:enumeration value="FW"/>
+            <xsd:enumeration value="MAIL_CLIENT"/>
+            <xsd:enumeration value="MAIL_SERVER"/>
+            <xsd:enumeration value="NAT"/>
+            <xsd:enumeration value="SPAM"/>
+            <xsd:enumeration value="VPN"/>
+            <xsd:enumeration value="WEB_CLIENT"/>
+            <xsd:enumeration value="WEB_SERVER"/>
         </xsd:restriction>
     </xsd:simpleType>
-    <xsd:simpleType name="policyKindType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="reachability"/>
-            <xsd:enumeration value="traversal"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-    <xsd:simpleType name="verificationResultType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="positive"/>
-            <xsd:enumeration value="negative"/>
-        </xsd:restriction>
-    </xsd:simpleType>
+
 </xsd:schema>

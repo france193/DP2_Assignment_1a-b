@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<network_service xmlns="https://france193.wordpress.com">
+    <nffg nffg_name_id="Nffg0" last_updated_time="2016-09-28T11:11:20.000+02:00">
+        <node node_name_id="WEB_CLIENT0" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEB_SERVER0" functional_type="WEB_SERVER"/>
+        <node node_name_id="NAT0" functional_type="NAT"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="WEB_CLIENT0" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="WEB_SERVER0" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="WEB_CLIENT0"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="WEB_SERVER0"/>
+    </nffg>
+</network_service>

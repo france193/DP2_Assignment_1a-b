@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<flo:network_services
+<flo:network_service
         xmlns:flo="https://france193.wordpress.com"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="https://france193.wordpress.com nffgInfo.xsd">
+        xsi:schemaLocation="https://france193.wordpress.com ./nffgInfo.xsd">
     <!-- nffg -->
-    <flo:nffg nffg_name_id="service_1" last_update_time="2016-11-09T17:17:30+01:00">
+    <flo:nffg nffg_name_id="service_1" last_updated_time="2016-11-09T17:17:30+01:00">
         <!-- nodes -->
-        <flo:node node_name_id="node_1" functional_type="vpn_gateway"/>
-        <flo:node node_name_id="node_2" functional_type="vpn_gateway"/>
-        <flo:node node_name_id="node_3" functional_type="vpn_gateway"/>
-        <flo:node node_name_id="node_4" functional_type="vpn_gateway"/>
-        <flo:node node_name_id="node_5" functional_type="vpn_gateway"/>
+        <flo:node node_name_id="node_1" functional_type="WEB_CLIENT"/>
+        <flo:node node_name_id="node_2" functional_type="VPN"/>
+        <flo:node node_name_id="node_3" functional_type="FW"/>
+        <flo:node node_name_id="node_4" functional_type="CACHE"/>
+        <flo:node node_name_id="node_5" functional_type="WEB_SERVER"/>
+
         <!-- links -->
         <flo:link link_name_id="a"
                   link_source_node_name_id_refer="node_1"
@@ -25,30 +26,33 @@
         <flo:link link_name_id="d"
                   link_source_node_name_id_refer="node_4"
                   link_destination_node_name_id_refer="node_5"/>
+
         <!-- policies -->
-        <flo:policy policy_name_id="policy_1"
-                    nffg_name_id_refer="service_1"
-                    policy_kind="reachability"
-                    verification_result="positive"
-                    policy_source_node_name_id_refer="node_1"
-                    policy_destination_node_name_id_refer="node_5"
-                    last_update_time="2016-11-09T17:18:57+01:00"/>
-        <flo:policy policy_name_id="policy_2"
-                    nffg_name_id_refer="service_1"
-                    policy_kind="traversal"
-                    verification_result="positive"
-                    policy_source_node_name_id_refer="node_1"
-                    policy_destination_node_name_id_refer="node_5"
-                    last_update_time="2016-11-09T17:19:27+01:00">
-            <!-- traversal_request_node -->
-            <flo:traversal_requested_node functional_type="firewall"/>
-        </flo:policy>
-        <flo:policy policy_name_id="policy_3"
-                    nffg_name_id_refer="service_1"
-                    policy_kind="traversal"
-                    verification_result="positive"
-                    policy_source_node_name_id_refer="node_5"
-                    policy_destination_node_name_id_refer="node_1"
-                    last_update_time="2016-11-09T17:25:50+01:00"/>
+        <flo:reachabilityPolicyType policy_name_id="policy_1"
+                                    nffg_name_id_refer="service_1"
+                                    isVerified="true"
+                                    verification_time="2016-11-09T17:19:57+01:00"
+                                    policy_source_node_name_id_refer="node_1"
+                                    policy_destination_node_name_id_refer="node_5"
+                                    last_updated_time="2016-11-09T17:18:57+01:00"/>
+        <flo:traversalPolicyType policy_name_id="policy_2"
+                                 nffg_name_id_refer="service_1"
+                                 isVerified="true"
+                                 verification_time="2016-11-09T17:20:27+01:00"
+                                 policy_source_node_name_id_refer="node_1"
+                                 policy_destination_node_name_id_refer="node_5"
+                                 last_updated_time="2016-11-09T17:19:27+01:00">
+            <flo:traversal_requested_node functional_type="VPN"/>
+            <flo:traversal_requested_node functional_type="DPI"/>
+            <flo:traversal_requested_node functional_type="FW"/>
+        </flo:traversalPolicyType>
+        <flo:reachabilityPolicyType policy_name_id="policy_3"
+                                    nffg_name_id_refer="service_1"
+                                    isVerified="false"
+                                    verification_time="2016-11-09T17:26:50+01:00"
+                                    policy_source_node_name_id_refer="node_5"
+                                    policy_destination_node_name_id_refer="node_1"
+                                    last_updated_time="2016-11-09T17:25:50+01:00"/>
     </flo:nffg>
-</flo:network_services>
+
+</flo:network_service>
