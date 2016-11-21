@@ -100,8 +100,9 @@
         <xsd:attribute name="policy_name_id" type="xsd:string" use="required"/>
         <xsd:attribute name="nffg_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="isPositive" type="xsd:boolean" use="required"/>
-        <xsd:attribute name="verificationResult" type="xsd:boolean" use="required"/>
-        <xsd:attribute name="verification_time" type="xsd:dateTime" use="required"/>
+        <xsd:attribute name="verificationResult" type="xsd:boolean"/>
+        <xsd:attribute name="verification_time" type="xsd:dateTime"/>
+        <xsd:attribute name="verificationMessage" type="xsd:string" use="required"/>
         <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string" use="required"/>
     </xsd:complexType>

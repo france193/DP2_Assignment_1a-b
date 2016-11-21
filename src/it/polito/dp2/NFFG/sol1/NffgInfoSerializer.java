@@ -10,16 +10,18 @@ package it.polito.dp2.NFFG.sol1;
  **/
 
 //library path
+
 import it.polito.dp2.NFFG.*;
 
 //generated path
-import it.polito.dp2.NFFG.sol1.jaxb.*;
+import it.polito.dp2.NFFG.sol1.jaxb_generated.*;
 
 import org.xml.sax.SAXException;
 
 import java.io.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
@@ -120,7 +122,7 @@ public class NffgInfoSerializer {
             myInfoserializer = new NffgInfoSerializer();
             myInfoserializer.readAll();
 
-            myInfoserializer.printXMLOnConsole();
+            //myInfoserializer.printXMLOnConsole();
             myInfoserializer.writeXMLToFile();
         } catch (NffgVerifierException e) {
             e.printStackTrace();
@@ -190,45 +192,75 @@ public class NffgInfoSerializer {
 
         for (PolicyReader general_policy : policy_set) {
 
-            int index = myNetworkService.getNffg().indexOf(general_policy.getNffg());
+            // find the Nffg of the policy
+            NetworkService.Nffg myNffg = findNffg(general_policy.getNffg().getName());
 
             // read Reachability Policy
-            if (general_policy instanceof ReachabilityPolicyReader) {
+            if (!(general_policy instanceof TraversalPolicyReader)) {
                 ReachabilityPolicyReader policy = (ReachabilityPolicyReader) general_policy;
                 ReachabilityPolicyType myPolicy = new ReachabilityPolicyType();
 
                 myPolicy.setPolicyNameId(policy.getName());
                 myPolicy.setNffgNameIdRefer(policy.getNffg().getName());
-                myPolicy.setIsPositive(policy.isPositive());
-                myPolicy.setVerificationResult(policy.getResult().getVerificationResult());
-                myPolicy.setVerificationTime(getXMLCal(policy.getResult().getVerificationTime()));
+                myPolicy.setVerificationTime(null);
+                myPolicy.setIsPositive(policy.isPositive().booleanValue());
+
+                readVerificationResult(myPolicy, policy);
+
                 myPolicy.setPolicySourceNodeNameIdRefer(policy.getSourceNode().getName());
                 myPolicy.setPolicyDestinationNodeNameIdRefer(policy.getDestinationNode().getName());
 
-                myNetworkService.getNffg().get(index).getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
+                myNffg.getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
 
                 // read Reachability Policy
-            } else if (general_policy instanceof TraversalPolicyReader) {
+            } else {
                 TraversalPolicyReader policy = (TraversalPolicyReader) general_policy;
                 TraversalPolicyType myPolicy = new TraversalPolicyType();
 
                 myPolicy.setPolicyNameId(policy.getName());
                 myPolicy.setNffgNameIdRefer(policy.getNffg().getName());
                 myPolicy.setIsPositive(policy.isPositive());
-                myPolicy.setVerificationResult(policy.getResult().getVerificationResult());
-                myPolicy.setVerificationTime(getXMLCal(policy.getResult().getVerificationTime()));
+
+                readVerificationResult(myPolicy, policy);
+
                 myPolicy.setPolicySourceNodeNameIdRefer(policy.getSourceNode().getName());
                 myPolicy.setPolicyDestinationNodeNameIdRefer(policy.getDestinationNode().getName());
-
-                for (FunctionalType myFunctionalType : policy.getTraversedFuctionalTypes()) {
-                    TraversalPolicyType.TraversalRequestedNode myRequestedNode = null;
-                    myRequestedNode.setFunctionalType(NodeFunctionalType.valueOf(myFunctionalType.value()));
-                    myPolicy.getTraversalRequestedNode().add(myRequestedNode);
+                if (policy.getTraversedFuctionalTypes().size() > 0) {
+                    for (FunctionalType myFunctionalType : policy.getTraversedFuctionalTypes()) {
+                        TraversalPolicyType.TraversalRequestedNode myRequestedNode = new TraversalPolicyType.TraversalRequestedNode();
+                        myRequestedNode.setFunctionalType(NodeFunctionalType.valueOf(myFunctionalType.value()));
+                        myPolicy.getTraversalRequestedNode().add(myRequestedNode);
+                    }
                 }
 
-                myNetworkService.getNffg().get(index).getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
+                myNffg.getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
             }
         }
+
+    }
+
+    private void readVerificationResult(ReachabilityPolicyType myPolicy, PolicyReader policy) {
+        if (policy.getResult() != null) {
+            myPolicy.setVerificationResult(policy.getResult().getVerificationResult());
+            myPolicy.setVerificationTime(getXMLCal(policy.getResult().getVerificationTime()));
+            myPolicy.setVerificationMessage(policy.getResult().getVerificationResultMsg());
+        } else {
+            myPolicy.setVerificationMessage("No verification result for policy");
+        }
+    }
+
+    private NetworkService.Nffg findNffg(String name) {
+
+        // get the list of NFFGs as a set
+        List<NetworkService.Nffg> nffg_list = myNetworkService.getNffg();
+
+        for (NetworkService.Nffg nffg : nffg_list) {
+            if (nffg.getNffgNameId().contains(name)) {
+                return nffg;
+            }
+        }
+
+        return null;
     }
 
     private void printXMLOnConsole() {

@@ -65,6 +65,9 @@ public class NFFGInfo {
         for (PolicyReader pr : set) {
             pr.toString();
 
+            if (!(pr instanceof TraversalPolicyReader)) {
+                System.out.println("tgh");
+            }
             System.out.println("Policy name: " + pr.getName());
             System.out.println("Policy nffg name: " + pr.getNffg().getName());
             if (pr.isPositive())
