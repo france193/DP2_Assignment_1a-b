@@ -15,11 +15,9 @@ import it.polito.dp2.NFFG.*;
 
 //generated path
 import it.polito.dp2.NFFG.sol1.jaxb_generated.*;
+import org.xml.sax.SAXException;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -29,6 +27,10 @@ import javax.xml.bind.Marshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+
+import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
 /************************************************************************
  * ant -Doutput=file1.xml -Dseed=100000 -Dtestcase=1 NffgInfoSerializer *
@@ -192,7 +194,7 @@ public class NffgInfoSerializer {
         Set<PolicyReader> policy_set = monitor.getPolicies();
 
         for (PolicyReader policy : policy_set) {
-
+            //policy.
         }
     }
 
@@ -217,17 +219,24 @@ public class NffgInfoSerializer {
 
     private void writeXMLToFile() {
         try {
-            //Write it
-            JAXBContext ctx = JAXBContext.newInstance(NetworkService.class);
-            Marshaller m = ctx.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            // create jaxb context
+            JAXBContext jaxbContext = JAXBContext.newInstance(NetworkService.class);
+            Marshaller myMarchaller = jaxbContext.createMarshaller();
+            myMarchaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            OutputStream os = new FileOutputStream(xml_filename);
-            m.marshal(myNetworkService, os);
-            os.close();
+            // set validation with my xsd
+            SchemaFactory mySchemaFactory = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
+            Schema mySchema = mySchemaFactory.newSchema(new File("xsd/nffgInfo.xsd"));
+            myMarchaller.setSchema(mySchema);
+
+            OutputStream fileOutputStream = new FileOutputStream(xml_filename);
+            myMarchaller.marshal(myNetworkService, fileOutputStream);
+            fileOutputStream.close();
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
             e.printStackTrace();
         }
     }

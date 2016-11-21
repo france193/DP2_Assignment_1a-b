@@ -2,6 +2,7 @@ Buildfile: /Users/FLDeviOS/IdeaProjects/DP2_Assignment_1b/build.xml
 
 buildNFFGInfo:
      [echo] Building NFFGInfo (if needed)...
+    [javac] Compiling 1 source file to /Users/FLDeviOS/IdeaProjects/DP2_Assignment_1b/build
      [echo] Done.
 
 setseed:
@@ -18,6 +19,8 @@ NFFGInfo:
      [java] Data for NFFG Nffg0
      [java] ------------------------------------------------------------------------------------------------------------------------------------
      [java] 
+     [java] Update time: Wed Sep 28 11:11:20 CEST 2016
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
      [java] Update time: 28/09/2016 11:11
      [java] ------------------------------------------------------------------------------------------------------------------------------------
      [java] Number of Nodes: 3
@@ -53,4 +56,4 @@ NFFGInfo:
      [java] #
 
 BUILD SUCCESSFUL
-Total time: 0 seconds
+Total time: 1 second

@@ -107,6 +107,7 @@ public class NFFGInfo {
             System.out.println();
             // Print update time
             Calendar updateTime = nffg_r.getUpdateTime();
+            printHeader("Update time: " + updateTime.getTime().toString());
             printHeader("Update time: " + dateFormat.format(updateTime.getTime()));
 
             // Print nodes
