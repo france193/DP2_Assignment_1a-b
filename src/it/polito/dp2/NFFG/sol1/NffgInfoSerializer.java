@@ -10,14 +10,15 @@ package it.polito.dp2.NFFG.sol1;
  **/
 
 //library path
-
 import it.polito.dp2.NFFG.*;
 
 //generated path
-import it.polito.dp2.NFFG.sol1.jaxb_generated.*;
+import it.polito.dp2.NFFG.sol1.jaxb.*;
+
 import org.xml.sax.SAXException;
 
 import java.io.*;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -143,13 +144,7 @@ public class NffgInfoSerializer {
             NetworkService.Nffg myNffg = new NetworkService.Nffg();
             /* setting parameter on myNffg */
             myNffg.setNffgNameId(nffg.getName());
-            try {
-                GregorianCalendar calendar = (GregorianCalendar) nffg.getUpdateTime();
-                XMLGregorianCalendar xmlCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
-                myNffg.setLastUpdatedTime(xmlCal);
-            } catch (DatatypeConfigurationException e) {
-                e.printStackTrace();
-            }
+            myNffg.setLastUpdatedTime(getXMLCal(nffg.getUpdateTime()));
 
             /** NODES **/
             /* take nodes of myNffg */
@@ -193,8 +188,46 @@ public class NffgInfoSerializer {
         // get the list of NFFGs as a set
         Set<PolicyReader> policy_set = monitor.getPolicies();
 
-        for (PolicyReader policy : policy_set) {
-            //policy.
+        for (PolicyReader general_policy : policy_set) {
+
+            int index = myNetworkService.getNffg().indexOf(general_policy.getNffg());
+
+            // read Reachability Policy
+            if (general_policy instanceof ReachabilityPolicyReader) {
+                ReachabilityPolicyReader policy = (ReachabilityPolicyReader) general_policy;
+                ReachabilityPolicyType myPolicy = new ReachabilityPolicyType();
+
+                myPolicy.setPolicyNameId(policy.getName());
+                myPolicy.setNffgNameIdRefer(policy.getNffg().getName());
+                myPolicy.setIsPositive(policy.isPositive());
+                myPolicy.setVerificationResult(policy.getResult().getVerificationResult());
+                myPolicy.setVerificationTime(getXMLCal(policy.getResult().getVerificationTime()));
+                myPolicy.setPolicySourceNodeNameIdRefer(policy.getSourceNode().getName());
+                myPolicy.setPolicyDestinationNodeNameIdRefer(policy.getDestinationNode().getName());
+
+                myNetworkService.getNffg().get(index).getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
+
+                // read Reachability Policy
+            } else if (general_policy instanceof TraversalPolicyReader) {
+                TraversalPolicyReader policy = (TraversalPolicyReader) general_policy;
+                TraversalPolicyType myPolicy = new TraversalPolicyType();
+
+                myPolicy.setPolicyNameId(policy.getName());
+                myPolicy.setNffgNameIdRefer(policy.getNffg().getName());
+                myPolicy.setIsPositive(policy.isPositive());
+                myPolicy.setVerificationResult(policy.getResult().getVerificationResult());
+                myPolicy.setVerificationTime(getXMLCal(policy.getResult().getVerificationTime()));
+                myPolicy.setPolicySourceNodeNameIdRefer(policy.getSourceNode().getName());
+                myPolicy.setPolicyDestinationNodeNameIdRefer(policy.getDestinationNode().getName());
+
+                for (FunctionalType myFunctionalType : policy.getTraversedFuctionalTypes()) {
+                    TraversalPolicyType.TraversalRequestedNode myRequestedNode = null;
+                    myRequestedNode.setFunctionalType(NodeFunctionalType.valueOf(myFunctionalType.value()));
+                    myPolicy.getTraversalRequestedNode().add(myRequestedNode);
+                }
+
+                myNetworkService.getNffg().get(index).getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
+            }
         }
     }
 
@@ -239,5 +272,18 @@ public class NffgInfoSerializer {
         } catch (SAXException e) {
             e.printStackTrace();
         }
+    }
+
+    private XMLGregorianCalendar getXMLCal(Calendar calendar) {
+        GregorianCalendar cal = (GregorianCalendar) calendar;
+        XMLGregorianCalendar xmlCal = null;
+
+        try {
+            xmlCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
+        } catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+        }
+
+        return xmlCal;
     }
 }

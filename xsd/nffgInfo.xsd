@@ -3,7 +3,7 @@
 <!-- This XSD file was developed by Francesco Longo for the Assignment 1
 	 of the course Distributed Programming II in Politechnic University of Turin. -->
 
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             targetNamespace="https://france193.wordpress.com"
             xmlns:flo="https://france193.wordpress.com"
             elementFormDefault="qualified">
@@ -95,28 +95,21 @@
 
     <!-- POLICIES -->
 
-    <!-- Policy Base Type -->
-    <xsd:complexType name="policyBaseType">
+    <!-- Reachability Policy Type (Base Type) -->
+    <xsd:complexType name="reachabilityPolicyType">
         <xsd:attribute name="policy_name_id" type="xsd:string" use="required"/>
         <xsd:attribute name="nffg_name_id_refer" type="xsd:string" use="required"/>
-        <xsd:attribute name="isVerified" type="xsd:boolean" use="required"/>
+        <xsd:attribute name="isPositive" type="xsd:boolean" use="required"/>
+        <xsd:attribute name="verificationResult" type="xsd:boolean" use="required"/>
         <xsd:attribute name="verification_time" type="xsd:dateTime" use="required"/>
         <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string" use="required"/>
-        <xsd:attribute name="last_updated_time" type="xsd:dateTime" use="required"/>
-    </xsd:complexType>
-
-    <!-- Reachability Policy Type (extension of Policy Base Type) -->
-    <xsd:complexType name="reachabilityPolicyType">
-        <xsd:complexContent>
-            <xsd:extension base="flo:policyBaseType"/>
-        </xsd:complexContent>
     </xsd:complexType>
 
     <!-- Traversal Policy Type (Policy Base Type) -->
     <xsd:complexType name="traversalPolicyType">
         <xsd:complexContent>
-            <xsd:extension base="flo:policyBaseType">
+            <xsd:extension base="flo:reachabilityPolicyType">
                 <xsd:sequence>
                     <!-- request_node -->
                     <xsd:element name="traversal_requested_node" minOccurs="0" maxOccurs="unbounded">

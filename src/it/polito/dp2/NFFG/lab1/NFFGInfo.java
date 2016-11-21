@@ -63,6 +63,8 @@ public class NFFGInfo {
 
         // For each policy print related data
         for (PolicyReader pr : set) {
+            pr.toString();
+
             System.out.println("Policy name: " + pr.getName());
             System.out.println("Policy nffg name: " + pr.getNffg().getName());
             if (pr.isPositive())
@@ -121,7 +123,6 @@ public class NFFGInfo {
                 for (LinkReader lr : linkSet)
                     System.out.println(lr.getName() + "\t" + lr.getSourceNode().getName() + "\t" + lr.getDestinationNode().getName());
                 System.out.println(makeLine('%'));
-                ;
             }
             System.out.println("#");
         }
