@@ -20,9 +20,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.StringWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -118,7 +115,8 @@ public class NffgInfoSerializer {
 
         try {
             myInfoserializer = new NffgInfoSerializer();
-            myInfoserializer.printAll();
+            myInfoserializer.readAll();
+
             myInfoserializer.printXMLOnConsole();
             myInfoserializer.writeXMLToFile();
         } catch (NffgVerifierException e) {
@@ -126,9 +124,9 @@ public class NffgInfoSerializer {
         }
     }
 
-    public void printAll() {
+    public void readAll() {
         readNffgs();
-        //printPolicies();
+        readPolicy();
     }
 
     private void readNffgs() {
@@ -164,6 +162,9 @@ public class NffgInfoSerializer {
                 myNode.setNodeNameId(node.getName());
                 myNode.setFunctionalType(NodeFunctionalType.valueOf(node.getFuncType().value()));
 
+                /* add myNode to my myNffg */
+                myNffg.getNode().add(myNode);
+
                 /** LINKS **/
                 /* take links of every node and save it to my nffg */
                 Set<LinkReader> link_set = node.getLinks();
@@ -179,12 +180,19 @@ public class NffgInfoSerializer {
 
                     myNffg.getLink().add(myLink);
                 }
-
-                myNffg.getNode().add(myNode);
             }
 
             /* add myNffg to my NetworkService */
             myNetworkService.getNffg().add(myNffg);
+        }
+    }
+
+    private void readPolicy() {
+        // get the list of NFFGs as a set
+        Set<PolicyReader> policy_set = monitor.getPolicies();
+
+        for (PolicyReader policy : policy_set) {
+
         }
     }
 

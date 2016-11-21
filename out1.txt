@@ -1,0 +1,56 @@
+Buildfile: /Users/FLDeviOS/IdeaProjects/DP2_Assignment_1b/build.xml
+
+buildNFFGInfo:
+     [echo] Building NFFGInfo (if needed)...
+     [echo] Done.
+
+setseed:
+
+NFFGInfo:
+     [java] Random NffgVerifier: Using seed: 100000
+     [java] Random NffgVerifier: Test case: 1
+     [java] #
+     [java] #Number of Nffgs: 1
+     [java] #
+     [java] #List of NFFgs:
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
+     [java] 
+     [java] Data for NFFG Nffg0
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
+     [java] 
+     [java] Update time: 28/09/2016 11:11
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
+     [java] Number of Nodes: 3
+     [java] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     [java] Node NAT0	Type: NAT	Number of links: 2
+     [java] List of Links for node NAT0
+     [java] Link name 	source 	destination
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
+     [java] Link1	NAT0	WEBCLIENT0
+     [java] Link3	NAT0	WEBSERVER0
+     [java] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     [java] Node WEBCLIENT0	Type: WEB_CLIENT	Number of links: 1
+     [java] List of Links for node WEBCLIENT0
+     [java] Link name 	source 	destination
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
+     [java] Link0	WEBCLIENT0	NAT0
+     [java] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     [java] Node WEBSERVER0	Type: WEB_SERVER	Number of links: 1
+     [java] List of Links for node WEBSERVER0
+     [java] Link name 	source 	destination
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
+     [java] Link2	WEBSERVER0	NAT0
+     [java] %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     [java] #
+     [java] #End of Nodes
+     [java] #
+     [java] #
+     [java] #Number of Policies: 0
+     [java] #
+     [java] #List of policies:
+     [java] ------------------------------------------------------------------------------------------------------------------------------------
+     [java] #End of Policies
+     [java] #
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
