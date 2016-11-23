@@ -4,7 +4,7 @@
         xmlns:flo="https://france193.wordpress.com"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="https://france193.wordpress.com ./nffgInfo.xsd">
-    <!-- nffg -->
+    <!-- nffg_name_id_refer -->
     <flo:nffg nffg_name_id="service_1" last_updated_time="2016-11-09T17:17:30+01:00">
         <!-- nodes -->
         <flo:node node_name_id="node_1" functional_type="WEB_CLIENT"/>
@@ -32,16 +32,16 @@
                                     nffg_name_id_refer="service_1"
                                     isPositive="true"
                                     verificationResult="true"
-                                    verification_time="2016-11-09T17:19:57+01:00"
-                                    verificationMessage="Policy verificarion result true"
+                                    verificationTime="2016-11-09T17:19:57+01:00"
+                                    verificationMessage="Policy verificarion verificationResult true"
                                     policy_source_node_name_id_refer="node_1"
                                     policy_destination_node_name_id_refer="node_5"/>
         <flo:traversalPolicyType policy_name_id="policy_2"
                                  nffg_name_id_refer="service_1"
                                  isPositive="true"
                                  verificationResult="true"
-                                 verification_time="2016-11-09T17:20:27+01:00"
-                                 verificationMessage="Policy verificarion result true"
+                                 verificationTime="2016-11-09T17:20:27+01:00"
+                                 verificationMessage="Policy verificarion verificationResult true"
                                  policy_source_node_name_id_refer="node_1"
                                  policy_destination_node_name_id_refer="node_5">
             <flo:traversal_requested_node functional_type="VPN"/>
@@ -52,16 +52,16 @@
                                     nffg_name_id_refer="service_1"
                                     isPositive="true"
                                     verificationResult="false"
-                                    verification_time="2016-11-09T17:26:50+01:00"
-                                    verificationMessage="No verification result for policy"
+                                    verificationTime="2016-11-09T17:26:50+01:00"
+                                    verificationMessage="No verification verificationResult for policy"
                                     policy_source_node_name_id_refer="node_5"
                                     policy_destination_node_name_id_refer="node_1"/>
         <flo:reachabilityPolicyType policy_name_id="policy_4"
                                     nffg_name_id_refer="service_1"
                                     isPositive="false"
                                     verificationResult="false"
-                                    verification_time="2016-11-09T17:26:50+01:00"
-                                    verificationMessage="Policy verificarion result not true"
+                                    verificationTime="2016-11-09T17:26:50+01:00"
+                                    verificationMessage="Policy verificarion verificationResult not true"
                                     policy_source_node_name_id_refer="node_5"
                                     policy_destination_node_name_id_refer="node_4"/>
     </flo:nffg>

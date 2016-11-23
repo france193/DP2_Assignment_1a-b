@@ -17,7 +17,7 @@
         <xsd:complexType>
             <xsd:sequence>
 
-                <!-- nffg -->
+                <!-- nffg_name_id_refer -->
                 <xsd:element name="nffg" minOccurs="0" maxOccurs="unbounded">
                     <xsd:complexType>
                         <xsd:sequence>
@@ -87,7 +87,7 @@
                         <xsd:field xpath="@node_name_id"/>
                     </xsd:keyref>
                 </xsd:element>
-                <!-- end nffg -->
+                <!-- end nffg_name_id_refer -->
 
             </xsd:sequence>
         </xsd:complexType>
@@ -101,7 +101,7 @@
         <xsd:attribute name="nffg_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="isPositive" type="xsd:boolean" use="required"/>
         <xsd:attribute name="verificationResult" type="xsd:boolean"/>
-        <xsd:attribute name="verification_time" type="xsd:dateTime"/>
+        <xsd:attribute name="verificationTime" type="xsd:dateTime"/>
         <xsd:attribute name="verificationMessage" type="xsd:string" use="required"/>
         <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string" use="required"/>

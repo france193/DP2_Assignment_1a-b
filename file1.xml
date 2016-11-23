@@ -1,173 +1,1186 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <network_service xmlns="https://france193.wordpress.com">
-    <nffg nffg_name_id="Nffg0" last_updated_time="2016-09-28T05:29:20.000+02:00">
-        <node node_name_id="MAILSERVER5" functional_type="MAIL_SERVER"/>
-        <node node_name_id="FW1" functional_type="FW"/>
-        <node node_name_id="FW3" functional_type="FW"/>
-        <node node_name_id="MAILSERVER7" functional_type="MAIL_SERVER"/>
-        <node node_name_id="CACHE0" functional_type="CACHE"/>
+    <nffg nffg_name_id="Nffg4" last_updated_time="2016-09-28T23:13:20.000+02:00">
+        <node node_name_id="MAILSERVER3" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER2" functional_type="MAIL_SERVER"/>
+        <node node_name_id="VPN1" functional_type="VPN"/>
+        <node node_name_id="DPI2" functional_type="DPI"/>
+        <node node_name_id="DPI3" functional_type="DPI"/>
+        <node node_name_id="NAT4" functional_type="NAT"/>
+        <node node_name_id="CACHE5" functional_type="CACHE"/>
+        <node node_name_id="MAILCLIENT1" functional_type="MAIL_CLIENT"/>
         <node node_name_id="MAILCLIENT0" functional_type="MAIL_CLIENT"/>
-        <node node_name_id="MAILSERVER0" functional_type="MAIL_SERVER"/>
-        <node node_name_id="MAILCLIENT5" functional_type="MAIL_CLIENT"/>
-        <node node_name_id="MAILCLIENT3" functional_type="MAIL_CLIENT"/>
-        <node node_name_id="WEBCLIENT7" functional_type="WEB_CLIENT"/>
-        <node node_name_id="MAILCLIENT8" functional_type="MAIL_CLIENT"/>
-        <node node_name_id="VPN2" functional_type="VPN"/>
-        <node node_name_id="WEBSERVER3" functional_type="WEB_SERVER"/>
-        <node node_name_id="WEBCLIENT4" functional_type="WEB_CLIENT"/>
-        <node node_name_id="WEBSERVER4" functional_type="WEB_SERVER"/>
-        <node node_name_id="WEBCLIENT6" functional_type="WEB_CLIENT"/>
-        <node node_name_id="WEBSERVER6" functional_type="WEB_SERVER"/>
-        <node node_name_id="WEBCLIENT1" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBSERVER0" functional_type="WEB_SERVER"/>
         <node node_name_id="WEBSERVER1" functional_type="WEB_SERVER"/>
+        <node node_name_id="FW0" functional_type="FW"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="MAILSERVER3" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="DPI3"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link26" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="NAT4" link_destination_node_name_id_refer="MAILSERVER3"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="NAT4" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="MAILSERVER3"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="WEBSERVER1"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <reachabilityPolicyType policy_name_id="Policy44" nffg_name_id_refer="Nffg4" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="MAILCLIENT1"/>
+        <traversalPolicyType policy_name_id="Policy43" nffg_name_id_refer="Nffg4" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT1" policy_destination_node_name_id_refer="WEBSERVER0">
+            <traversal_requested_node functional_type="DPI"/>
+            <traversal_requested_node functional_type="WEB_CLIENT"/>
+            <traversal_requested_node functional_type="SPAM"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy42" nffg_name_id_refer="Nffg4" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT1" policy_destination_node_name_id_refer="WEBSERVER1"/>
+        <reachabilityPolicyType policy_name_id="Policy41" nffg_name_id_refer="Nffg4" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT1" policy_destination_node_name_id_refer="WEBSERVER1"/>
+    </nffg>
+    <nffg nffg_name_id="Nffg3" last_updated_time="2016-09-25T21:17:20.000+02:00">
+        <node node_name_id="NAT18" functional_type="NAT"/>
+        <node node_name_id="DPI15" functional_type="DPI"/>
+        <node node_name_id="NAT11" functional_type="NAT"/>
+        <node node_name_id="FW9" functional_type="FW"/>
+        <node node_name_id="MAILCLIENT1" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="NAT17" functional_type="NAT"/>
+        <node node_name_id="MAILCLIENT4" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="MAILCLIENT2" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="FW14" functional_type="FW"/>
+        <node node_name_id="FW16" functional_type="FW"/>
+        <node node_name_id="WEBCLIENT3" functional_type="WEB_CLIENT"/>
+        <node node_name_id="SPAM19" functional_type="SPAM"/>
+        <node node_name_id="WEBCLIENT5" functional_type="WEB_CLIENT"/>
+        <node node_name_id="CACHE4" functional_type="CACHE"/>
+        <node node_name_id="WEBCLIENT6" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBCLIENT0" functional_type="WEB_CLIENT"/>
+        <node node_name_id="CACHE8" functional_type="CACHE"/>
+        <node node_name_id="MAILSERVER2" functional_type="MAIL_SERVER"/>
+        <node node_name_id="NAT0" functional_type="NAT"/>
+        <node node_name_id="MAILSERVER1" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER0" functional_type="MAIL_SERVER"/>
+        <node node_name_id="NAT6" functional_type="NAT"/>
+        <node node_name_id="VPN1" functional_type="VPN"/>
+        <node node_name_id="NAT3" functional_type="NAT"/>
+        <node node_name_id="DPI5" functional_type="DPI"/>
+        <node node_name_id="SPAM7" functional_type="SPAM"/>
+        <node node_name_id="CACHE13" functional_type="CACHE"/>
+        <node node_name_id="DPI12" functional_type="DPI"/>
+        <node node_name_id="SPAM2" functional_type="SPAM"/>
+        <node node_name_id="DPI10" functional_type="DPI"/>
+        <link link_name_id="Link290" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link34" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link197" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link99" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link221" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="SPAM2"/>
+        <link link_name_id="Link182" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link201" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link234" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link289" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link51" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link200" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link104" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link246" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link28" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link190" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link131" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link287" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link140" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link271" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link80" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link129" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link63" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link168" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link93" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link301" link_source_node_name_id_refer="DPI15" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link162" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link227" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link248" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link303" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link90" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link218" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link74" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link255" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link94" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link269" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link147" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link268" link_source_node_name_id_refer="NAT11" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link251" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link284" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link87" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link133" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link307" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link191" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link300" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link159" link_source_node_name_id_refer="FW9" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link175" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link152" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link177" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="SPAM2"/>
+        <link link_name_id="Link253" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link58" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link306" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link77" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link166" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link75" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link286" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link27" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link171" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link127" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link245" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link156" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link288" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link115" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link71" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link114" link_source_node_name_id_refer="NAT17" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link143" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link117" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link105" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link124" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link157" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link241" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link98" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link110" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link238" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM2"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link126" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link164" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link174" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link210" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link220" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link275" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link292" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link48" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link291" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link70" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link214" link_source_node_name_id_refer="FW14" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link199" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link209" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link109" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link272" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link68" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link239" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link189" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link266" link_source_node_name_id_refer="FW16" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link66" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link76" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link97" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link231" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link36" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link180" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link39" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link228" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link65" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link144" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link170" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link192" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link116" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link259" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link119" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link102" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link89" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link33" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link273" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link43" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link122" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link280" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link261" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link285" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link276" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link297" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link216" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link229" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link62" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link178" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link222" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link153" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link55" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link88" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="SPAM2"/>
+        <link link_name_id="Link151" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link260" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link149" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link237" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link41" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link278" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link134" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link161" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link203" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link258" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link296" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link184" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link294" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="SPAM2"/>
+        <link link_name_id="Link205" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link267" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link123" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link60" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link142" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link187" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link69" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link35" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link150" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link91" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link204" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link107" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link118" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link277" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link45" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link130" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link141" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link32" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link42" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link242" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link264" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link160" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link59" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link195" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link250" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link217" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link256" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link50" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link236" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link125" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link169" link_source_node_name_id_refer="NAT0" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link78" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link252" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link121" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link281" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link173" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link249" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link52" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link179" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link211" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link224" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link263" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link181" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link207" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link72" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link136" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link37" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link219" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link283" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link30" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link85" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="SPAM2"/>
+        <link link_name_id="Link101" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link244" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link299" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link202" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link186" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link274" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link44" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link254" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link53" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link64" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link176" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link193" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link46" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link81" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link206" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link233" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link83" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link148" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link38" link_source_node_name_id_refer="NAT3" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link194" link_source_node_name_id_refer="NAT3" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="NAT3" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link226" link_source_node_name_id_refer="NAT3" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link223" link_source_node_name_id_refer="NAT3" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link213" link_source_node_name_id_refer="NAT3" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link196" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link295" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link111" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link155" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link232" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link298" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="SPAM2"/>
+        <link link_name_id="Link86" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link132" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link270" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link47" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link212" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link40" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link73" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link279" link_source_node_name_id_refer="DPI5" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link188" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link92" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link106" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link128" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link215" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link305" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link135" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link112" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link158" link_source_node_name_id_refer="SPAM7" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link56" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link230" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link26" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link282" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link293" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link108" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link113" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="DPI5"/>
+        <link link_name_id="Link146" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link84" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link82" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="NAT3"/>
+        <link link_name_id="Link120" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link240" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="NAT11"/>
+        <link link_name_id="Link262" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link265" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link172" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link304" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link167" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link235" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link208" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link67" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link185" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link54" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link100" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link243" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="DPI15"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="DPI10"/>
+        <link link_name_id="Link31" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link154" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="WEBCLIENT6"/>
+        <link link_name_id="Link57" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link79" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link95" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link225" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link103" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link257" link_source_node_name_id_refer="SPAM2" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link29" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="FW14"/>
+        <link link_name_id="Link163" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="FW16"/>
+        <link link_name_id="Link165" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="NAT0"/>
+        <link link_name_id="Link198" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link49" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link183" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link139" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link138" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="NAT17"/>
+        <link link_name_id="Link96" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link145" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link61" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link137" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link247" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="FW9"/>
+        <link link_name_id="Link302" link_source_node_name_id_refer="DPI10" link_destination_node_name_id_refer="CACHE4"/>
+        <traversalPolicyType policy_name_id="Policy40" nffg_name_id_refer="Nffg3" isPositive="false" verificationResult="true" verificationTime="2016-09-25T11:28:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="MAILCLIENT1">
+            <traversal_requested_node functional_type="CACHE"/>
+            <traversal_requested_node functional_type="MAIL_CLIENT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy34" nffg_name_id_refer="Nffg3" isPositive="false" verificationResult="false" verificationTime="2016-09-25T12:28:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT1" policy_destination_node_name_id_refer="MAILSERVER2"/>
+        <traversalPolicyType policy_name_id="Policy33" nffg_name_id_refer="Nffg3" isPositive="true" verificationResult="false" verificationTime="2016-09-25T07:07:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="MAILSERVER0">
+            <traversal_requested_node functional_type="NAT"/>
+            <traversal_requested_node functional_type="SPAM"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy32" nffg_name_id_refer="Nffg3" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="MAILSERVER0">
+            <traversal_requested_node functional_type="WEB_CLIENT"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy38" nffg_name_id_refer="Nffg3" isPositive="true" verificationResult="false" verificationTime="2016-09-25T16:13:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT6" policy_destination_node_name_id_refer="MAILSERVER1">
+            <traversal_requested_node functional_type="DPI"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy37" nffg_name_id_refer="Nffg3" isPositive="false" verificationResult="false" verificationTime="2016-09-25T18:48:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT6" policy_destination_node_name_id_refer="MAILSERVER1"/>
+        <traversalPolicyType policy_name_id="Policy36" nffg_name_id_refer="Nffg3" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT2" policy_destination_node_name_id_refer="MAILSERVER1">
+            <traversal_requested_node functional_type="MAIL_SERVER"/>
+            <traversal_requested_node functional_type="FW"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy35" nffg_name_id_refer="Nffg3" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT1" policy_destination_node_name_id_refer="MAILSERVER0">
+            <traversal_requested_node functional_type="CACHE"/>
+            <traversal_requested_node functional_type="MAIL_CLIENT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy39" nffg_name_id_refer="Nffg3" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER1" policy_destination_node_name_id_refer="WEBCLIENT6"/>
+    </nffg>
+    <nffg nffg_name_id="Nffg2" last_updated_time="2016-09-27T01:08:20.000+02:00">
+        <node node_name_id="MAILSERVER5" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER4" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER2" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER8" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER7" functional_type="MAIL_SERVER"/>
+        <node node_name_id="WEBSERVER9" functional_type="WEB_SERVER"/>
+        <node node_name_id="CACHE1" functional_type="CACHE"/>
+        <node node_name_id="MAILSERVER1" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILCLIENT0" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="DPI2" functional_type="DPI"/>
+        <node node_name_id="DPI3" functional_type="DPI"/>
+        <node node_name_id="WEBSERVER3" functional_type="WEB_SERVER"/>
+        <node node_name_id="DPI7" functional_type="DPI"/>
+        <node node_name_id="WEBSERVER6" functional_type="WEB_SERVER"/>
+        <node node_name_id="CACHE5" functional_type="CACHE"/>
+        <node node_name_id="SPAM6" functional_type="SPAM"/>
+        <node node_name_id="WEBSERVER0" functional_type="WEB_SERVER"/>
+        <node node_name_id="SPAM4" functional_type="SPAM"/>
+        <node node_name_id="WEBCLIENT1" functional_type="WEB_CLIENT"/>
+        <node node_name_id="FW0" functional_type="FW"/>
+        <node node_name_id="CACHE8" functional_type="CACHE"/>
         <node node_name_id="WEBCLIENT2" functional_type="WEB_CLIENT"/>
-        <node node_name_id="WEBSERVER2" functional_type="WEB_SERVER"/>
-        <link link_name_id="Link28" link_source_node_name_id_refer="MAILSERVER5" link_destination_node_name_id_refer="FW3"/>
-        <link link_name_id="Link23" link_source_node_name_id_refer="FW1" link_destination_node_name_id_refer="WEBSERVER2"/>
-        <link link_name_id="Link21" link_source_node_name_id_refer="FW1" link_destination_node_name_id_refer="WEBSERVER1"/>
-        <link link_name_id="Link36" link_source_node_name_id_refer="FW1" link_destination_node_name_id_refer="WEBCLIENT7"/>
-        <link link_name_id="Link17" link_source_node_name_id_refer="FW1" link_destination_node_name_id_refer="MAILCLIENT8"/>
-        <link link_name_id="Link11" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="MAILCLIENT5"/>
-        <link link_name_id="Link31" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="WEBSERVER6"/>
-        <link link_name_id="Link27" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="WEBSERVER4"/>
-        <link link_name_id="Link38" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="WEBCLIENT7"/>
-        <link link_name_id="Link29" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="MAILSERVER5"/>
-        <link link_name_id="Link39" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="MAILCLIENT8"/>
-        <link link_name_id="Link41" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="WEBSERVER2"/>
-        <link link_name_id="Link32" link_source_node_name_id_refer="MAILSERVER7" link_destination_node_name_id_refer="VPN2"/>
-        <link link_name_id="Link15" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="WEBCLIENT7"/>
-        <link link_name_id="Link37" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="MAILSERVER5"/>
-        <link link_name_id="Link25" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="WEBSERVER3"/>
-        <link link_name_id="Link3" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="WEBCLIENT1"/>
-        <link link_name_id="Link5" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="WEBCLIENT2"/>
-        <link link_name_id="Link9" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="WEBCLIENT4"/>
-        <link link_name_id="Link0" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="VPN2"/>
-        <link link_name_id="Link35" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="FW3"/>
-        <link link_name_id="Link18" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="VPN2"/>
-        <link link_name_id="Link10" link_source_node_name_id_refer="MAILCLIENT5" link_destination_node_name_id_refer="FW3"/>
-        <link link_name_id="Link6" link_source_node_name_id_refer="MAILCLIENT3" link_destination_node_name_id_refer="VPN2"/>
-        <link link_name_id="Link14" link_source_node_name_id_refer="WEBCLIENT7" link_destination_node_name_id_refer="CACHE0"/>
-        <link link_name_id="Link16" link_source_node_name_id_refer="MAILCLIENT8" link_destination_node_name_id_refer="FW1"/>
-        <link link_name_id="Link33" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="MAILSERVER7"/>
-        <link link_name_id="Link1" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="MAILCLIENT0"/>
-        <link link_name_id="Link13" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="WEBCLIENT6"/>
-        <link link_name_id="Link19" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="MAILSERVER0"/>
-        <link link_name_id="Link7" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="MAILCLIENT3"/>
-        <link link_name_id="Link40" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="WEBSERVER4"/>
-        <link link_name_id="Link24" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="CACHE0"/>
-        <link link_name_id="Link8" link_source_node_name_id_refer="WEBCLIENT4" link_destination_node_name_id_refer="CACHE0"/>
-        <link link_name_id="Link26" link_source_node_name_id_refer="WEBSERVER4" link_destination_node_name_id_refer="FW3"/>
-        <link link_name_id="Link12" link_source_node_name_id_refer="WEBCLIENT6" link_destination_node_name_id_refer="VPN2"/>
-        <link link_name_id="Link30" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="FW3"/>
-        <link link_name_id="Link2" link_source_node_name_id_refer="WEBCLIENT1" link_destination_node_name_id_refer="CACHE0"/>
-        <link link_name_id="Link34" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="VPN2"/>
-        <link link_name_id="Link20" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="FW1"/>
-        <link link_name_id="Link4" link_source_node_name_id_refer="WEBCLIENT2" link_destination_node_name_id_refer="CACHE0"/>
-        <link link_name_id="Link22" link_source_node_name_id_refer="WEBSERVER2" link_destination_node_name_id_refer="FW1"/>
-        <reachabilityPolicyType policy_name_id="Policy12" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT4" policy_destination_node_name_id_refer="MAILSERVER0"/>
-        <reachabilityPolicyType policy_name_id="Policy34" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER4" policy_destination_node_name_id_refer="MAILCLIENT5"/>
-        <traversalPolicyType policy_name_id="Policy11" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="WEBSERVER1">
-            <traversal_requested_node functional_type="NAT"/>
-            <traversal_requested_node functional_type="VPN"/>
-            <traversal_requested_node functional_type="WEB_SERVER"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy33" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER3" policy_destination_node_name_id_refer="MAILCLIENT5">
-            <traversal_requested_node functional_type="SPAM"/>
-            <traversal_requested_node functional_type="MAIL_SERVER"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy10" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="WEBSERVER1"/>
-        <reachabilityPolicyType policy_name_id="Policy32" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="WEBCLIENT4"/>
-        <reachabilityPolicyType policy_name_id="Policy31" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="WEBCLIENT2"/>
-        <reachabilityPolicyType policy_name_id="Policy16" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verification_time="2016-09-27T17:09:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT4" policy_destination_node_name_id_refer="MAILSERVER0"/>
-        <traversalPolicyType policy_name_id="Policy38" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER7" policy_destination_node_name_id_refer="WEBCLIENT2">
-            <traversal_requested_node functional_type="WEB_SERVER"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy15" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verification_time="2016-09-27T13:55:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT4" policy_destination_node_name_id_refer="MAILSERVER0"/>
-        <traversalPolicyType policy_name_id="Policy37" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER6" policy_destination_node_name_id_refer="WEBCLIENT2">
-            <traversal_requested_node functional_type="SPAM"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy14" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verification_time="2016-09-27T10:52:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT4" policy_destination_node_name_id_refer="MAILSERVER5"/>
-        <traversalPolicyType policy_name_id="Policy36" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER4" policy_destination_node_name_id_refer="WEBCLIENT2">
-            <traversal_requested_node functional_type="WEB_CLIENT"/>
-            <traversal_requested_node functional_type="FW"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy13" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT4" policy_destination_node_name_id_refer="WEBSERVER3"/>
-        <reachabilityPolicyType policy_name_id="Policy35" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="WEBCLIENT4"/>
-        <traversalPolicyType policy_name_id="Policy19" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="false" verification_time="2016-09-27T17:02:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT5" policy_destination_node_name_id_refer="WEBSERVER3">
-            <traversal_requested_node functional_type="SPAM"/>
-            <traversal_requested_node functional_type="MAIL_SERVER"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy18" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT5" policy_destination_node_name_id_refer="WEBSERVER4"/>
-        <reachabilityPolicyType policy_name_id="Policy17" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT4" policy_destination_node_name_id_refer="MAILSERVER0"/>
-        <traversalPolicyType policy_name_id="Policy39" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verification_time="2016-09-27T14:11:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="WEBCLIENT1">
-            <traversal_requested_node functional_type="MAIL_SERVER"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="MAILSERVER5" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link44" link_source_node_name_id_refer="MAILSERVER4" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link43" link_source_node_name_id_refer="MAILSERVER4" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="MAILSERVER4" link_destination_node_name_id_refer="DPI7"/>
+        <link link_name_id="Link66" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="DPI7"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="MAILSERVER8" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link42" link_source_node_name_id_refer="MAILSERVER8" link_destination_node_name_id_refer="SPAM4"/>
+        <link link_name_id="Link56" link_source_node_name_id_refer="MAILSERVER7" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="MAILSERVER7" link_destination_node_name_id_refer="SPAM4"/>
+        <link link_name_id="Link41" link_source_node_name_id_refer="MAILSERVER7" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="WEBSERVER9" link_destination_node_name_id_refer="DPI7"/>
+        <link link_name_id="Link71" link_source_node_name_id_refer="WEBSERVER9" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="CACHE1" link_destination_node_name_id_refer="MAILSERVER8"/>
+        <link link_name_id="Link88" link_source_node_name_id_refer="CACHE1" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link65" link_source_node_name_id_refer="CACHE1" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link74" link_source_node_name_id_refer="CACHE1" link_destination_node_name_id_refer="DPI3"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="CACHE1" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link60" link_source_node_name_id_refer="CACHE1" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link82" link_source_node_name_id_refer="CACHE1" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link54" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link27" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="DPI3"/>
+        <link link_name_id="Link72" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link87" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link70" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="SPAM4"/>
+        <link link_name_id="Link73" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link67" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link33" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link53" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="DPI7"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link35" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link68" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="DPI3"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="MAILSERVER5"/>
+        <link link_name_id="Link62" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link45" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link48" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="SPAM4"/>
+        <link link_name_id="Link58" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="MAILSERVER7"/>
+        <link link_name_id="Link92" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link29" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="WEBCLIENT2"/>
+        <link link_name_id="Link39" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link84" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="DPI3" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link90" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="DPI3"/>
+        <link link_name_id="Link85" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="DPI7" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link49" link_source_node_name_id_refer="DPI7" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="DPI7" link_destination_node_name_id_refer="MAILSERVER4"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="DPI7" link_destination_node_name_id_refer="WEBSERVER9"/>
+        <link link_name_id="Link52" link_source_node_name_id_refer="DPI7" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link55" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link91" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link51" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="DPI3"/>
+        <link link_name_id="Link78" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link77" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="WEBSERVER9"/>
+        <link link_name_id="Link75" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link26" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="MAILSERVER7"/>
+        <link link_name_id="Link46" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="WEBCLIENT2"/>
+        <link link_name_id="Link79" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="MAILSERVER8"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="CACHE5" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link59" link_source_node_name_id_refer="SPAM6" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link57" link_source_node_name_id_refer="SPAM6" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link50" link_source_node_name_id_refer="SPAM6" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link38" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="CACHE8"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link34" link_source_node_name_id_refer="SPAM4" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="SPAM4" link_destination_node_name_id_refer="MAILSERVER7"/>
+        <link link_name_id="Link37" link_source_node_name_id_refer="SPAM4" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link47" link_source_node_name_id_refer="SPAM4" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link30" link_source_node_name_id_refer="SPAM4" link_destination_node_name_id_refer="MAILSERVER4"/>
+        <link link_name_id="Link40" link_source_node_name_id_refer="SPAM4" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link61" link_source_node_name_id_refer="SPAM4" link_destination_node_name_id_refer="WEBCLIENT2"/>
+        <link link_name_id="Link86" link_source_node_name_id_refer="WEBCLIENT1" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="WEBCLIENT1" link_destination_node_name_id_refer="CACHE5"/>
+        <link link_name_id="Link64" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="MAILSERVER5"/>
+        <link link_name_id="Link69" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link63" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="CACHE1"/>
+        <link link_name_id="Link83" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="WEBSERVER9"/>
+        <link link_name_id="Link32" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link36" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="WEBCLIENT2"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link80" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="WEBSERVER9"/>
+        <link link_name_id="Link28" link_source_node_name_id_refer="CACHE8" link_destination_node_name_id_refer="DPI7"/>
+        <link link_name_id="Link89" link_source_node_name_id_refer="WEBCLIENT2" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link76" link_source_node_name_id_refer="WEBCLIENT2" link_destination_node_name_id_refer="SPAM4"/>
+        <link link_name_id="Link31" link_source_node_name_id_refer="WEBCLIENT2" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link81" link_source_node_name_id_refer="WEBCLIENT2" link_destination_node_name_id_refer="DPI7"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="WEBCLIENT2" link_destination_node_name_id_refer="DPI3"/>
+        <reachabilityPolicyType policy_name_id="Policy31" nffg_name_id_refer="Nffg2" isPositive="false" verificationResult="true" verificationTime="2016-09-26T12:46:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBSERVER3" policy_destination_node_name_id_refer="WEBCLIENT1"/>
+        <reachabilityPolicyType policy_name_id="Policy30" nffg_name_id_refer="Nffg2" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER8" policy_destination_node_name_id_refer="WEBCLIENT1"/>
+        <reachabilityPolicyType policy_name_id="Policy27" nffg_name_id_refer="Nffg2" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="MAILSERVER8"/>
+        <traversalPolicyType policy_name_id="Policy26" nffg_name_id_refer="Nffg2" isPositive="false" verificationResult="true" verificationTime="2016-09-26T06:05:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILCLIENT0" policy_destination_node_name_id_refer="MAILSERVER5">
             <traversal_requested_node functional_type="CACHE"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy9" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verification_time="2016-09-27T16:55:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="WEBSERVER1">
-            <traversal_requested_node functional_type="FW"/>
-            <traversal_requested_node functional_type="NAT"/>
-            <traversal_requested_node functional_type="WEB_CLIENT"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy8" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="WEBSERVER4">
-            <traversal_requested_node functional_type="WEB_CLIENT"/>
-            <traversal_requested_node functional_type="FW"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy7" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="WEBSERVER6">
-            <traversal_requested_node functional_type="SPAM"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy6" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verification_time="2016-09-27T21:44:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="MAILSERVER7">
-            <traversal_requested_node functional_type="WEB_SERVER"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy5" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="WEBSERVER1">
-            <traversal_requested_node functional_type="MAIL_SERVER"/>
-            <traversal_requested_node functional_type="CACHE"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy30" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="WEBCLIENT2">
-            <traversal_requested_node functional_type="NAT"/>
-            <traversal_requested_node functional_type="VPN"/>
-            <traversal_requested_node functional_type="WEB_SERVER"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy4" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT0" policy_destination_node_name_id_refer="WEBSERVER3">
-            <traversal_requested_node functional_type="NAT"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy3" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verification_time="2016-09-27T21:53:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILCLIENT0" policy_destination_node_name_id_refer="MAILSERVER0"/>
-        <reachabilityPolicyType policy_name_id="Policy2" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verification_time="2016-09-27T17:35:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT0" policy_destination_node_name_id_refer="WEBSERVER4"/>
-        <reachabilityPolicyType policy_name_id="Policy1" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT0" policy_destination_node_name_id_refer="MAILSERVER5"/>
-        <traversalPolicyType policy_name_id="Policy23" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verification_time="2016-09-28T03:19:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT6" policy_destination_node_name_id_refer="MAILSERVER0">
-            <traversal_requested_node functional_type="CACHE"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy0" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verification_time="2016-09-27T23:40:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT0" policy_destination_node_name_id_refer="MAILSERVER7">
-            <traversal_requested_node functional_type="WEB_CLIENT"/>
-            <traversal_requested_node functional_type="CACHE"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy22" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verification_time="2016-09-27T19:18:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILCLIENT5" policy_destination_node_name_id_refer="WEBSERVER1"/>
-        <reachabilityPolicyType policy_name_id="Policy44" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verification_time="2016-09-27T17:38:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBSERVER3" policy_destination_node_name_id_refer="WEBCLIENT6"/>
-        <reachabilityPolicyType policy_name_id="Policy21" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT5" policy_destination_node_name_id_refer="MAILSERVER0"/>
-        <reachabilityPolicyType policy_name_id="Policy43" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verification_time="2016-09-27T13:07:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBSERVER2" policy_destination_node_name_id_refer="MAILCLIENT8"/>
-        <reachabilityPolicyType policy_name_id="Policy20" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT5" policy_destination_node_name_id_refer="WEBSERVER1"/>
-        <traversalPolicyType policy_name_id="Policy42" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER3" policy_destination_node_name_id_refer="MAILCLIENT8">
-            <traversal_requested_node functional_type="SPAM"/>
-            <traversal_requested_node functional_type="CACHE"/>
-            <traversal_requested_node functional_type="DPI"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy27" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT8" policy_destination_node_name_id_refer="WEBSERVER3">
-            <traversal_requested_node functional_type="WEB_CLIENT"/>
-            <traversal_requested_node functional_type="WEB_SERVER"/>
-        </traversalPolicyType>
-        <traversalPolicyType policy_name_id="Policy26" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verification_time="2016-09-28T00:12:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT8" policy_destination_node_name_id_refer="WEBSERVER3">
-            <traversal_requested_node functional_type="SPAM"/>
-            <traversal_requested_node functional_type="CACHE"/>
-            <traversal_requested_node functional_type="DPI"/>
-        </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy25" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="false" verification_time="2016-09-27T23:20:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT8" policy_destination_node_name_id_refer="WEBSERVER2"/>
-        <reachabilityPolicyType policy_name_id="Policy24" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verification_time="2016-09-27T11:50:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT6" policy_destination_node_name_id_refer="WEBSERVER3"/>
-        <reachabilityPolicyType policy_name_id="Policy29" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verification_time="2016-09-27T19:35:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="WEBCLIENT4"/>
-        <traversalPolicyType policy_name_id="Policy28" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT8" policy_destination_node_name_id_refer="WEBSERVER1">
             <traversal_requested_node functional_type="MAIL_CLIENT"/>
             <traversal_requested_node functional_type="SPAM"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy29" nffg_name_id_refer="Nffg2" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="WEBSERVER3"/>
+        <traversalPolicyType policy_name_id="Policy28" nffg_name_id_refer="Nffg2" isPositive="true" verificationResult="false" verificationTime="2016-09-26T06:46:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="MAILSERVER4">
+            <traversal_requested_node functional_type="MAIL_SERVER"/>
+            <traversal_requested_node functional_type="VPN"/>
+            <traversal_requested_node functional_type="MAIL_CLIENT"/>
+        </traversalPolicyType>
+    </nffg>
+    <nffg nffg_name_id="Nffg1" last_updated_time="2016-09-25T04:24:20.000+02:00">
+        <node node_name_id="DPI16" functional_type="DPI"/>
+        <node node_name_id="FW6" functional_type="FW"/>
+        <node node_name_id="SPAM14" functional_type="SPAM"/>
+        <node node_name_id="FW5" functional_type="FW"/>
+        <node node_name_id="CACHE0" functional_type="CACHE"/>
+        <node node_name_id="FW8" functional_type="FW"/>
+        <node node_name_id="NAT13" functional_type="NAT"/>
+        <node node_name_id="NAT12" functional_type="NAT"/>
+        <node node_name_id="FW11" functional_type="FW"/>
+        <node node_name_id="VPN10" functional_type="VPN"/>
+        <node node_name_id="WEBSERVER3" functional_type="WEB_SERVER"/>
+        <node node_name_id="CACHE4" functional_type="CACHE"/>
+        <node node_name_id="WEBSERVER6" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBCLIENT0" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBSERVER0" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBSERVER1" functional_type="WEB_SERVER"/>
+        <node node_name_id="MAILSERVER5" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER4" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER2" functional_type="MAIL_SERVER"/>
+        <node node_name_id="NAT7" functional_type="NAT"/>
+        <node node_name_id="NAT1" functional_type="NAT"/>
+        <node node_name_id="VPN2" functional_type="VPN"/>
+        <node node_name_id="CACHE15" functional_type="CACHE"/>
+        <node node_name_id="SPAM3" functional_type="SPAM"/>
+        <node node_name_id="NAT9" functional_type="NAT"/>
+        <link link_name_id="Link35" link_source_node_name_id_refer="DPI16" link_destination_node_name_id_refer="SPAM14"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="DPI16" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link93" link_source_node_name_id_refer="DPI16" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link80" link_source_node_name_id_refer="FW6" link_destination_node_name_id_refer="FW11"/>
+        <link link_name_id="Link91" link_source_node_name_id_refer="FW6" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link39" link_source_node_name_id_refer="FW6" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link85" link_source_node_name_id_refer="FW6" link_destination_node_name_id_refer="MAILSERVER5"/>
+        <link link_name_id="Link104" link_source_node_name_id_refer="FW6" link_destination_node_name_id_refer="NAT12"/>
+        <link link_name_id="Link56" link_source_node_name_id_refer="SPAM14" link_destination_node_name_id_refer="VPN10"/>
+        <link link_name_id="Link109" link_source_node_name_id_refer="SPAM14" link_destination_node_name_id_refer="FW6"/>
+        <link link_name_id="Link90" link_source_node_name_id_refer="SPAM14" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link62" link_source_node_name_id_refer="SPAM14" link_destination_node_name_id_refer="NAT12"/>
+        <link link_name_id="Link67" link_source_node_name_id_refer="FW5" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link38" link_source_node_name_id_refer="FW5" link_destination_node_name_id_refer="SPAM14"/>
+        <link link_name_id="Link37" link_source_node_name_id_refer="FW5" link_destination_node_name_id_refer="NAT7"/>
+        <link link_name_id="Link48" link_source_node_name_id_refer="FW5" link_destination_node_name_id_refer="VPN2"/>
+        <link link_name_id="Link36" link_source_node_name_id_refer="FW5" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link41" link_source_node_name_id_refer="FW5" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link33" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link68" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="FW6"/>
+        <link link_name_id="Link108" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="MAILSERVER4"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="WEBSERVER1"/>
+        <link link_name_id="Link28" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="VPN10"/>
+        <link link_name_id="Link107" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="CACHE15"/>
+        <link link_name_id="Link115" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link89" link_source_node_name_id_refer="FW8" link_destination_node_name_id_refer="NAT12"/>
+        <link link_name_id="Link76" link_source_node_name_id_refer="FW8" link_destination_node_name_id_refer="NAT7"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="FW8" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="FW8" link_destination_node_name_id_refer="MAILSERVER5"/>
+        <link link_name_id="Link102" link_source_node_name_id_refer="FW8" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link84" link_source_node_name_id_refer="FW8" link_destination_node_name_id_refer="NAT1"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="FW8" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link87" link_source_node_name_id_refer="NAT13" link_destination_node_name_id_refer="SPAM14"/>
+        <link link_name_id="Link79" link_source_node_name_id_refer="NAT13" link_destination_node_name_id_refer="VPN2"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="NAT13" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link51" link_source_node_name_id_refer="NAT13" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link71" link_source_node_name_id_refer="NAT13" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link44" link_source_node_name_id_refer="NAT12" link_destination_node_name_id_refer="NAT1"/>
+        <link link_name_id="Link64" link_source_node_name_id_refer="NAT12" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link61" link_source_node_name_id_refer="NAT12" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link34" link_source_node_name_id_refer="FW11" link_destination_node_name_id_refer="NAT12"/>
+        <link link_name_id="Link32" link_source_node_name_id_refer="FW11" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link49" link_source_node_name_id_refer="FW11" link_destination_node_name_id_refer="NAT13"/>
+        <link link_name_id="Link59" link_source_node_name_id_refer="FW11" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="FW11" link_destination_node_name_id_refer="NAT7"/>
+        <link link_name_id="Link95" link_source_node_name_id_refer="FW11" link_destination_node_name_id_refer="VPN2"/>
+        <link link_name_id="Link114" link_source_node_name_id_refer="FW11" link_destination_node_name_id_refer="CACHE15"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="MAILSERVER4"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link75" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link110" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="NAT13"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link69" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="FW6"/>
+        <link link_name_id="Link70" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link29" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link82" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="SPAM14"/>
+        <link link_name_id="Link103" link_source_node_name_id_refer="VPN10" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link78" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link42" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="FW6"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="VPN10"/>
+        <link link_name_id="Link112" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link88" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="NAT13"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link63" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link55" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="NAT12"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link117" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="VPN10"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link26" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="NAT7"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="NAT1"/>
+        <link link_name_id="Link66" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="NAT13"/>
+        <link link_name_id="Link43" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link54" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="VPN10"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link30" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="CACHE15"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="MAILSERVER5" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link77" link_source_node_name_id_refer="MAILSERVER5" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link31" link_source_node_name_id_refer="MAILSERVER5" link_destination_node_name_id_refer="SPAM14"/>
+        <link link_name_id="Link94" link_source_node_name_id_refer="MAILSERVER5" link_destination_node_name_id_refer="VPN2"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="MAILSERVER4" link_destination_node_name_id_refer="VPN10"/>
+        <link link_name_id="Link86" link_source_node_name_id_refer="MAILSERVER4" link_destination_node_name_id_refer="FW6"/>
+        <link link_name_id="Link101" link_source_node_name_id_refer="MAILSERVER4" link_destination_node_name_id_refer="NAT7"/>
+        <link link_name_id="Link60" link_source_node_name_id_refer="MAILSERVER4" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link45" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="VPN2"/>
+        <link link_name_id="Link99" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT13"/>
+        <link link_name_id="Link92" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="DPI16"/>
+        <link link_name_id="Link100" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="VPN2"/>
+        <link link_name_id="Link111" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="FW11"/>
+        <link link_name_id="Link97" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link58" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="NAT13"/>
+        <link link_name_id="Link46" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="CACHE15"/>
+        <link link_name_id="Link57" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link72" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link47" link_source_node_name_id_refer="NAT1" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link106" link_source_node_name_id_refer="NAT1" link_destination_node_name_id_refer="WEBSERVER1"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="NAT1" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link105" link_source_node_name_id_refer="NAT1" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link96" link_source_node_name_id_refer="NAT1" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link113" link_source_node_name_id_refer="NAT1" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link50" link_source_node_name_id_refer="NAT1" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="DPI16"/>
+        <link link_name_id="Link27" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="NAT1"/>
+        <link link_name_id="Link81" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link116" link_source_node_name_id_refer="VPN2" link_destination_node_name_id_refer="NAT9"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="CACHE15" link_destination_node_name_id_refer="VPN10"/>
+        <link link_name_id="Link73" link_source_node_name_id_refer="CACHE15" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link98" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="NAT7"/>
+        <link link_name_id="Link52" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="NAT1"/>
+        <link link_name_id="Link40" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="VPN2"/>
+        <link link_name_id="Link83" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="NAT12"/>
+        <link link_name_id="Link65" link_source_node_name_id_refer="NAT9" link_destination_node_name_id_refer="FW8"/>
+        <link link_name_id="Link53" link_source_node_name_id_refer="NAT9" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="NAT9" link_destination_node_name_id_refer="SPAM14"/>
+        <link link_name_id="Link74" link_source_node_name_id_refer="NAT9" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <traversalPolicyType policy_name_id="Policy19" nffg_name_id_refer="Nffg1" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="WEBSERVER1">
+            <traversal_requested_node functional_type="WEB_SERVER"/>
+            <traversal_requested_node functional_type="WEB_CLIENT"/>
+            <traversal_requested_node functional_type="CACHE"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy18" nffg_name_id_refer="Nffg1" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="WEBSERVER1">
+            <traversal_requested_node functional_type="SPAM"/>
+            <traversal_requested_node functional_type="FW"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy23" nffg_name_id_refer="Nffg1" isPositive="true" verificationResult="true" verificationTime="2016-09-25T00:36:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="WEBCLIENT0"/>
+        <reachabilityPolicyType policy_name_id="Policy22" nffg_name_id_refer="Nffg1" isPositive="true" verificationResult="false" verificationTime="2016-09-25T00:48:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="WEBSERVER1"/>
+        <traversalPolicyType policy_name_id="Policy21" nffg_name_id_refer="Nffg1" isPositive="true" verificationResult="false" verificationTime="2016-09-25T00:52:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="WEBSERVER0">
+            <traversal_requested_node functional_type="SPAM"/>
+            <traversal_requested_node functional_type="DPI"/>
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy20" nffg_name_id_refer="Nffg1" isPositive="true" verificationResult="false" verificationTime="2016-09-25T02:06:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="WEBSERVER3"/>
+        <reachabilityPolicyType policy_name_id="Policy25" nffg_name_id_refer="Nffg1" isPositive="true" verificationResult="true" verificationTime="2016-09-24T23:53:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBSERVER3" policy_destination_node_name_id_refer="WEBCLIENT0"/>
+        <traversalPolicyType policy_name_id="Policy24" nffg_name_id_refer="Nffg1" isPositive="true" verificationResult="false" verificationTime="2016-09-24T23:53:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER0" policy_destination_node_name_id_refer="WEBCLIENT0">
+            <traversal_requested_node functional_type="SPAM"/>
+            <traversal_requested_node functional_type="DPI"/>
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+    </nffg>
+    <nffg nffg_name_id="Nffg7" last_updated_time="2016-09-25T19:35:20.000+02:00">
+        <node node_name_id="FW2" functional_type="FW"/>
+        <node node_name_id="NAT18" functional_type="NAT"/>
+        <node node_name_id="DPI14" functional_type="DPI"/>
+        <node node_name_id="FW7" functional_type="FW"/>
+        <node node_name_id="VPN4" functional_type="VPN"/>
+        <node node_name_id="VPN5" functional_type="VPN"/>
+        <node node_name_id="NAT10" functional_type="NAT"/>
+        <node node_name_id="MAILCLIENT1" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="NAT15" functional_type="NAT"/>
+        <node node_name_id="MAILCLIENT0" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="NAT16" functional_type="NAT"/>
+        <node node_name_id="MAILCLIENT5" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="MAILCLIENT4" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="MAILCLIENT2" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="WEBCLIENT7" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBCLIENT8" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBCLIENT9" functional_type="WEB_CLIENT"/>
+        <node node_name_id="MAILCLIENT6" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="WEBCLIENT3" functional_type="WEB_CLIENT"/>
+        <node node_name_id="SPAM19" functional_type="SPAM"/>
+        <node node_name_id="VPN17" functional_type="VPN"/>
+        <node node_name_id="WEBSERVER0" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBSERVER1" functional_type="WEB_SERVER"/>
+        <node node_name_id="CACHE9" functional_type="CACHE"/>
+        <node node_name_id="MAILSERVER2" functional_type="MAIL_SERVER"/>
+        <node node_name_id="SPAM0" functional_type="SPAM"/>
+        <node node_name_id="NAT6" functional_type="NAT"/>
+        <node node_name_id="NAT8" functional_type="NAT"/>
+        <node node_name_id="DPI1" functional_type="DPI"/>
+        <node node_name_id="SPAM3" functional_type="SPAM"/>
+        <node node_name_id="CACHE11" functional_type="CACHE"/>
+        <node node_name_id="DPI13" functional_type="DPI"/>
+        <node node_name_id="DPI12" functional_type="DPI"/>
+        <link link_name_id="Link111" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="WEBCLIENT9"/>
+        <link link_name_id="Link36" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="NAT15"/>
+        <link link_name_id="Link47" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link58" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="CACHE9"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link128" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="NAT16"/>
+        <link link_name_id="Link95" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="DPI14"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link110" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="WEBCLIENT8"/>
+        <link link_name_id="Link105" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="NAT16"/>
+        <link link_name_id="Link94" link_source_node_name_id_refer="NAT18" link_destination_node_name_id_refer="SPAM0"/>
+        <link link_name_id="Link44" link_source_node_name_id_refer="DPI14" link_destination_node_name_id_refer="MAILCLIENT5"/>
+        <link link_name_id="Link86" link_source_node_name_id_refer="DPI14" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link97" link_source_node_name_id_refer="DPI14" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link37" link_source_node_name_id_refer="DPI14" link_destination_node_name_id_refer="NAT15"/>
+        <link link_name_id="Link129" link_source_node_name_id_refer="DPI14" link_destination_node_name_id_refer="WEBSERVER1"/>
+        <link link_name_id="Link82" link_source_node_name_id_refer="FW7" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link78" link_source_node_name_id_refer="VPN4" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link53" link_source_node_name_id_refer="VPN5" link_destination_node_name_id_refer="SPAM0"/>
+        <link link_name_id="Link106" link_source_node_name_id_refer="VPN5" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="VPN5" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link50" link_source_node_name_id_refer="VPN5" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link99" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link69" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="NAT15"/>
+        <link link_name_id="Link35" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="CACHE9"/>
+        <link link_name_id="Link127" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="SPAM0"/>
+        <link link_name_id="Link39" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link102" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="WEBCLIENT8"/>
+        <link link_name_id="Link40" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link103" link_source_node_name_id_refer="NAT10" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link71" link_source_node_name_id_refer="MAILCLIENT1" link_destination_node_name_id_refer="FW7"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="NAT15" link_destination_node_name_id_refer="MAILCLIENT5"/>
+        <link link_name_id="Link75" link_source_node_name_id_refer="NAT15" link_destination_node_name_id_refer="SPAM0"/>
+        <link link_name_id="Link48" link_source_node_name_id_refer="NAT15" link_destination_node_name_id_refer="VPN4"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="NAT15" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link56" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="VPN4"/>
+        <link link_name_id="Link33" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="DPI13"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link118" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link84" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="VPN17"/>
+        <link link_name_id="Link34" link_source_node_name_id_refer="NAT16" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link67" link_source_node_name_id_refer="NAT16" link_destination_node_name_id_refer="MAILCLIENT6"/>
+        <link link_name_id="Link98" link_source_node_name_id_refer="NAT16" link_destination_node_name_id_refer="SPAM0"/>
+        <link link_name_id="Link109" link_source_node_name_id_refer="NAT16" link_destination_node_name_id_refer="FW7"/>
+        <link link_name_id="Link30" link_source_node_name_id_refer="NAT16" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link104" link_source_node_name_id_refer="NAT16" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link125" link_source_node_name_id_refer="NAT16" link_destination_node_name_id_refer="VPN4"/>
+        <link link_name_id="Link89" link_source_node_name_id_refer="MAILCLIENT5" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="MAILCLIENT5" link_destination_node_name_id_refer="NAT15"/>
+        <link link_name_id="Link57" link_source_node_name_id_refer="MAILCLIENT5" link_destination_node_name_id_refer="DPI13"/>
+        <link link_name_id="Link91" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link119" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link60" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="NAT16"/>
+        <link link_name_id="Link120" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="CACHE11"/>
+        <link link_name_id="Link88" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="DPI14"/>
+        <link link_name_id="Link76" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="NAT16"/>
+        <link link_name_id="Link121" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="DPI1"/>
+        <link link_name_id="Link46" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="NAT10"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link114" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="WEBCLIENT7" link_destination_node_name_id_refer="CACHE9"/>
+        <link link_name_id="Link29" link_source_node_name_id_refer="WEBCLIENT7" link_destination_node_name_id_refer="DPI14"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="WEBCLIENT8" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link49" link_source_node_name_id_refer="WEBCLIENT9" link_destination_node_name_id_refer="DPI1"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="WEBCLIENT9" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link108" link_source_node_name_id_refer="WEBCLIENT9" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link96" link_source_node_name_id_refer="WEBCLIENT9" link_destination_node_name_id_refer="CACHE11"/>
+        <link link_name_id="Link123" link_source_node_name_id_refer="WEBCLIENT9" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="MAILCLIENT6" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link54" link_source_node_name_id_refer="MAILCLIENT6" link_destination_node_name_id_refer="NAT16"/>
+        <link link_name_id="Link85" link_source_node_name_id_refer="MAILCLIENT6" link_destination_node_name_id_refer="NAT15"/>
+        <link link_name_id="Link93" link_source_node_name_id_refer="MAILCLIENT6" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link80" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="DPI13"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="NAT15"/>
+        <link link_name_id="Link41" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="CACHE9"/>
+        <link link_name_id="Link32" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link64" link_source_node_name_id_refer="SPAM19" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link68" link_source_node_name_id_refer="VPN17" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link92" link_source_node_name_id_refer="VPN17" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link28" link_source_node_name_id_refer="VPN17" link_destination_node_name_id_refer="DPI13"/>
+        <link link_name_id="Link124" link_source_node_name_id_refer="VPN17" link_destination_node_name_id_refer="WEBCLIENT8"/>
+        <link link_name_id="Link55" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link100" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="NAT10"/>
+        <link link_name_id="Link107" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="NAT18"/>
+        <link link_name_id="Link62" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link126" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="DPI13"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="CACHE11"/>
+        <link link_name_id="Link77" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link27" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="SPAM3"/>
+        <link link_name_id="Link73" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="CACHE9" link_destination_node_name_id_refer="WEBCLIENT7"/>
+        <link link_name_id="Link79" link_source_node_name_id_refer="CACHE9" link_destination_node_name_id_refer="NAT16"/>
+        <link link_name_id="Link51" link_source_node_name_id_refer="CACHE9" link_destination_node_name_id_refer="MAILCLIENT6"/>
+        <link link_name_id="Link31" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="CACHE9"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT6"/>
+        <link link_name_id="Link43" link_source_node_name_id_refer="SPAM0" link_destination_node_name_id_refer="CACHE9"/>
+        <link link_name_id="Link130" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link65" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="SPAM0"/>
+        <link link_name_id="Link87" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="VPN17"/>
+        <link link_name_id="Link38" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link26" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="CACHE11"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="WEBCLIENT8"/>
+        <link link_name_id="Link63" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link74" link_source_node_name_id_refer="NAT6" link_destination_node_name_id_refer="CACHE9"/>
+        <link link_name_id="Link45" link_source_node_name_id_refer="NAT8" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link59" link_source_node_name_id_refer="NAT8" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="NAT8" link_destination_node_name_id_refer="WEBCLIENT9"/>
+        <link link_name_id="Link116" link_source_node_name_id_refer="NAT8" link_destination_node_name_id_refer="VPN17"/>
+        <link link_name_id="Link101" link_source_node_name_id_refer="NAT8" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link81" link_source_node_name_id_refer="DPI1" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link117" link_source_node_name_id_refer="DPI1" link_destination_node_name_id_refer="SPAM0"/>
+        <link link_name_id="Link52" link_source_node_name_id_refer="DPI1" link_destination_node_name_id_refer="DPI14"/>
+        <link link_name_id="Link66" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="MAILCLIENT1"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="MAILCLIENT6"/>
+        <link link_name_id="Link70" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="VPN17"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link112" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link72" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="DPI1"/>
+        <link link_name_id="Link83" link_source_node_name_id_refer="SPAM3" link_destination_node_name_id_refer="WEBCLIENT8"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="CACHE11" link_destination_node_name_id_refer="WEBSERVER1"/>
+        <link link_name_id="Link90" link_source_node_name_id_refer="CACHE11" link_destination_node_name_id_refer="SPAM19"/>
+        <link link_name_id="Link113" link_source_node_name_id_refer="CACHE11" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link115" link_source_node_name_id_refer="CACHE11" link_destination_node_name_id_refer="NAT15"/>
+        <link link_name_id="Link122" link_source_node_name_id_refer="DPI13" link_destination_node_name_id_refer="DPI12"/>
+        <link link_name_id="Link61" link_source_node_name_id_refer="DPI13" link_destination_node_name_id_refer="MAILCLIENT6"/>
+        <link link_name_id="Link42" link_source_node_name_id_refer="DPI12" link_destination_node_name_id_refer="NAT15"/>
+        <reachabilityPolicyType policy_name_id="Policy77" nffg_name_id_refer="Nffg7" isPositive="true" verificationResult="false" verificationTime="2016-09-25T11:18:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="MAILCLIENT0"/>
+        <traversalPolicyType policy_name_id="Policy76" nffg_name_id_refer="Nffg7" isPositive="false" verificationResult="false" verificationTime="2016-09-25T12:45:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="MAILCLIENT1">
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy75" nffg_name_id_refer="Nffg7" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="MAILCLIENT5">
             <traversal_requested_node functional_type="WEB_SERVER"/>
         </traversalPolicyType>
-        <reachabilityPolicyType policy_name_id="Policy41" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER4" policy_destination_node_name_id_refer="MAILCLIENT0"/>
-        <reachabilityPolicyType policy_name_id="Policy40" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="MAILCLIENT0"/>
+        <traversalPolicyType policy_name_id="Policy70" nffg_name_id_refer="Nffg7" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="MAILCLIENT5">
+            <traversal_requested_node functional_type="DPI"/>
+            <traversal_requested_node functional_type="VPN"/>
+            <traversal_requested_node functional_type="SPAM"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy74" nffg_name_id_refer="Nffg7" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER0" policy_destination_node_name_id_refer="WEBCLIENT9"/>
+        <traversalPolicyType policy_name_id="Policy73" nffg_name_id_refer="Nffg7" isPositive="true" verificationResult="false" verificationTime="2016-09-25T00:14:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER0" policy_destination_node_name_id_refer="MAILCLIENT2">
+            <traversal_requested_node functional_type="WEB_CLIENT"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy72" nffg_name_id_refer="Nffg7" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER0" policy_destination_node_name_id_refer="MAILCLIENT2">
+            <traversal_requested_node functional_type="CACHE"/>
+            <traversal_requested_node functional_type="SPAM"/>
+            <traversal_requested_node functional_type="DPI"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy71" nffg_name_id_refer="Nffg7" isPositive="false" verificationResult="true" verificationTime="2016-09-25T15:01:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBSERVER0" policy_destination_node_name_id_refer="WEBCLIENT3"/>
+        <traversalPolicyType policy_name_id="Policy67" nffg_name_id_refer="Nffg7" isPositive="false" verificationResult="false" verificationTime="2016-09-25T04:28:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT5" policy_destination_node_name_id_refer="WEBSERVER1">
+            <traversal_requested_node functional_type="DPI"/>
+            <traversal_requested_node functional_type="VPN"/>
+            <traversal_requested_node functional_type="SPAM"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy66" nffg_name_id_refer="Nffg7" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT3" policy_destination_node_name_id_refer="WEBSERVER0"/>
+        <traversalPolicyType policy_name_id="Policy65" nffg_name_id_refer="Nffg7" isPositive="true" verificationResult="false" verificationTime="2016-09-25T04:10:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT2" policy_destination_node_name_id_refer="WEBSERVER0">
+            <traversal_requested_node functional_type="CACHE"/>
+            <traversal_requested_node functional_type="SPAM"/>
+            <traversal_requested_node functional_type="DPI"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy64" nffg_name_id_refer="Nffg7" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT2" policy_destination_node_name_id_refer="WEBSERVER0">
+            <traversal_requested_node functional_type="WEB_CLIENT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy69" nffg_name_id_refer="Nffg7" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT9" policy_destination_node_name_id_refer="WEBSERVER0"/>
+        <traversalPolicyType policy_name_id="Policy68" nffg_name_id_refer="Nffg7" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT5" policy_destination_node_name_id_refer="WEBSERVER1">
+            <traversal_requested_node functional_type="WEB_SERVER"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy63" nffg_name_id_refer="Nffg7" isPositive="true" verificationResult="false" verificationTime="2016-09-25T02:39:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT1" policy_destination_node_name_id_refer="WEBSERVER1">
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy62" nffg_name_id_refer="Nffg7" isPositive="true" verificationResult="true" verificationTime="2016-09-25T17:27:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILCLIENT1" policy_destination_node_name_id_refer="WEBSERVER1"/>
+        <reachabilityPolicyType policy_name_id="Policy61" nffg_name_id_refer="Nffg7" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT0" policy_destination_node_name_id_refer="WEBSERVER1"/>
+    </nffg>
+    <nffg nffg_name_id="Nffg6" last_updated_time="2016-09-25T21:16:20.000+02:00">
+        <node node_name_id="FW4" functional_type="FW"/>
+        <node node_name_id="FW3" functional_type="FW"/>
+        <node node_name_id="CACHE0" functional_type="CACHE"/>
+        <node node_name_id="SPAM9" functional_type="SPAM"/>
+        <node node_name_id="VPN8" functional_type="VPN"/>
+        <node node_name_id="MAILCLIENT0" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="NAT5" functional_type="NAT"/>
+        <node node_name_id="MAILCLIENT2" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="DPI2" functional_type="DPI"/>
+        <node node_name_id="WEBCLIENT3" functional_type="WEB_CLIENT"/>
+        <node node_name_id="SPAM7" functional_type="SPAM"/>
+        <node node_name_id="WEBCLIENT4" functional_type="WEB_CLIENT"/>
+        <node node_name_id="CACHE6" functional_type="CACHE"/>
+        <node node_name_id="WEBSERVER0" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBCLIENT1" functional_type="WEB_CLIENT"/>
+        <node node_name_id="SPAM1" functional_type="SPAM"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="FW3" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="CACHE0" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="SPAM9" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="VPN8" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="VPN8" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="FW3"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="MAILCLIENT0" link_destination_node_name_id_refer="NAT5"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="NAT5" link_destination_node_name_id_refer="MAILCLIENT0"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="NAT5" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="NAT5" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="NAT5" link_destination_node_name_id_refer="SPAM7"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM1"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM9"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="CACHE6"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="DPI2" link_destination_node_name_id_refer="WEBCLIENT4"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="FW3"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="WEBCLIENT4" link_destination_node_name_id_refer="NAT5"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="WEBCLIENT4" link_destination_node_name_id_refer="CACHE0"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="WEBCLIENT4" link_destination_node_name_id_refer="SPAM9"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="WEBCLIENT4" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="DPI2"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="WEBCLIENT1" link_destination_node_name_id_refer="NAT5"/>
+    </nffg>
+    <nffg nffg_name_id="Nffg5" last_updated_time="2016-09-25T11:09:20.000+02:00">
+        <node node_name_id="MAILSERVER3" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER2" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER1" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILSERVER0" functional_type="MAIL_SERVER"/>
+        <node node_name_id="MAILCLIENT4" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="VPN1" functional_type="VPN"/>
+        <node node_name_id="NAT2" functional_type="NAT"/>
+        <node node_name_id="WEBCLIENT3" functional_type="WEB_CLIENT"/>
+        <node node_name_id="CACHE3" functional_type="CACHE"/>
+        <node node_name_id="WEBCLIENT5" functional_type="WEB_CLIENT"/>
+        <node node_name_id="CACHE4" functional_type="CACHE"/>
+        <node node_name_id="SPAM5" functional_type="SPAM"/>
+        <node node_name_id="WEBCLIENT0" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBCLIENT1" functional_type="WEB_CLIENT"/>
+        <node node_name_id="FW0" functional_type="FW"/>
+        <node node_name_id="WEBCLIENT2" functional_type="WEB_CLIENT"/>
+        <link link_name_id="Link48" link_source_node_name_id_refer="MAILSERVER3" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="MAILSERVER3" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="CACHE3"/>
+        <link link_name_id="Link42" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="SPAM5"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="MAILSERVER1" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link33" link_source_node_name_id_refer="MAILSERVER0" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link45" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="CACHE3"/>
+        <link link_name_id="Link44" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link47" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link37" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="NAT2"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILSERVER3"/>
+        <link link_name_id="Link39" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link50" link_source_node_name_id_refer="VPN1" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link32" link_source_node_name_id_refer="NAT2" link_destination_node_name_id_refer="MAILSERVER3"/>
+        <link link_name_id="Link30" link_source_node_name_id_refer="NAT2" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link52" link_source_node_name_id_refer="NAT2" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="NAT2" link_destination_node_name_id_refer="WEBCLIENT3"/>
+        <link link_name_id="Link43" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link26" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="SPAM5"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="WEBCLIENT3" link_destination_node_name_id_refer="NAT2"/>
+        <link link_name_id="Link31" link_source_node_name_id_refer="CACHE3" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link38" link_source_node_name_id_refer="CACHE3" link_destination_node_name_id_refer="MAILSERVER3"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="CACHE3" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link40" link_source_node_name_id_refer="CACHE3" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link35" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link34" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link49" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="SPAM5"/>
+        <link link_name_id="Link28" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="NAT2"/>
+        <link link_name_id="Link41" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="CACHE4" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link27" link_source_node_name_id_refer="SPAM5" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link36" link_source_node_name_id_refer="SPAM5" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="SPAM5" link_destination_node_name_id_refer="WEBCLIENT2"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="NAT2"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="WEBCLIENT1" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link29" link_source_node_name_id_refer="WEBCLIENT1" link_destination_node_name_id_refer="CACHE4"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="MAILSERVER1"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="MAILSERVER0"/>
+        <link link_name_id="Link46" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link51" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="VPN1"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="WEBCLIENT2" link_destination_node_name_id_refer="SPAM5"/>
+        <reachabilityPolicyType policy_name_id="Policy56" nffg_name_id_refer="Nffg5" isPositive="true" verificationResult="false" verificationTime="2016-09-25T02:39:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="WEBCLIENT2"/>
+        <reachabilityPolicyType policy_name_id="Policy55" nffg_name_id_refer="Nffg5" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="MAILCLIENT4"/>
+        <reachabilityPolicyType policy_name_id="Policy54" nffg_name_id_refer="Nffg5" isPositive="false" verificationResult="false" verificationTime="2016-09-25T10:17:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT4" policy_destination_node_name_id_refer="MAILSERVER0"/>
+        <traversalPolicyType policy_name_id="Policy53" nffg_name_id_refer="Nffg5" isPositive="false" verificationResult="true" verificationTime="2016-09-25T04:15:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILCLIENT4" policy_destination_node_name_id_refer="MAILSERVER0">
+            <traversal_requested_node functional_type="DPI"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy59" nffg_name_id_refer="Nffg5" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER2" policy_destination_node_name_id_refer="WEBCLIENT3"/>
+        <reachabilityPolicyType policy_name_id="Policy58" nffg_name_id_refer="Nffg5" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER0" policy_destination_node_name_id_refer="WEBCLIENT3"/>
+        <traversalPolicyType policy_name_id="Policy57" nffg_name_id_refer="Nffg5" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER1" policy_destination_node_name_id_refer="WEBCLIENT0">
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy52" nffg_name_id_refer="Nffg5" isPositive="false" verificationResult="false" verificationTime="2016-09-24T23:53:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT3" policy_destination_node_name_id_refer="MAILSERVER0"/>
+        <reachabilityPolicyType policy_name_id="Policy51" nffg_name_id_refer="Nffg5" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT3" policy_destination_node_name_id_refer="MAILSERVER2"/>
+        <reachabilityPolicyType policy_name_id="Policy50" nffg_name_id_refer="Nffg5" isPositive="true" verificationResult="false" verificationTime="2016-09-24T23:53:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="MAILSERVER1"/>
+        <traversalPolicyType policy_name_id="Policy45" nffg_name_id_refer="Nffg5" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="MAILSERVER0">
+            <traversal_requested_node functional_type="MAIL_CLIENT"/>
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy49" nffg_name_id_refer="Nffg5" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="MAILSERVER0"/>
+        <reachabilityPolicyType policy_name_id="Policy48" nffg_name_id_refer="Nffg5" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT2" policy_destination_node_name_id_refer="MAILSERVER3"/>
+        <reachabilityPolicyType policy_name_id="Policy47" nffg_name_id_refer="Nffg5" isPositive="false" verificationResult="false" verificationTime="2016-09-25T05:23:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="MAILSERVER1"/>
+        <traversalPolicyType policy_name_id="Policy46" nffg_name_id_refer="Nffg5" isPositive="true" verificationResult="true" verificationTime="2016-09-25T04:41:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="MAILSERVER1">
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy60" nffg_name_id_refer="Nffg5" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER1" policy_destination_node_name_id_refer="WEBCLIENT2"/>
+    </nffg>
+    <nffg nffg_name_id="Nffg0" last_updated_time="2016-09-25T17:10:20.000+02:00">
+        <node node_name_id="FW2" functional_type="FW"/>
+        <node node_name_id="VPN4" functional_type="VPN"/>
+        <node node_name_id="VPN5" functional_type="VPN"/>
+        <node node_name_id="NAT12" functional_type="NAT"/>
+        <node node_name_id="MAILCLIENT4" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="FW10" functional_type="FW"/>
+        <node node_name_id="MAILCLIENT3" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="MAILCLIENT2" functional_type="MAIL_CLIENT"/>
+        <node node_name_id="VPN11" functional_type="VPN"/>
+        <node node_name_id="WEBSERVER3" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBSERVER4" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBCLIENT5" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBSERVER5" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBSERVER6" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBCLIENT0" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBSERVER0" functional_type="WEB_SERVER"/>
+        <node node_name_id="WEBCLIENT1" functional_type="WEB_CLIENT"/>
+        <node node_name_id="WEBSERVER1" functional_type="WEB_SERVER"/>
+        <node node_name_id="MAILSERVER2" functional_type="MAIL_SERVER"/>
+        <node node_name_id="WEBSERVER8" functional_type="WEB_SERVER"/>
+        <node node_name_id="MAILSERVER7" functional_type="MAIL_SERVER"/>
+        <node node_name_id="SPAM9" functional_type="SPAM"/>
+        <node node_name_id="NAT7" functional_type="NAT"/>
+        <node node_name_id="NAT8" functional_type="NAT"/>
+        <node node_name_id="VPN3" functional_type="VPN"/>
+        <node node_name_id="CACHE15" functional_type="CACHE"/>
+        <node node_name_id="CACHE13" functional_type="CACHE"/>
+        <node node_name_id="SPAM6" functional_type="SPAM"/>
+        <node node_name_id="CACHE14" functional_type="CACHE"/>
+        <node node_name_id="FW0" functional_type="FW"/>
+        <node node_name_id="SPAM1" functional_type="SPAM"/>
+        <link link_name_id="Link23" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="WEBSERVER5"/>
+        <link link_name_id="Link32" link_source_node_name_id_refer="FW2" link_destination_node_name_id_refer="MAILSERVER7"/>
+        <link link_name_id="Link38" link_source_node_name_id_refer="VPN4" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link13" link_source_node_name_id_refer="VPN4" link_destination_node_name_id_refer="WEBSERVER0"/>
+        <link link_name_id="Link15" link_source_node_name_id_refer="VPN5" link_destination_node_name_id_refer="WEBSERVER1"/>
+        <link link_name_id="Link1" link_source_node_name_id_refer="VPN5" link_destination_node_name_id_refer="WEBCLIENT0"/>
+        <link link_name_id="Link37" link_source_node_name_id_refer="NAT12" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link33" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="CACHE14"/>
+        <link link_name_id="Link8" link_source_node_name_id_refer="MAILCLIENT4" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link21" link_source_node_name_id_refer="FW10" link_destination_node_name_id_refer="WEBSERVER4"/>
+        <link link_name_id="Link29" link_source_node_name_id_refer="FW10" link_destination_node_name_id_refer="WEBSERVER8"/>
+        <link link_name_id="Link6" link_source_node_name_id_refer="MAILCLIENT3" link_destination_node_name_id_refer="SPAM9"/>
+        <link link_name_id="Link4" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="CACHE13"/>
+        <link link_name_id="Link30" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link40" link_source_node_name_id_refer="MAILCLIENT2" link_destination_node_name_id_refer="SPAM1"/>
+        <link link_name_id="Link18" link_source_node_name_id_refer="WEBSERVER3" link_destination_node_name_id_refer="SPAM9"/>
+        <link link_name_id="Link20" link_source_node_name_id_refer="WEBSERVER4" link_destination_node_name_id_refer="FW10"/>
+        <link link_name_id="Link35" link_source_node_name_id_refer="WEBSERVER4" link_destination_node_name_id_refer="CACHE14"/>
+        <link link_name_id="Link10" link_source_node_name_id_refer="WEBCLIENT5" link_destination_node_name_id_refer="FW0"/>
+        <link link_name_id="Link22" link_source_node_name_id_refer="WEBSERVER5" link_destination_node_name_id_refer="FW2"/>
+        <link link_name_id="Link24" link_source_node_name_id_refer="WEBSERVER6" link_destination_node_name_id_refer="CACHE15"/>
+        <link link_name_id="Link0" link_source_node_name_id_refer="WEBCLIENT0" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link12" link_source_node_name_id_refer="WEBSERVER0" link_destination_node_name_id_refer="VPN4"/>
+        <link link_name_id="Link2" link_source_node_name_id_refer="WEBCLIENT1" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link14" link_source_node_name_id_refer="WEBSERVER1" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link16" link_source_node_name_id_refer="MAILSERVER2" link_destination_node_name_id_refer="NAT7"/>
+        <link link_name_id="Link36" link_source_node_name_id_refer="WEBSERVER8" link_destination_node_name_id_refer="SPAM6"/>
+        <link link_name_id="Link28" link_source_node_name_id_refer="WEBSERVER8" link_destination_node_name_id_refer="FW10"/>
+        <link link_name_id="Link31" link_source_node_name_id_refer="MAILSERVER7" link_destination_node_name_id_refer="VPN4"/>
+        <link link_name_id="Link26" link_source_node_name_id_refer="MAILSERVER7" link_destination_node_name_id_refer="NAT8"/>
+        <link link_name_id="Link19" link_source_node_name_id_refer="SPAM9" link_destination_node_name_id_refer="WEBSERVER3"/>
+        <link link_name_id="Link7" link_source_node_name_id_refer="SPAM9" link_destination_node_name_id_refer="MAILCLIENT3"/>
+        <link link_name_id="Link17" link_source_node_name_id_refer="NAT7" link_destination_node_name_id_refer="MAILSERVER2"/>
+        <link link_name_id="Link27" link_source_node_name_id_refer="NAT8" link_destination_node_name_id_refer="MAILSERVER7"/>
+        <link link_name_id="Link3" link_source_node_name_id_refer="NAT8" link_destination_node_name_id_refer="WEBCLIENT1"/>
+        <link link_name_id="Link25" link_source_node_name_id_refer="CACHE15" link_destination_node_name_id_refer="WEBSERVER6"/>
+        <link link_name_id="Link5" link_source_node_name_id_refer="CACHE13" link_destination_node_name_id_refer="MAILCLIENT2"/>
+        <link link_name_id="Link39" link_source_node_name_id_refer="SPAM6" link_destination_node_name_id_refer="VPN5"/>
+        <link link_name_id="Link9" link_source_node_name_id_refer="SPAM6" link_destination_node_name_id_refer="MAILCLIENT4"/>
+        <link link_name_id="Link11" link_source_node_name_id_refer="FW0" link_destination_node_name_id_refer="WEBCLIENT5"/>
+        <link link_name_id="Link34" link_source_node_name_id_refer="SPAM1" link_destination_node_name_id_refer="SPAM9"/>
+        <traversalPolicyType policy_name_id="Policy12" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILSERVER2" policy_destination_node_name_id_refer="WEBCLIENT0">
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy11" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verificationTime="2016-09-24T23:53:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILCLIENT4" policy_destination_node_name_id_refer="WEBSERVER8">
+            <traversal_requested_node functional_type="WEB_SERVER"/>
+            <traversal_requested_node functional_type="SPAM"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy10" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="false" verificationTime="2016-09-24T23:53:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="MAILCLIENT2" policy_destination_node_name_id_refer="WEBSERVER5">
+            <traversal_requested_node functional_type="WEB_SERVER"/>
+            <traversal_requested_node functional_type="VPN"/>
+            <traversal_requested_node functional_type="DPI"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy16" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="false" verificationTime="2016-09-25T03:50:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER5" policy_destination_node_name_id_refer="WEBCLIENT1">
+            <traversal_requested_node functional_type="WEB_SERVER"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy15" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBSERVER0" policy_destination_node_name_id_refer="WEBCLIENT1"/>
+        <traversalPolicyType policy_name_id="Policy14" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verificationTime="2016-09-25T00:17:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER4" policy_destination_node_name_id_refer="WEBCLIENT1">
+            <traversal_requested_node functional_type="VPN"/>
+            <traversal_requested_node functional_type="FW"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy13" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verificationTime="2016-09-25T02:12:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBSERVER3" policy_destination_node_name_id_refer="MAILCLIENT2"/>
+        <traversalPolicyType policy_name_id="Policy17" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="false" verificationTime="2016-09-25T16:51:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBSERVER1" policy_destination_node_name_id_refer="WEBCLIENT0">
+            <traversal_requested_node functional_type="CACHE"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy9" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verificationTime="2016-09-25T00:32:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="MAILCLIENT2" policy_destination_node_name_id_refer="WEBSERVER3"/>
+        <traversalPolicyType policy_name_id="Policy8" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="MAILCLIENT2" policy_destination_node_name_id_refer="WEBSERVER3">
+            <traversal_requested_node functional_type="VPN"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy7" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="WEBSERVER4">
+            <traversal_requested_node functional_type="VPN"/>
+            <traversal_requested_node functional_type="FW"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy6" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verificationTime="2016-09-25T12:10:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="WEBSERVER5"/>
+        <reachabilityPolicyType policy_name_id="Policy5" nffg_name_id_refer="Nffg0" isPositive="false" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="WEBSERVER0"/>
+        <traversalPolicyType policy_name_id="Policy4" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="true" verificationTime="2016-09-25T15:13:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT1" policy_destination_node_name_id_refer="WEBSERVER5">
+            <traversal_requested_node functional_type="WEB_SERVER"/>
+        </traversalPolicyType>
+        <traversalPolicyType policy_name_id="Policy3" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verificationTime="2016-09-25T17:10:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="WEBSERVER1">
+            <traversal_requested_node functional_type="CACHE"/>
+        </traversalPolicyType>
+        <reachabilityPolicyType policy_name_id="Policy2" nffg_name_id_refer="Nffg0" isPositive="true" verificationResult="true" verificationTime="2016-09-25T02:56:20.000+02:00" verificationMessage="Policy verificarion result true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="WEBSERVER0"/>
+        <reachabilityPolicyType policy_name_id="Policy1" nffg_name_id_refer="Nffg0" isPositive="true" verificationMessage="No verification result for policy" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="MAILSERVER7"/>
+        <traversalPolicyType policy_name_id="Policy0" nffg_name_id_refer="Nffg0" isPositive="false" verificationResult="false" verificationTime="2016-09-25T14:08:20.000+02:00" verificationMessage="Policy verification result not true" policy_source_node_name_id_refer="WEBCLIENT0" policy_destination_node_name_id_refer="MAILSERVER2">
+            <traversal_requested_node functional_type="NAT"/>
+        </traversalPolicyType>
     </nffg>
 </network_service>

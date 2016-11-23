@@ -9,13 +9,25 @@ package it.polito.dp2.NFFG.sol1;
  * respecting constraints obtained from the previous created xsd schema
  **/
 
-//library path
+// import of ONLY NECESSARY resources of library classes and types
+import it.polito.dp2.NFFG.NffgVerifierFactory;
+import it.polito.dp2.NFFG.NffgVerifierException;
+import it.polito.dp2.NFFG.NffgVerifier;
+import it.polito.dp2.NFFG.NffgReader;
+import it.polito.dp2.NFFG.NodeReader;
+import it.polito.dp2.NFFG.LinkReader;
+import it.polito.dp2.NFFG.PolicyReader;
+import it.polito.dp2.NFFG.ReachabilityPolicyReader;
+import it.polito.dp2.NFFG.TraversalPolicyReader;
+import it.polito.dp2.NFFG.FunctionalType;
 
-import it.polito.dp2.NFFG.*;
+// import of ONLY NECESSARY resources of jaxb generated classes  and types
+import it.polito.dp2.NFFG.sol1.jaxb_generated.NetworkService;
+import it.polito.dp2.NFFG.sol1.jaxb_generated.ReachabilityPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb_generated.TraversalPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb_generated.NodeFunctionalType;
 
-//generated path
-import it.polito.dp2.NFFG.sol1.jaxb_generated.*;
-
+// other import
 import org.xml.sax.SAXException;
 
 import java.io.*;
@@ -49,6 +61,9 @@ import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
  * create only one nffg with no policies
  *
  * execute the target NffgInfoSerializer of the build.xml ant file
+ *
+ * test with policies:
+ * ant -Doutput=file1.xml -Dseed=100000 NffgInfoSerializer
  **/
 
 /******************************************************
@@ -62,6 +77,9 @@ import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
  * create only one nffg with no policies
  *
  * execute the target NFFGInfo of the build.xml ant file
+ *
+ * test with policies:
+ * ant -Dseed=100000 NFFGInfo > out1.txt
  **/
 
 /***************************************************************
