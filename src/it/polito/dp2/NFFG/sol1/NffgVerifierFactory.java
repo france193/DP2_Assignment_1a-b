@@ -2,7 +2,10 @@ package it.polito.dp2.NFFG.sol1;
 
 /** Assignment 1b.2 **/
 
-import it.polito.dp2.NFFG.sol1.myLib.NffgVerifier;
+import it.polito.dp2.NFFG.sol1.myLib.FLNffgVerifier;
+import org.xml.sax.SAXException;
+
+import javax.xml.bind.JAXBException;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
@@ -21,8 +24,28 @@ public class NffgVerifierFactory extends it.polito.dp2.NFFG.NffgVerifierFactory 
      * @throws it.polito.dp2.NFFG.NffgVerifierException
      */
     @Override
-    public it.polito.dp2.NFFG.NffgVerifier newNffgVerifier() throws it.polito.dp2.NFFG.NffgVerifierException {
-        return new NffgVerifier();
+    public FLNffgVerifier newNffgVerifier() throws it.polito.dp2.NFFG.NffgVerifierException {
+
+        FLNffgVerifier myNffgVerifier = null;
+
+        myNffgVerifier = new FLNffgVerifier();
+
+        /*
+        try {
+            myNffgVerifier = new FLNffgVerifier();
+        } catch (JAXBException | SAXException e) {
+            System.err.println("Error: "+e.getMessage());
+            e.printStackTrace();
+            throw new it.polito.dp2.NFFG.NffgVerifierException(e.getMessage());
+        }
+        */
+
+        return myNffgVerifier;
+    }
+
+    //toString() implemented for debugging purposes
+    @Override
+    public String toString(){
+        return "This is a custom NffgVerifierFactory implementation for the assignment 2.";
     }
 }
-
