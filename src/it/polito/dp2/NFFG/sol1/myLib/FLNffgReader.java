@@ -5,10 +5,10 @@ import java.util.*;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.NffgReader {
+public class FLNffgReader extends FLNamedEntityReader implements it.polito.dp2.NFFG.NffgReader {
 
-    private HashMap<String, NodeReader> nffgNodes;
-    private HashMap<String, LinkReader> nffgLinks;
+    private HashMap<String, FLNodeReader> nffgNodes;
+    private HashMap<String, FLLinkReader> nffgLinks;
     private GregorianCalendar last_updated_time;
 
     /**
@@ -16,7 +16,7 @@ public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      *
      * @param entityName
      */
-    NffgReader(String entityName, GregorianCalendar last_updated_time) {
+    FLNffgReader(String entityName, GregorianCalendar last_updated_time) {
         super(entityName);
         this.last_updated_time = last_updated_time;
     }
@@ -55,7 +55,7 @@ public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @return
      */
     @Override
-    public NodeReader getNode(String node_name_id) {
+    public FLNodeReader getNode(String node_name_id) {
         return node_name_id != null && this.nffgNodes != null ? this.nffgNodes.get(node_name_id) : null;
     }
 
@@ -66,7 +66,7 @@ public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @param node_name_id
      * @param node
      */
-    public void setNode(HashMap<String, NodeReader> nffgNodes, String node_name_id, NodeReader node) {
+    public void setNode(HashMap<String, FLNodeReader> nffgNodes, String node_name_id, FLNodeReader node) {
         nffgNodes.put(node_name_id, node);
     }
 
@@ -85,7 +85,7 @@ public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      *
      * @param nffgNodes
      */
-    public void setNffgNodes(HashMap<String, NodeReader> nffgNodes) {
+    public void setNffgNodes(HashMap<String, FLNodeReader> nffgNodes) {
         this.nffgNodes = nffgNodes;
     }
 
@@ -99,7 +99,7 @@ public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @param link_name_id
      * @return
      */
-    public LinkReader getLink(String link_name_id) {
+    public FLLinkReader getLink(String link_name_id) {
         return link_name_id != null && this.nffgLinks != null ? this.nffgLinks.get(link_name_id) : null;
     }
 
@@ -110,7 +110,7 @@ public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @param link_name_id
      * @param link
      */
-    public void setLink(HashMap<String, LinkReader> nffgLinks, String link_name_id, LinkReader link) {
+    public void setLink(HashMap<String, FLLinkReader> nffgLinks, String link_name_id, FLLinkReader link) {
         nffgLinks.put(link_name_id, link);
     }
 
@@ -128,7 +128,7 @@ public class NffgReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      *
      * @param nffgLinks
      */
-    public void setNffgLinks(HashMap<String, LinkReader> nffgLinks) {
+    public void setNffgLinks(HashMap<String, FLLinkReader> nffgLinks) {
         this.nffgLinks = nffgLinks;
     }
 

@@ -3,13 +3,13 @@ package it.polito.dp2.NFFG.sol1.myLib;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class LinkReader extends NamedEntityReader implements it.polito.dp2.NFFG.LinkReader {
+public class FLLinkReader extends FLNamedEntityReader implements it.polito.dp2.NFFG.LinkReader {
 
     /**
      * Class' attributes
      */
-    private NodeReader sourceNode;
-    private NodeReader destinationNode;
+    private FLNodeReader sourceNode;
+    private FLNodeReader destinationNode;
 
     /**
      * Class' constructor
@@ -18,7 +18,7 @@ public class LinkReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @param sourceNode
      * @param destinationNode
      */
-    LinkReader(String link_name_id, NodeReader sourceNode, NodeReader destinationNode) {
+    FLLinkReader(String link_name_id, FLNodeReader sourceNode, FLNodeReader destinationNode) {
         super(link_name_id);
         this.sourceNode = sourceNode;
         this.destinationNode = destinationNode;
@@ -30,7 +30,7 @@ public class LinkReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @return
      */
     @Override
-    public NodeReader getSourceNode() {
+    public FLNodeReader getSourceNode() {
         return this.sourceNode;
     }
 
@@ -40,7 +40,7 @@ public class LinkReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @return
      */
     @Override
-    public NodeReader getDestinationNode() {
+    public FLNodeReader getDestinationNode() {
         return this.destinationNode;
     }
 }

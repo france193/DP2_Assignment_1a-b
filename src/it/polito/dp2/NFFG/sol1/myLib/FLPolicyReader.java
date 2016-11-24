@@ -3,13 +3,13 @@ package it.polito.dp2.NFFG.sol1.myLib;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class PolicyReader extends NamedEntityReader implements it.polito.dp2.NFFG.PolicyReader {
+public class FLPolicyReader extends FLNamedEntityReader implements it.polito.dp2.NFFG.PolicyReader {
 
     /**
      * Class' attributes
      */
-    private NffgReader nffg_refer;
-    private VerificationResultReader policyVerificationReader;
+    private FLNffgReader nffg_refer;
+    private FLVerificationResultReader policyVerificationReader;
     private boolean isPositive;
 
     /**
@@ -20,7 +20,7 @@ public class PolicyReader extends NamedEntityReader implements it.polito.dp2.NFF
      * @param policyVerificationReader
      * @param isPositive
      */
-    PolicyReader(String policy_name_id, NffgReader nffg_refer, VerificationResultReader policyVerificationReader, boolean isPositive) {
+    FLPolicyReader(String policy_name_id, FLNffgReader nffg_refer, FLVerificationResultReader policyVerificationReader, boolean isPositive) {
         super(policy_name_id);
         this.nffg_refer = nffg_refer;
         this.policyVerificationReader = policyVerificationReader;
@@ -33,7 +33,7 @@ public class PolicyReader extends NamedEntityReader implements it.polito.dp2.NFF
      * @return
      */
     @Override
-    public NffgReader getNffg() {
+    public FLNffgReader getNffg() {
         return this.nffg_refer;
     }
 
@@ -43,7 +43,7 @@ public class PolicyReader extends NamedEntityReader implements it.polito.dp2.NFF
      * @return
      */
     @Override
-    public VerificationResultReader getResult() {
+    public FLVerificationResultReader getResult() {
         return this.policyVerificationReader;
     }
 

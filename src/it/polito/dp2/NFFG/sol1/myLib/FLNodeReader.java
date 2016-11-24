@@ -9,13 +9,13 @@ import java.util.Set;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class NodeReader extends NamedEntityReader implements it.polito.dp2.NFFG.NodeReader {
+public class FLNodeReader extends FLNamedEntityReader implements it.polito.dp2.NFFG.NodeReader {
 
     /**
      * Class' attributes
      */
     private FunctionalType myFunctionalType;
-    private HashMap<String, LinkReader> links = new HashMap();
+    private HashMap<String, FLLinkReader> links = new HashMap();
 
     /**
      * Class' constructor
@@ -23,7 +23,7 @@ public class NodeReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      * @param type
      * @param node_name_id
      */
-    NodeReader(FunctionalType type, String node_name_id) {
+    FLNodeReader(FunctionalType type, String node_name_id) {
         super(node_name_id);
         this.myFunctionalType = type;
     }
@@ -53,7 +53,7 @@ public class NodeReader extends NamedEntityReader implements it.polito.dp2.NFFG.
      *
      * @param link
      */
-    public void addLink(LinkReader link) {
+    public void addLink(FLLinkReader link) {
         if (link != null) {
             this.links.put(link.getName(), link);
         }

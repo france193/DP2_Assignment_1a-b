@@ -10,6 +10,7 @@ package it.polito.dp2.NFFG.sol1;
  **/
 
 // import of ONLY NECESSARY resources of library classes and types
+
 import it.polito.dp2.NFFG.NffgVerifierFactory;
 import it.polito.dp2.NFFG.NffgVerifierException;
 import it.polito.dp2.NFFG.NffgVerifier;
@@ -98,15 +99,19 @@ import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
  *                |            link_source_node_name_id_refer,
  *                |            link_destination_node_name_id_refer)
  *                |
- *                |-- POLICY(*) (policy_name_id,
- *                      |        nffg_name_id_refer,
- *                      |        policy_kind,
- *                      |        verification_result,
- *                      |        policy_source_node_name_id_refer,
- *                      |        policy_destination_node_name_id_refer,
- *                      |        last_update_time)
- *                      |
- *                      |-- TRAVERSAL_REQUESTED_NODE(?) (functional_type)
+ *                |-- REACHABILITY_POLICY(*) (policy_name_id,
+ *                              |             nffg_name_id_refer,
+ *                              |             isPositive,
+ *                              |             verificationResult,
+ *                              |             verificationTime,
+ *                              |             verificationMessage,
+ *                              |             policy_source_node_name_id_refer,
+ *                              |             policy_destination_node_name_id_refer)
+ *                              |
+ *                              |
+ *                              |---> TRAVERSAL_POLICY(*)
+ *                                             |
+ *                                             |-- TRAVERSAL_REQUESTED_NODE(*) (functional_type)
  **/
 
 public class NffgInfoSerializer {
@@ -312,7 +317,14 @@ public class NffgInfoSerializer {
             Schema mySchema = mySchemaFactory.newSchema(new File("xsd/nffgInfo.xsd"));
             myMarchaller.setSchema(mySchema);
 
-            OutputStream fileOutputStream = new FileOutputStream(xml_filename);
+            String extension;
+            if (xml_filename.contains(".xml")) {
+                extension = "";
+            } else {
+                extension = ".xml";
+            }
+
+            OutputStream fileOutputStream = new FileOutputStream("xsd/" + xml_filename + extension);
             myMarchaller.marshal(myNetworkService, fileOutputStream);
             fileOutputStream.close();
         } catch (JAXBException e) {

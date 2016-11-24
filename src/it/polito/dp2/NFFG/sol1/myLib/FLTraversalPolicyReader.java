@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class TraversalPolicyReader extends ReachabilityPolicyReader implements it.polito.dp2.NFFG.TraversalPolicyReader {
+public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implements it.polito.dp2.NFFG.TraversalPolicyReader {
 
     Set<FunctionalType> listOfRequiredTraversedNode = new LinkedHashSet();
 
@@ -23,12 +23,12 @@ public class TraversalPolicyReader extends ReachabilityPolicyReader implements i
      * @param destination
      * @param listOfRequiredTraversedNode
      */
-    TraversalPolicyReader(String policy_name_id,
-                          NffgReader nffg_refer,
-                          VerificationResultReader policyVerificationReader,
+    FLTraversalPolicyReader(String policy_name_id,
+                          FLNffgReader nffg_refer,
+                          FLVerificationResultReader policyVerificationReader,
                           boolean isPositive,
-                          NodeReader nodeSource,
-                          NodeReader destination,
+                          FLNodeReader nodeSource,
+                          FLNodeReader destination,
                           Set<FunctionalType> listOfRequiredTraversedNode) {
 
         super(policy_name_id, nffg_refer, policyVerificationReader, isPositive, nodeSource, destination);

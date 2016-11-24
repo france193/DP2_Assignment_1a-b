@@ -6,14 +6,14 @@ import java.util.Set;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class NffgVerifier implements it.polito.dp2.NFFG.NffgVerifier {
+public class FLNffgVerifier implements it.polito.dp2.NFFG.NffgVerifier {
     @Override
     public Set<it.polito.dp2.NFFG.NffgReader> getNffgs() {
         return null;
     }
 
     @Override
-    public NffgReader getNffg(String s) {
+    public FLNffgReader getNffg(String s) {
         return null;
     }
 

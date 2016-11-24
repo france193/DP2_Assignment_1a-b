@@ -3,7 +3,7 @@ package it.polito.dp2.NFFG.sol1.myLib;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class NamedEntityReader implements it.polito.dp2.NFFG.NamedEntityReader {
+public class FLNamedEntityReader implements it.polito.dp2.NFFG.NamedEntityReader {
 
     private String entityName;
 
@@ -11,7 +11,7 @@ public class NamedEntityReader implements it.polito.dp2.NFFG.NamedEntityReader {
      * Class' construcotr
      * @param entityName
      */
-    NamedEntityReader(String entityName) {
+    FLNamedEntityReader(String entityName) {
         this.entityName = entityName;
     }
 

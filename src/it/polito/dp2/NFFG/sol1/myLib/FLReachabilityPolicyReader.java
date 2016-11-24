@@ -3,13 +3,13 @@ package it.polito.dp2.NFFG.sol1.myLib;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class ReachabilityPolicyReader extends PolicyReader implements it.polito.dp2.NFFG.ReachabilityPolicyReader {
+public class FLReachabilityPolicyReader extends FLPolicyReader implements it.polito.dp2.NFFG.ReachabilityPolicyReader {
 
     /**
      * Class' attributes
      */
-    private NodeReader nodeSource;
-    private NodeReader nodeDestination;
+    private FLNodeReader nodeSource;
+    private FLNodeReader nodeDestination;
 
     /**
      * Class' constructor
@@ -21,12 +21,12 @@ public class ReachabilityPolicyReader extends PolicyReader implements it.polito.
      * @param nodeSource
      * @param destination
      */
-    ReachabilityPolicyReader(String policy_name_id,
-                             NffgReader nffg_refer,
-                             VerificationResultReader policyVerificationReader,
+    FLReachabilityPolicyReader(String policy_name_id,
+                             FLNffgReader nffg_refer,
+                             FLVerificationResultReader policyVerificationReader,
                              boolean isPositive,
-                             NodeReader nodeSource,
-                             NodeReader destination) {
+                             FLNodeReader nodeSource,
+                             FLNodeReader destination) {
 
         super(policy_name_id, nffg_refer, policyVerificationReader, isPositive);
         this.nodeSource = nodeSource;
@@ -39,7 +39,7 @@ public class ReachabilityPolicyReader extends PolicyReader implements it.polito.
      * @return
      */
     @Override
-    public NodeReader getSourceNode() {
+    public FLNodeReader getSourceNode() {
         return this.nodeSource;
     }
 
@@ -49,7 +49,7 @@ public class ReachabilityPolicyReader extends PolicyReader implements it.polito.
      * @return
      */
     @Override
-    public NodeReader getDestinationNode() {
+    public FLNodeReader getDestinationNode() {
         return this.nodeDestination;
     }
 }

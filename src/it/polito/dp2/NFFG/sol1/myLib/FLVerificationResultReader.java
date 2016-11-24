@@ -6,12 +6,12 @@ import java.util.GregorianCalendar;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class VerificationResultReader implements it.polito.dp2.NFFG.VerificationResultReader {
+public class FLVerificationResultReader implements it.polito.dp2.NFFG.VerificationResultReader {
 
     /**
      * Class' attributes
      */
-    private PolicyReader policy;
+    private FLPolicyReader policy;
     private boolean verificationResult;
     private String verificationMessage;
     private GregorianCalendar verificationTime;
@@ -24,7 +24,10 @@ public class VerificationResultReader implements it.polito.dp2.NFFG.Verification
      * @param verificationMessage
      * @param verificationTime
      */
-    public VerificationResultReader(PolicyReader policy, boolean verificationResult, String verificationMessage, GregorianCalendar verificationTime) {
+    public FLVerificationResultReader(FLPolicyReader policy,
+                                      boolean verificationResult,
+                                      String verificationMessage,
+                                      GregorianCalendar verificationTime) {
         this.policy = policy;
         this.verificationResult = verificationResult;
         this.verificationMessage = verificationMessage;
@@ -37,7 +40,7 @@ public class VerificationResultReader implements it.polito.dp2.NFFG.Verification
      * @return
      */
     @Override
-    public PolicyReader getPolicy() {
+    public FLPolicyReader getPolicy() {
         return this.policy;
     }
 
