@@ -11,18 +11,10 @@ package it.polito.dp2.NFFG.sol1;
 
 // import of ONLY NECESSARY resources of library classes and types
 
-import it.polito.dp2.NFFG.NffgVerifierFactory;
-import it.polito.dp2.NFFG.NffgVerifierException;
-import it.polito.dp2.NFFG.NffgVerifier;
-import it.polito.dp2.NFFG.NffgReader;
-import it.polito.dp2.NFFG.NodeReader;
-import it.polito.dp2.NFFG.LinkReader;
-import it.polito.dp2.NFFG.PolicyReader;
-import it.polito.dp2.NFFG.ReachabilityPolicyReader;
-import it.polito.dp2.NFFG.TraversalPolicyReader;
-import it.polito.dp2.NFFG.FunctionalType;
+import it.polito.dp2.NFFG.*;
 
 // import of ONLY NECESSARY resources of jaxb generated classes  and types
+import it.polito.dp2.NFFG.NffgVerifierFactory;
 import it.polito.dp2.NFFG.sol1.jaxb_generated.NetworkService;
 import it.polito.dp2.NFFG.sol1.jaxb_generated.ReachabilityPolicyType;
 import it.polito.dp2.NFFG.sol1.jaxb_generated.TraversalPolicyType;
@@ -115,6 +107,12 @@ import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
  **/
 
 public class NffgInfoSerializer {
+
+    public static final String XSD_FOLDER = "xsd/";
+    public static final String XSD_FILE = "nffgInfo.xsd";
+    public static final String XSD_LOCATION = "https://france193.wordpress.com";
+    public static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb_generated";
+
     private NffgVerifier monitor;
     private NetworkService myNetworkService;
 
@@ -132,23 +130,58 @@ public class NffgInfoSerializer {
         myNetworkService = new NetworkService();
     }
 
+
     /**
      * @param args
      */
     public static void main(String[] args) {
-        NffgInfoSerializer myInfoserializer;
+
+        // check parameter
+        if (args.length != 1) {
+            System.err.println("(!) - Error! Usage: <program_name> <output.xml>");
+            System.err.println("args.length is equal to " + args.length);
+            return;
+        }
+
+        System.out.println(" > This program will serialize your Nffg into an XML file!");
 
         //read desidered name for new xml file
         xml_filename = args[0].toString();
 
         try {
-            myInfoserializer = new NffgInfoSerializer();
+            NffgInfoSerializer myInfoserializer = new NffgInfoSerializer();
             myInfoserializer.readAll();
-
-            //myInfoserializer.printXMLOnConsole();
+            System.out.println(" > The data structure was created!\n");
             myInfoserializer.writeXMLToFile();
-        } catch (NffgVerifierException e) {
+            System.out.println(" > File xml correctly generated!\n");
+        } catch (FactoryConfigurationError e) {
+            System.err.println("(!) - Could not create a DocumentBuilderFactory: " + e.getMessage());
             e.printStackTrace();
+            System.exit(11);
+        } catch (NffgVerifierException e) {
+            System.err.println("(!) - Could not instantiate the class: " + e.getMessage());
+            e.printStackTrace();
+            System.exit(1);
+        } catch (JAXBException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            System.exit(2);
+        } catch (IllegalArgumentException e) {
+            System.err.println("(!) - Error, some argument are wrong!");
+            e.printStackTrace();
+            System.exit(3);
+        } catch (FileNotFoundException e) {
+            System.err.println("(!) - Error! The file: " + args[0] + " does not exists!");
+            e.printStackTrace();
+            System.exit(4);
+        } catch (SAXException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            System.exit(5);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            e.printStackTrace();
+            System.exit(6);
         }
     }
 
@@ -286,36 +319,14 @@ public class NffgInfoSerializer {
         return null;
     }
 
-    private void printXMLOnConsole() {
-        try {
-            //Write it
-            JAXBContext ctx = JAXBContext.newInstance(NetworkService.class);
-            Marshaller m = ctx.createMarshaller();
-            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            StringWriter sw = new StringWriter();
-            m.marshal(myNetworkService, sw);
-            sw.close();
-
-            System.out.println(sw.toString());
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void writeXMLToFile() {
+    private void writeXMLToFile() throws SAXException, JAXBException, IOException {
         try {
             // create jaxb context
-            JAXBContext jaxbContext = JAXBContext.newInstance(NetworkService.class);
-            Marshaller myMarchaller = jaxbContext.createMarshaller();
-            myMarchaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            JAXBContext jaxbContext = JAXBContext.newInstance(PACKAGE);
 
             // set validation with my xsd
             SchemaFactory mySchemaFactory = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
-            Schema mySchema = mySchemaFactory.newSchema(new File("xsd/nffgInfo.xsd"));
-            myMarchaller.setSchema(mySchema);
+            Schema mySchema = mySchemaFactory.newSchema(new File(XSD_FOLDER + XSD_FILE));
 
             String extension;
             if (xml_filename.contains(".xml")) {
@@ -324,15 +335,26 @@ public class NffgInfoSerializer {
                 extension = ".xml";
             }
 
-            OutputStream fileOutputStream = new FileOutputStream("xsd/" + xml_filename + extension);
+            OutputStream fileOutputStream = new FileOutputStream(XSD_FOLDER + xml_filename + extension);
+
+            // Creating the XML document
+            Marshaller myMarchaller = jaxbContext.createMarshaller();
+            myMarchaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            myMarchaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, XSD_LOCATION + " " + XSD_FILE);
+            myMarchaller.setSchema(mySchema);
             myMarchaller.marshal(myNetworkService, fileOutputStream);
+
             fileOutputStream.close();
         } catch (JAXBException e) {
-            e.printStackTrace();
+            throw new JAXBException("(!) - Error creating the new instance of the JAXBContent");
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IOException("(!) - Error in the IO");
         } catch (SAXException e) {
-            e.printStackTrace();
+            throw new SAXException("(!) - Error creating the XML Schema object");
+        } catch (NullPointerException e) {
+            throw new NullPointerException("(!) - Error! The instance of the schema or the file of the schema is not well created!");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("(!) - Error! No implementation of the schema language is available");
         }
     }
 
