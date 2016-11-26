@@ -61,6 +61,10 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
         return new LinkedHashSet(this.nffgNodes.values());
     }
 
+    public Set<FLNodeReader> getNffgNodes() {
+        return new LinkedHashSet(this.nffgNodes.values());
+    }
+
     @Override
     public String toString() {
         return " *** Nffg *** \n" +

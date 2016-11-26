@@ -40,6 +40,12 @@ import javax.xml.validation.SchemaFactory;
 
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
+/**
+ * To test all the code:
+ *
+ * ant -Dtestcase=0 -Dseed=100000 runFuncTest
+ */
+
 /************************************************************************
  * ant -Doutput=file1.xml -Dseed=100000 -Dtestcase=1 NffgInfoSerializer *
  ************************************************************************
@@ -341,7 +347,7 @@ public class NffgInfoSerializer {
             // Creating the XML document
             Marshaller myMarchaller = jaxbContext.createMarshaller();
             myMarchaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            myMarchaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, XSD_LOCATION + " " + XSD_FILE);
+            myMarchaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, XSD_LOCATION + " " + XSD_FOLDER + XSD_FILE);
             myMarchaller.setSchema(mySchema);
             myMarchaller.marshal(myNetworkService, fileOutputStream);
 

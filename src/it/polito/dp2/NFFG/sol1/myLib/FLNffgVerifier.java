@@ -5,12 +5,14 @@ import java.util.*;
 
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
-import it.polito.dp2.NFFG.LinkReader;
-import it.polito.dp2.NFFG.NffgReader;
+import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.NffgVerifier;
-import it.polito.dp2.NFFG.NodeReader;
 import it.polito.dp2.NFFG.PolicyReader;
+import it.polito.dp2.NFFG.NffgReader;
 
+import it.polito.dp2.NFFG.sol1.jaxb_generated.TraversalPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb_generated.NetworkService;
+import it.polito.dp2.NFFG.sol1.jaxb_generated.ReachabilityPolicyType;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBContext;
@@ -24,14 +26,15 @@ import javax.xml.validation.SchemaFactory;
  */
 public class FLNffgVerifier implements NffgVerifier {
 
-    public static final String XSD_NAME = "xsd/WFInfo.xsd";
-    public static final String PACKAGE = "it.polito.dp2.WF.sol2.jaxb";
+    public static final String XSD_FOLDER = "xsd/";
+    public static final String XSD_FILE = "nffgInfo.xsd";
+    public static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb";
 
     // set of Nffgs and Policy of all Nffgs
     private HashMap<String, FLNffgReader> myNffgs;
     private HashMap<String, FLPolicyReader> myPolicies;
 
-    private NffgVerifier rootElement = null;
+    private NetworkService myNetworkServices = null;
 
     private String name_id;
 
@@ -39,8 +42,8 @@ public class FLNffgVerifier implements NffgVerifier {
 
         try {
             // take file name from the property
-            String fileName = System.getProperty("it.polito.dp2.WF.sol2.WorkflowInfo.file");
-            rootElement = unmarshallDocument(new File(fileName));
+            String fileName = System.getProperty("it.polito.dp2.NFFG.sol1.NffgInfo.file");
+            myNetworkServices = unmarshallDocument(new File(fileName));
         } catch (SAXException e) {
             System.err.println("SAXException: Error during the unmarshalling of the XML document...\n"
                     + e.getMessage());
@@ -59,57 +62,91 @@ public class FLNffgVerifier implements NffgVerifier {
             throw e;
         }
 
-        System.out.println("In this NetworkService there are " + rootElement.getNffgs().size() + " Nffgs");
+        System.out.println("In this NetworkService there are " + myNetworkServices.getNffg().size() + " Nffgs");
 
         // add all of my nffgs on my HashMap of my NffgReader
         myNffgs = new HashMap<String, FLNffgReader>();
-        for (NffgReader nffg : rootElement.getNffgs()) {
+        for (NetworkService.Nffg nffg : myNetworkServices.getNffg()) {
 
             // create a new nffg
-            FLNffgReader myNffg = new FLNffgReader(nffg.getName(), nffg.getUpdateTime());
+            FLNffgReader myNffg = new FLNffgReader(nffg.getNffgNameId(), nffg.getLastUpdatedTime().toGregorianCalendar());
 
             // add all information about the nffg
             /** Nodes **/
-            System.out.println("In this Nffg there are " + nffg.getNodes().size() + " nodes");
-            for (NodeReader node : nffg.getNodes()) {
+            System.out.println("In this Nffg there are " + nffg.getNode().size() + " nodes");
+            for (NetworkService.Nffg.Node node : nffg.getNode()) {
                 // create a new node
-                FLNodeReader nodeReader = new FLNodeReader(node.getFuncType(), node.getName());
-
-                /** Links **/
-                System.out.println("This node has " + node.getLinks().size() + " links");
-                for (LinkReader link : node.getLinks()) {
-                    // create a new link
-                    FLLinkReader linkReader = new FLLinkReader(link.getName(),
-                            new FLNodeReader(link.getSourceNode().getFuncType(), link.getSourceNode().getName()),
-                            new FLNodeReader(link.getDestinationNode().getFuncType(), link.getDestinationNode().getName()));
-                    // add link to my node
-                    nodeReader.getLinks().add(linkReader);
-                }
-                System.out.println(nodeReader.getLinks().size() + " links were created.");
-
+                FLNodeReader nodeReader = new FLNodeReader(FunctionalType.valueOf(node.getFunctionalType().toString()),
+                        node.getNodeNameId());
                 // add node to my nffg
                 myNffg.getNodes().add(nodeReader);
             }
             System.out.println(myNffg.getNodes().size() + " nodes were created.");
 
+            /** Links **/
+            // read in the link list, all links with this considered node as source
+            for (NetworkService.Nffg.Link link : nffg.getLink()) {
+                FLNodeReader srcNode = findNodeById(link.getLinkSourceNodeNameIdRefer(), myNffg.getNffgNodes());
+                FLNodeReader destNode = findNodeById(link.getLinkDestinationNodeNameIdRefer(), myNffg.getNffgNodes());
+
+                // if the node hasn't in the list the considered link, add it to the node's links list
+                if (!srcNode.getLinks().contains(link)) {
+                    srcNode.getLinks().add(new FLLinkReader(link.getLinkNameId(),
+                            srcNode,
+                            destNode));
+                }
+            }
+
             /** Policies **/
-            System.out.println("In this NetworkService there are " + rootElement.getPolicies().size() + " policies");
+            System.out.println("In this NetworkService there are " + nffg.getReachabilityPolicyTypeOrTraversalPolicyType().size() + " policies");
 
             myPolicies = new HashMap<String, FLPolicyReader>();
-            for (PolicyReader policy : rootElement.getPolicies()) {
-                // create a new Policy
-                FLPolicyReader policyReader = new FLPolicyReader(policy.getName(),
-                        new FLNffgReader(policy.getNffg().getName(), policy.getNffg().getUpdateTime()),
-                        policy.isPositive());
+            for (ReachabilityPolicyType policy : nffg.getReachabilityPolicyTypeOrTraversalPolicyType()) {
 
-                FLVerificationResultReader verificationResultReader = new FLVerificationResultReader(policyReader,
-                        policy.getResult().getVerificationResult(),
-                        policy.getResult().getVerificationResultMsg(),
-                        policy.getResult().getVerificationTime());
+                // Reachability Policy
+                if (!(policy instanceof TraversalPolicyType)) {
+                    ReachabilityPolicyType p = (ReachabilityPolicyType) policy;
+                    FLReachabilityPolicyReader myPolicy = new FLReachabilityPolicyReader(p.getPolicyNameId(),
+                            myNffg,
+                            p.isIsPositive(),
+                            findNodeById(p.getPolicySourceNodeNameIdRefer(), myNffg.getNffgNodes()),
+                            findNodeById(p.getPolicyDestinationNodeNameIdRefer(), myNffg.getNffgNodes()));
 
-                policyReader.setPolicyVerificationReader(verificationResultReader);
+                    FLVerificationResultReader verificationResultReader = new FLVerificationResultReader(myPolicy,
+                            p.isIsPositive(),
+                            p.getVerificationMessage(),
+                            p.getVerificationTime().toGregorianCalendar());
 
-                myPolicies.put(policyReader.getName(), policyReader);
+                    myPolicy.setPolicyVerificationReader(verificationResultReader);
+
+                    myPolicies.put(myPolicy.getName(), myPolicy);
+
+                } else {
+                    // Traversal Policy
+
+                    TraversalPolicyType p = (TraversalPolicyType) policy;
+                    FLTraversalPolicyReader myPolicy = new FLTraversalPolicyReader(p.getPolicyNameId(),
+                            myNffg,
+                            p.isIsPositive(),
+                            findNodeById(p.getPolicySourceNodeNameIdRefer(), myNffg.getNffgNodes()),
+                            findNodeById(p.getPolicyDestinationNodeNameIdRefer(), myNffg.getNffgNodes()));
+
+                    if (p.getTraversalRequestedNode().size() > 0) {
+                        for (TraversalPolicyType.TraversalRequestedNode f : p.getTraversalRequestedNode()) {
+                            myPolicy.getTraversedFuctionalTypes().add(FunctionalType.valueOf(f.getFunctionalType().value()));
+                        }
+                    }
+
+                    FLVerificationResultReader verificationResultReader = new FLVerificationResultReader(myPolicy,
+                            p.isIsPositive(),
+                            p.getVerificationMessage(),
+                            p.getVerificationTime().toGregorianCalendar());
+
+                    myPolicy.setPolicyVerificationReader(verificationResultReader);
+
+                    myPolicies.put(myPolicy.getName(), myPolicy);
+                }
+
             }
             System.out.println(myPolicies.size() + " policies were created.");
 
@@ -169,7 +206,7 @@ public class FLNffgVerifier implements NffgVerifier {
      * @throws SAXException
      * @throws IllegalArgumentException
      */
-    private NffgVerifier unmarshallDocument(File inputFile) throws JAXBException, SAXException, IllegalArgumentException {
+    private NetworkService unmarshallDocument(File inputFile) throws JAXBException, SAXException, IllegalArgumentException {
         JAXBContext myJAXBContext = JAXBContext.newInstance(PACKAGE);
 
         SchemaFactory mySchemaFactory;
@@ -178,7 +215,7 @@ public class FLNffgVerifier implements NffgVerifier {
 		/* - creating the XML schema to validate the XML file before read it - */
         try {
             mySchemaFactory = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
-            mySchema = mySchemaFactory.newSchema(new File(XSD_NAME));
+            mySchema = mySchemaFactory.newSchema(new File(XSD_FOLDER + XSD_FILE));
         } catch (IllegalArgumentException e) {
             System.err.println("IllegalArgumentException: Error! No implementation of the schema language is available");
             throw e;
@@ -193,7 +230,17 @@ public class FLNffgVerifier implements NffgVerifier {
         Unmarshaller myUnmarshaller = myJAXBContext.createUnmarshaller();
         myUnmarshaller.setSchema(mySchema);
 
-        return (NffgVerifier) myUnmarshaller.unmarshal(inputFile);
+        return (NetworkService) myUnmarshaller.unmarshal(inputFile);
+    }
+
+    private FLNodeReader findNodeById(String linkSourceNodeNameIdRefer, Set<FLNodeReader> nodes) {
+        for (FLNodeReader n : nodes) {
+            if (n.getName().contains(linkSourceNodeNameIdRefer)) {
+                return n;
+            }
+        }
+
+        return null;
     }
 
     @Override

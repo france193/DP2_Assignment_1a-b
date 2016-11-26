@@ -18,24 +18,19 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
      *
      * @param policy_name_id
      * @param nffg_refer
-     * @param policyVerificationReader
      * @param isPositive
      * @param nodeSource
      * @param destination
-     * @param listOfRequiredTraversedNode
      */
     FLTraversalPolicyReader(String policy_name_id,
                           FLNffgReader nffg_refer,
-                          FLVerificationResultReader policyVerificationReader,
                           boolean isPositive,
                           FLNodeReader nodeSource,
-                          FLNodeReader destination,
-                          Set<FunctionalType> listOfRequiredTraversedNode) {
+                          FLNodeReader destination) {
 
-        super(policy_name_id, nffg_refer, policyVerificationReader, isPositive, nodeSource, destination);
+        super(policy_name_id, nffg_refer, isPositive, nodeSource, destination);
 
         listOfRequiredTraversedNode = new LinkedHashSet();
-        this.listOfRequiredTraversedNode.addAll(listOfRequiredTraversedNode);
 
     }
 
@@ -47,6 +42,11 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
     @Override
     public Set<FunctionalType> getTraversedFuctionalTypes() {
         return new LinkedHashSet(this.listOfRequiredTraversedNode);
+    }
+
+    @Override
+    public void setPolicyVerificationReader(FLVerificationResultReader policyVerificationReader) {
+        super.setPolicyVerificationReader(policyVerificationReader);
     }
 
     @Override
