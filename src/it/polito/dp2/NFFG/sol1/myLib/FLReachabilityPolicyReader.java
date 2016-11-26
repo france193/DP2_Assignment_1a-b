@@ -1,9 +1,12 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
+
+import it.polito.dp2.NFFG.ReachabilityPolicyReader;
+
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class FLReachabilityPolicyReader extends FLPolicyReader implements it.polito.dp2.NFFG.ReachabilityPolicyReader {
+public class FLReachabilityPolicyReader extends FLPolicyReader implements ReachabilityPolicyReader {
 
     /**
      * Class' attributes
@@ -28,7 +31,8 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements it.pol
                              FLNodeReader nodeSource,
                              FLNodeReader destination) {
 
-        super(policy_name_id, nffg_refer, policyVerificationReader, isPositive);
+        super(policy_name_id, nffg_refer, isPositive);
+        super.setPolicyVerificationReader(policyVerificationReader);
         this.nodeSource = nodeSource;
         this.nodeDestination = destination;
     }
@@ -51,5 +55,12 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements it.pol
     @Override
     public FLNodeReader getDestinationNode() {
         return this.nodeDestination;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " \n" +
+                "\t Source Node: " + nodeSource.getName() + " \n" +
+                "\t Destination Node: " + nodeDestination.getName() + " \n";
     }
 }

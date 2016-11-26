@@ -1,12 +1,13 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
+import it.polito.dp2.NFFG.VerificationResultReader;
+
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class FLVerificationResultReader implements it.polito.dp2.NFFG.VerificationResultReader {
+public class FLVerificationResultReader implements VerificationResultReader {
 
     /**
      * Class' attributes
@@ -14,7 +15,7 @@ public class FLVerificationResultReader implements it.polito.dp2.NFFG.Verificati
     private FLPolicyReader policy;
     private boolean verificationResult;
     private String verificationMessage;
-    private GregorianCalendar verificationTime;
+    private Calendar verificationTime;
 
     /**
      * Class' constructor
@@ -25,9 +26,10 @@ public class FLVerificationResultReader implements it.polito.dp2.NFFG.Verificati
      * @param verificationTime
      */
     public FLVerificationResultReader(FLPolicyReader policy,
-                                      boolean verificationResult,
+                                      Boolean verificationResult,
                                       String verificationMessage,
-                                      GregorianCalendar verificationTime) {
+                                      Calendar verificationTime) {
+
         this.policy = policy;
         this.verificationResult = verificationResult;
         this.verificationMessage = verificationMessage;
@@ -72,5 +74,12 @@ public class FLVerificationResultReader implements it.polito.dp2.NFFG.Verificati
     @Override
     public Calendar getVerificationTime() {
         return this.verificationTime;
+    }
+
+    @Override
+    public String toString() {
+        return "\t\t Verification Result=" + verificationResult + " \n" +
+                "\t\t Verification Message='" + verificationMessage + " \n" +
+                "\t\t Verification Time=" + verificationTime;
     }
 }

@@ -1,6 +1,8 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
 import it.polito.dp2.NFFG.FunctionalType;
+import it.polito.dp2.NFFG.LinkReader;
+import it.polito.dp2.NFFG.NodeReader;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -9,7 +11,7 @@ import java.util.Set;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class FLNodeReader extends FLNamedEntityReader implements it.polito.dp2.NFFG.NodeReader {
+public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
 
     /**
      * Class' attributes
@@ -26,6 +28,7 @@ public class FLNodeReader extends FLNamedEntityReader implements it.polito.dp2.N
     FLNodeReader(FunctionalType type, String node_name_id) {
         super(node_name_id);
         this.myFunctionalType = type;
+        this.links = new HashMap<String, FLLinkReader>();
     }
 
     /**
@@ -44,20 +47,14 @@ public class FLNodeReader extends FLNamedEntityReader implements it.polito.dp2.N
      * @return
      */
     @Override
-    public Set<it.polito.dp2.NFFG.LinkReader> getLinks() {
+    public Set<LinkReader> getLinks() {
         return new LinkedHashSet(this.links.values());
     }
 
-    /**
-     * Add a link to the set of link of the node
-     *
-     * @param link
-     */
-    public void addLink(FLLinkReader link) {
-        if (link != null) {
-            this.links.put(link.getName(), link);
-        }
+    @Override
+    public String toString() {
+        return "\t Node Name: " + this.getName() + " --\n" +
+                "\t FunctionalType: " + myFunctionalType + " \n" +
+                "\t -- links -- \n" + links.toString();
     }
 }
-
-//TODO check "it.polito.dp2.NFFG.LinkReader"

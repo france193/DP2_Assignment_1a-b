@@ -6,7 +6,7 @@
     </description>
 
     <!-- setted by me -->
-    <property name="seed" value="100000"/>
+    <!--<property name="seed" value="100000"/>-->
 
     <!-- The "NffgVerifierFactory" used for NFFGInfo and as data generator for tests -->
     <property name="NFFGInfo.NffgVerifierFactory" value="it.polito.dp2.NFFG.Random.NffgVerifierFactoryImpl"/>

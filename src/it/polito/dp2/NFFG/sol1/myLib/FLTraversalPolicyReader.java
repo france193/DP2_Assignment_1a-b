@@ -1,6 +1,7 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
 import it.polito.dp2.NFFG.FunctionalType;
+import it.polito.dp2.NFFG.TraversalPolicyReader;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -8,9 +9,9 @@ import java.util.Set;
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implements it.polito.dp2.NFFG.TraversalPolicyReader {
+public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implements TraversalPolicyReader {
 
-    Set<FunctionalType> listOfRequiredTraversedNode = new LinkedHashSet();
+    Set<FunctionalType> listOfRequiredTraversedNode;
 
     /**
      * Class' constructor
@@ -33,9 +34,9 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
 
         super(policy_name_id, nffg_refer, policyVerificationReader, isPositive, nodeSource, destination);
 
-        if (listOfRequiredTraversedNode != null) {
-            this.listOfRequiredTraversedNode.addAll(listOfRequiredTraversedNode);
-        }
+        listOfRequiredTraversedNode = new LinkedHashSet();
+        this.listOfRequiredTraversedNode.addAll(listOfRequiredTraversedNode);
+
     }
 
     /**
@@ -46,5 +47,19 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
     @Override
     public Set<FunctionalType> getTraversedFuctionalTypes() {
         return new LinkedHashSet(this.listOfRequiredTraversedNode);
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer tostring = new StringBuffer();
+
+        tostring.append( super.toString() + " \n" +
+                "\t List of Required Traversed Nodes: ");
+
+        for (FunctionalType t : this.getTraversedFuctionalTypes()) {
+            tostring.append(t.value().toString());
+        }
+
+        return tostring.toString();
     }
 }

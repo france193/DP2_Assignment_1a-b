@@ -2,6 +2,8 @@ package it.polito.dp2.NFFG.sol1;
 
 /** Assignment 1b.2 **/
 
+import it.polito.dp2.NFFG.NffgVerifier;
+import it.polito.dp2.NFFG.NffgVerifierException;
 import it.polito.dp2.NFFG.sol1.myLib.FLNffgVerifier;
 import org.xml.sax.SAXException;
 
@@ -24,21 +26,25 @@ public class NffgVerifierFactory extends it.polito.dp2.NFFG.NffgVerifierFactory 
      * @throws it.polito.dp2.NFFG.NffgVerifierException
      */
     @Override
-    public FLNffgVerifier newNffgVerifier() throws it.polito.dp2.NFFG.NffgVerifierException {
+    public NffgVerifier newNffgVerifier() throws NffgVerifierException {
 
-        FLNffgVerifier myNffgVerifier = null;
+        NffgVerifier myNffgVerifier = null;
 
-        myNffgVerifier = new FLNffgVerifier();
-
-        /*
         try {
             myNffgVerifier = new FLNffgVerifier();
-        } catch (JAXBException | SAXException e) {
+        } catch (JAXBException e) {
             System.err.println("Error: "+e.getMessage());
             e.printStackTrace();
-            throw new it.polito.dp2.NFFG.NffgVerifierException(e.getMessage());
+            throw new NffgVerifierException(e.getMessage());
+        } catch (SAXException e) {
+            System.err.println("Error: "+e.getMessage());
+            e.printStackTrace();
+            throw new NffgVerifierException(e.getMessage());
+        } catch (NullPointerException e) {
+            System.err.println("Error: "+e.getMessage());
+            e.printStackTrace();
+            throw new NffgVerifierException(e.getMessage());
         }
-        */
 
         return myNffgVerifier;
     }

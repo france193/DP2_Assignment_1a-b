@@ -1,9 +1,11 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
+import it.polito.dp2.NFFG.PolicyReader;
+
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class FLPolicyReader extends FLNamedEntityReader implements it.polito.dp2.NFFG.PolicyReader {
+public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader {
 
     /**
      * Class' attributes
@@ -17,13 +19,11 @@ public class FLPolicyReader extends FLNamedEntityReader implements it.polito.dp2
      *
      * @param policy_name_id
      * @param nffg_refer
-     * @param policyVerificationReader
      * @param isPositive
      */
-    FLPolicyReader(String policy_name_id, FLNffgReader nffg_refer, FLVerificationResultReader policyVerificationReader, boolean isPositive) {
+    FLPolicyReader(String policy_name_id, FLNffgReader nffg_refer, boolean isPositive) {
         super(policy_name_id);
         this.nffg_refer = nffg_refer;
-        this.policyVerificationReader = policyVerificationReader;
         this.isPositive = isPositive;
     }
 
@@ -55,5 +55,17 @@ public class FLPolicyReader extends FLNamedEntityReader implements it.polito.dp2
     @Override
     public Boolean isPositive() {
         return this.isPositive;
+    }
+
+    public void setPolicyVerificationReader(FLVerificationResultReader policyVerificationReader) {
+        this.policyVerificationReader = policyVerificationReader;
+    }
+
+    @Override
+    public String toString() {
+        return " -- PolicyReader: " + this.getName() + " --\n" +
+                "\t Referring Nffg: " + nffg_refer + " \n" +
+                "\t isPositive: " + isPositive  + " \n" +
+                "\t policy Verification Result: " + policyVerificationReader.toString() + " \n";
     }
 }

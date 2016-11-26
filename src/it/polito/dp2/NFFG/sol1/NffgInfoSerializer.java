@@ -258,7 +258,6 @@ public class NffgInfoSerializer {
 
                 myPolicy.setPolicyNameId(policy.getName());
                 myPolicy.setNffgNameIdRefer(policy.getNffg().getName());
-                myPolicy.setVerificationTime(null);
                 myPolicy.setIsPositive(policy.isPositive().booleanValue());
 
                 readVerificationResult(myPolicy, policy);
@@ -268,8 +267,8 @@ public class NffgInfoSerializer {
 
                 myNffg.getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
 
-                // read Reachability Policy
             } else {
+                // read Traversal Policy
                 TraversalPolicyReader policy = (TraversalPolicyReader) general_policy;
                 TraversalPolicyType myPolicy = new TraversalPolicyType();
 
@@ -301,6 +300,8 @@ public class NffgInfoSerializer {
             myPolicy.setVerificationTime(getXMLCal(policy.getResult().getVerificationTime()));
             myPolicy.setVerificationMessage(policy.getResult().getVerificationResultMsg());
         } else {
+            myPolicy.setVerificationResult(null);
+            myPolicy.setVerificationTime(null);
             myPolicy.setVerificationMessage("No verification result for policy");
         }
     }
@@ -335,7 +336,7 @@ public class NffgInfoSerializer {
                 extension = ".xml";
             }
 
-            OutputStream fileOutputStream = new FileOutputStream(XSD_FOLDER + xml_filename + extension);
+            OutputStream fileOutputStream = new FileOutputStream(xml_filename + extension);
 
             // Creating the XML document
             Marshaller myMarchaller = jaxbContext.createMarshaller();
@@ -348,6 +349,7 @@ public class NffgInfoSerializer {
         } catch (JAXBException e) {
             throw new JAXBException("(!) - Error creating the new instance of the JAXBContent");
         } catch (IOException e) {
+            e.printStackTrace();
             throw new IOException("(!) - Error in the IO");
         } catch (SAXException e) {
             throw new SAXException("(!) - Error creating the XML Schema object");

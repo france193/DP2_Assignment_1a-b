@@ -1,9 +1,11 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
+import it.polito.dp2.NFFG.LinkReader;
+
 /**
  * Created by FLDeviOS on 23/11/2016.
  */
-public class FLLinkReader extends FLNamedEntityReader implements it.polito.dp2.NFFG.LinkReader {
+public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
 
     /**
      * Class' attributes
@@ -42,5 +44,11 @@ public class FLLinkReader extends FLNamedEntityReader implements it.polito.dp2.N
     @Override
     public FLNodeReader getDestinationNode() {
         return this.destinationNode;
+    }
+
+    @Override
+    public String toString() {
+        return "\t\t Source Node: " + sourceNode.getName() + " \n" +
+                "\t\t Destination Node: " + destinationNode.getName() + " \n";
     }
 }
