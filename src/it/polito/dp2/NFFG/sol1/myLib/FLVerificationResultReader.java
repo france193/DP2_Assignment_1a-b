@@ -13,7 +13,7 @@ public class FLVerificationResultReader implements VerificationResultReader {
      * Class' attributes
      */
     private FLPolicyReader policy;
-    private boolean verificationResult;
+    private Boolean verificationResult;
     private String verificationMessage;
     private Calendar verificationTime;
 
@@ -31,9 +31,17 @@ public class FLVerificationResultReader implements VerificationResultReader {
                                       Calendar verificationTime) {
 
         this.policy = policy;
-        this.verificationResult = verificationResult;
+        if ( verificationResult != null ) {
+            this.verificationResult = verificationResult;
+        } else {
+            this.verificationResult = null;
+        }
         this.verificationMessage = verificationMessage;
-        this.verificationTime = verificationTime;
+        if ( verificationTime != null ) {
+            this.verificationTime = verificationTime;
+        } else {
+            this.verificationTime = null;
+        }
     }
 
     /**

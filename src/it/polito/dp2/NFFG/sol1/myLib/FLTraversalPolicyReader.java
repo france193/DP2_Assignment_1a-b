@@ -3,6 +3,7 @@ package it.polito.dp2.NFFG.sol1.myLib;
 import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.TraversalPolicyReader;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implements TraversalPolicyReader {
 
-    Set<FunctionalType> listOfRequiredTraversedNode;
+    private Set<FunctionalType> listOfRequiredTraversedNode;
 
     /**
      * Class' constructor
@@ -30,8 +31,7 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
 
         super(policy_name_id, nffg_refer, isPositive, nodeSource, destination);
 
-        listOfRequiredTraversedNode = new LinkedHashSet();
-
+        listOfRequiredTraversedNode = new HashSet<FunctionalType>();
     }
 
     /**
@@ -41,7 +41,7 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
      */
     @Override
     public Set<FunctionalType> getTraversedFuctionalTypes() {
-        return new LinkedHashSet(this.listOfRequiredTraversedNode);
+        return this.listOfRequiredTraversedNode;
     }
 
     @Override

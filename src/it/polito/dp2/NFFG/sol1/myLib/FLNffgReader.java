@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
 
-    private HashMap<String, FLNodeReader> nffgNodes;
+    private Set<NodeReader> nffgNodes;
     private Calendar last_updated_time;
 
     /**
@@ -23,7 +23,7 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
         super(nffg_name_id);
         this.last_updated_time = last_updated_time;
 
-        nffgNodes = new HashMap<String, FLNodeReader>();
+        nffgNodes = new HashSet<NodeReader>();
     }
 
     /**
@@ -47,8 +47,13 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      * @return
      */
     @Override
-    public FLNodeReader getNode(String node_name_id) {
-        return node_name_id != null && this.nffgNodes != null ? this.nffgNodes.get(node_name_id) : null;
+    public NodeReader getNode(String node_name_id) {
+        for(NodeReader node : this.nffgNodes){
+            if(node.getName().contains(node_name_id)){
+                return node;
+            }
+        }
+        return null;
     }
 
     /**
@@ -58,11 +63,7 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      */
     @Override
     public Set<NodeReader> getNodes() {
-        return new LinkedHashSet(this.nffgNodes.values());
-    }
-
-    public Set<FLNodeReader> getNffgNodes() {
-        return new LinkedHashSet(this.nffgNodes.values());
+        return this.nffgNodes;
     }
 
     @Override

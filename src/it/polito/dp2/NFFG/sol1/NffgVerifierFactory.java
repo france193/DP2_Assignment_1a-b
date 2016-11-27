@@ -33,15 +33,15 @@ public class NffgVerifierFactory extends it.polito.dp2.NFFG.NffgVerifierFactory 
         try {
             myNffgVerifier = new FLNffgVerifier();
         } catch (JAXBException e) {
-            System.err.println("Error: "+e.getMessage());
+            System.err.println("JAXBException Error: "+e.getMessage());
             e.printStackTrace();
             throw new NffgVerifierException(e.getMessage());
         } catch (SAXException e) {
-            System.err.println("Error: "+e.getMessage());
+            System.err.println("NffgVerifierException Error: "+e.getMessage());
             e.printStackTrace();
             throw new NffgVerifierException(e.getMessage());
         } catch (NullPointerException e) {
-            System.err.println("Error: "+e.getMessage());
+            System.err.println("NullPointerException Error: "+e.getMessage());
             e.printStackTrace();
             throw new NffgVerifierException(e.getMessage());
         }
