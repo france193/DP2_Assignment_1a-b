@@ -1,6 +1,7 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
 import it.polito.dp2.NFFG.LinkReader;
+import it.polito.dp2.NFFG.NodeReader;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
@@ -10,8 +11,8 @@ public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
     /**
      * Class' attributes
      */
-    private FLNodeReader sourceNode;
-    private FLNodeReader destinationNode;
+    private NodeReader sourceNode;
+    private NodeReader destinationNode;
 
     /**
      * Class' constructor
@@ -20,7 +21,7 @@ public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
      * @param sourceNode
      * @param destinationNode
      */
-    FLLinkReader(String link_name_id, FLNodeReader sourceNode, FLNodeReader destinationNode) {
+    FLLinkReader(String link_name_id, NodeReader sourceNode, NodeReader destinationNode) {
         super(link_name_id);
         this.sourceNode = sourceNode;
         this.destinationNode = destinationNode;
@@ -32,7 +33,7 @@ public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
      * @return
      */
     @Override
-    public FLNodeReader getSourceNode() {
+    public NodeReader getSourceNode() {
         return this.sourceNode;
     }
 
@@ -42,13 +43,8 @@ public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
      * @return
      */
     @Override
-    public FLNodeReader getDestinationNode() {
+    public NodeReader getDestinationNode() {
         return this.destinationNode;
     }
 
-    @Override
-    public String toString() {
-        return "\t\t Source Node: " + sourceNode.getName() + " \n" +
-                "\t\t Destination Node: " + destinationNode.getName() + " \n";
-    }
 }

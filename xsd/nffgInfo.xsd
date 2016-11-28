@@ -32,7 +32,7 @@
                             <!-- end node -->
 
                             <!-- link -->
-                            <xsd:element name="link" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:element name="link" minOccurs="0" maxOccurs="unbounded">
                                 <xsd:complexType>
                                     <xsd:attribute name="link_name_id" type="xsd:string" use="required"/>
                                     <xsd:attribute name="link_source_node_name_id_refer" type="xsd:string"
@@ -102,7 +102,7 @@
         <xsd:attribute name="isPositive" type="xsd:boolean" use="required"/>
         <xsd:attribute name="verificationResult" type="xsd:boolean"/>
         <xsd:attribute name="verificationTime" type="xsd:dateTime"/>
-        <xsd:attribute name="verificationMessage" type="xsd:string" use="required"/>
+        <xsd:attribute name="verificationMessage" type="xsd:string"/>
         <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string" use="required"/>
     </xsd:complexType>

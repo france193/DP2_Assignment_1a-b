@@ -9,7 +9,7 @@ import java.util.Set;
 import it.polito.dp2.NFFG.*;
 
 public class NFFGInfo {
-    private NffgVerifier monitor;
+    private NffgVerifier NetworkService;
     private DateFormat dateFormat;
 
     /**
@@ -19,13 +19,13 @@ public class NFFGInfo {
      */
     public NFFGInfo() throws NffgVerifierException {
         NffgVerifierFactory factory = NffgVerifierFactory.newInstance();
-        monitor = factory.newNffgVerifier();
+        NetworkService = factory.newNffgVerifier();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     }
 
-    public NFFGInfo(NffgVerifier monitor) {
+    public NFFGInfo(NffgVerifier NetworkService) {
         super();
-        this.monitor = monitor;
+        this.NetworkService = NetworkService;
         dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     }
 
@@ -33,10 +33,10 @@ public class NFFGInfo {
      * @param args
      */
     public static void main(String[] args) {
-        NFFGInfo wf;
+        NFFGInfo nffgInfo;
         try {
-            wf = new NFFGInfo();
-            wf.printAll();
+            nffgInfo = new NFFGInfo();
+            nffgInfo.printAll();
         } catch (NffgVerifierException e) {
             System.err.println("Could not instantiate data generator.");
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class NFFGInfo {
     private void printPolicies() {
 
         // Get the list of policies
-        Set<PolicyReader> set = monitor.getPolicies();
+        Set<PolicyReader> set = NetworkService.getPolicies();
 
 		/* Print the header of the table */
         System.out.println("#");
@@ -96,7 +96,7 @@ public class NFFGInfo {
 
     private void printNffgs() {
         // Get the list of NFFGs
-        Set<NffgReader> set = monitor.getNffgs();
+        Set<NffgReader> set = NetworkService.getNffgs();
 
 		/* Print the header of the table */
         System.out.println("#");

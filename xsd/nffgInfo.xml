@@ -51,9 +51,6 @@
         <flo:reachabilityPolicyType policy_name_id="policy_3"
                                     nffg_name_id_refer="service_1"
                                     isPositive="true"
-                                    verificationResult="false"
-                                    verificationTime="2016-11-09T17:26:50+01:00"
-                                    verificationMessage="No verification verificationResult for policy"
                                     policy_source_node_name_id_refer="node_5"
                                     policy_destination_node_name_id_refer="node_1"/>
         <flo:reachabilityPolicyType policy_name_id="policy_4"

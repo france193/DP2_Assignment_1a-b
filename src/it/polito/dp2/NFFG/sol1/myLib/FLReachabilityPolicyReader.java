@@ -1,7 +1,10 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
 
+import it.polito.dp2.NFFG.NffgReader;
+import it.polito.dp2.NFFG.NodeReader;
 import it.polito.dp2.NFFG.ReachabilityPolicyReader;
+import it.polito.dp2.NFFG.VerificationResultReader;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
@@ -11,8 +14,8 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements Reacha
     /**
      * Class' attributes
      */
-    private FLNodeReader nodeSource;
-    private FLNodeReader nodeDestination;
+    private NodeReader nodeSource;
+    private NodeReader nodeDestination;
 
     /**
      * Class' constructor
@@ -24,10 +27,10 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements Reacha
      * @param destination
      */
     FLReachabilityPolicyReader(String policy_name_id,
-                             FLNffgReader nffg_refer,
+                             NffgReader nffg_refer,
                              boolean isPositive,
-                             FLNodeReader nodeSource,
-                             FLNodeReader destination) {
+                             NodeReader nodeSource,
+                             NodeReader destination) {
 
         super(policy_name_id, nffg_refer, isPositive);
         this.nodeSource = nodeSource;
@@ -40,7 +43,7 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements Reacha
      * @return
      */
     @Override
-    public FLNodeReader getSourceNode() {
+    public NodeReader getSourceNode() {
         return this.nodeSource;
     }
 
@@ -50,19 +53,13 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements Reacha
      * @return
      */
     @Override
-    public FLNodeReader getDestinationNode() {
+    public NodeReader getDestinationNode() {
         return this.nodeDestination;
     }
 
     @Override
-    public void setPolicyVerificationReader(FLVerificationResultReader policyVerificationReader) {
+    public void setPolicyVerificationReader(VerificationResultReader policyVerificationReader) {
         super.setPolicyVerificationReader(policyVerificationReader);
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " \n" +
-                "\t Source Node: " + nodeSource.getName() + " \n" +
-                "\t Destination Node: " + nodeDestination.getName() + " \n";
-    }
 }

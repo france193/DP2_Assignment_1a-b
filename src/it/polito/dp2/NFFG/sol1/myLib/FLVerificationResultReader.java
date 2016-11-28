@@ -1,5 +1,6 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
+import it.polito.dp2.NFFG.PolicyReader;
 import it.polito.dp2.NFFG.VerificationResultReader;
 
 import java.util.Calendar;
@@ -12,7 +13,7 @@ public class FLVerificationResultReader implements VerificationResultReader {
     /**
      * Class' attributes
      */
-    private FLPolicyReader policy;
+    private PolicyReader policy;
     private Boolean verificationResult;
     private String verificationMessage;
     private Calendar verificationTime;
@@ -25,23 +26,15 @@ public class FLVerificationResultReader implements VerificationResultReader {
      * @param verificationMessage
      * @param verificationTime
      */
-    public FLVerificationResultReader(FLPolicyReader policy,
+    public FLVerificationResultReader(PolicyReader policy,
                                       Boolean verificationResult,
                                       String verificationMessage,
                                       Calendar verificationTime) {
 
         this.policy = policy;
-        if ( verificationResult != null ) {
-            this.verificationResult = verificationResult;
-        } else {
-            this.verificationResult = null;
-        }
+        this.verificationResult = verificationResult;
         this.verificationMessage = verificationMessage;
-        if ( verificationTime != null ) {
-            this.verificationTime = verificationTime;
-        } else {
-            this.verificationTime = null;
-        }
+        this.verificationTime = verificationTime;
     }
 
     /**
@@ -50,7 +43,7 @@ public class FLVerificationResultReader implements VerificationResultReader {
      * @return
      */
     @Override
-    public FLPolicyReader getPolicy() {
+    public PolicyReader getPolicy() {
         return this.policy;
     }
 
@@ -84,10 +77,4 @@ public class FLVerificationResultReader implements VerificationResultReader {
         return this.verificationTime;
     }
 
-    @Override
-    public String toString() {
-        return "\t\t Verification Result=" + verificationResult + " \n" +
-                "\t\t Verification Message='" + verificationMessage + " \n" +
-                "\t\t Verification Time=" + verificationTime;
-    }
 }

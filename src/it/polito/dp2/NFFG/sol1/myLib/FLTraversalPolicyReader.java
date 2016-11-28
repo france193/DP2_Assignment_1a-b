@@ -1,10 +1,11 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
 import it.polito.dp2.NFFG.FunctionalType;
+import it.polito.dp2.NFFG.NffgReader;
 import it.polito.dp2.NFFG.TraversalPolicyReader;
+import it.polito.dp2.NFFG.VerificationResultReader;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -24,7 +25,7 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
      * @param destination
      */
     FLTraversalPolicyReader(String policy_name_id,
-                          FLNffgReader nffg_refer,
+                          NffgReader nffg_refer,
                           boolean isPositive,
                           FLNodeReader nodeSource,
                           FLNodeReader destination) {
@@ -45,21 +46,8 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
     }
 
     @Override
-    public void setPolicyVerificationReader(FLVerificationResultReader policyVerificationReader) {
+    public void setPolicyVerificationReader(VerificationResultReader policyVerificationReader) {
         super.setPolicyVerificationReader(policyVerificationReader);
     }
 
-    @Override
-    public String toString() {
-        StringBuffer tostring = new StringBuffer();
-
-        tostring.append( super.toString() + " \n" +
-                "\t List of Required Traversed Nodes: ");
-
-        for (FunctionalType t : this.getTraversedFuctionalTypes()) {
-            tostring.append(t.value().toString());
-        }
-
-        return tostring.toString();
-    }
 }

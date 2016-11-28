@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
 
-    private Set<NodeReader> nffgNodes;
+    private Set<NodeReader> Nodes;
     private Calendar last_updated_time;
 
     /**
@@ -23,7 +23,7 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
         super(nffg_name_id);
         this.last_updated_time = last_updated_time;
 
-        nffgNodes = new HashSet<NodeReader>();
+        Nodes = new HashSet<NodeReader>();
     }
 
     /**
@@ -48,7 +48,7 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      */
     @Override
     public NodeReader getNode(String node_name_id) {
-        for(NodeReader node : this.nffgNodes){
+        for(NodeReader node : this.getNodes()){
             if(node.getName().contains(node_name_id)){
                 return node;
             }
@@ -63,14 +63,7 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      */
     @Override
     public Set<NodeReader> getNodes() {
-        return this.nffgNodes;
+        return this.Nodes;
     }
 
-    @Override
-    public String toString() {
-        return " *** Nffg *** \n" +
-                "Nffg: " + this.getName() + " \n" +
-                "Last Updated Time: " + last_updated_time.toString() + " \n" +
-                "\t -- Nodes -- \n" + nffgNodes.toString() + "\n";
-    }
 }

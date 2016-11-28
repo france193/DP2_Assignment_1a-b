@@ -1,6 +1,8 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
+import it.polito.dp2.NFFG.NffgReader;
 import it.polito.dp2.NFFG.PolicyReader;
+import it.polito.dp2.NFFG.VerificationResultReader;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
@@ -10,8 +12,8 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
     /**
      * Class' attributes
      */
-    private FLNffgReader nffg_refer;
-    private FLVerificationResultReader policyVerificationReader;
+    private NffgReader nffg_refer;
+    private VerificationResultReader policyVerificationReader;
     private boolean isPositive;
 
     /**
@@ -21,7 +23,7 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
      * @param nffg_refer
      * @param isPositive
      */
-    FLPolicyReader(String policy_name_id, FLNffgReader nffg_refer, boolean isPositive) {
+    FLPolicyReader(String policy_name_id, NffgReader nffg_refer, boolean isPositive) {
         super(policy_name_id);
         this.nffg_refer = nffg_refer;
         this.isPositive = isPositive;
@@ -33,7 +35,7 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
      * @return
      */
     @Override
-    public FLNffgReader getNffg() {
+    public NffgReader getNffg() {
         return this.nffg_refer;
     }
 
@@ -43,7 +45,7 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
      * @return
      */
     @Override
-    public FLVerificationResultReader getResult() {
+    public VerificationResultReader getResult() {
         return this.policyVerificationReader;
     }
 
@@ -57,10 +59,11 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
         return this.isPositive;
     }
 
-    public void setPolicyVerificationReader(FLVerificationResultReader policyVerificationReader) {
+    public void setPolicyVerificationReader(VerificationResultReader policyVerificationReader) {
         this.policyVerificationReader = policyVerificationReader;
     }
 
+    /*
     @Override
     public String toString() {
         return " -- PolicyReader: " + this.getName() + " --\n" +
@@ -68,4 +71,5 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
                 "\t isPositive: " + isPositive  + " \n" +
                 "\t policy Verification Result: " + policyVerificationReader.toString() + " \n";
     }
+    */
 }

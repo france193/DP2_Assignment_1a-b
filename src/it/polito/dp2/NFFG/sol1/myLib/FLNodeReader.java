@@ -4,8 +4,7 @@ import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.LinkReader;
 import it.polito.dp2.NFFG.NodeReader;
 
-import java.util.HashMap;
-import java.util.LinkedHashSet;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -17,7 +16,7 @@ public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
      * Class' attributes
      */
     private FunctionalType myFunctionalType;
-    private HashMap<String, FLLinkReader> links = new HashMap();
+    private Set<LinkReader> Links;
 
     /**
      * Class' constructor
@@ -28,7 +27,8 @@ public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
     FLNodeReader(FunctionalType type, String node_name_id) {
         super(node_name_id);
         this.myFunctionalType = type;
-        this.links = new HashMap<String, FLLinkReader>();
+
+        Links = new HashSet<LinkReader>();
     }
 
     /**
@@ -48,13 +48,7 @@ public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
      */
     @Override
     public Set<LinkReader> getLinks() {
-        return new LinkedHashSet(this.links.values());
+        return this.Links;
     }
 
-    @Override
-    public String toString() {
-        return "\t Node Name: " + this.getName() + " --\n" +
-                "\t FunctionalType: " + myFunctionalType + " \n" +
-                "\t -- links -- \n" + links.toString();
-    }
 }
