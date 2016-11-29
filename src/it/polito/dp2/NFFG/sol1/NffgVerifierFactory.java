@@ -4,10 +4,12 @@ package it.polito.dp2.NFFG.sol1;
 
 import it.polito.dp2.NFFG.NffgVerifier;
 import it.polito.dp2.NFFG.NffgVerifierException;
+import it.polito.dp2.NFFG.PolicyReader;
 import it.polito.dp2.NFFG.sol1.myLib.FLNffgVerifier;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
+import java.util.HashMap;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
@@ -28,7 +30,7 @@ public class NffgVerifierFactory extends it.polito.dp2.NFFG.NffgVerifierFactory 
     @Override
     public NffgVerifier newNffgVerifier() throws NffgVerifierException {
 
-        NffgVerifier myNffgVerifier = null;
+        NffgVerifier myNffgVerifier;
 
         try {
             myNffgVerifier = new FLNffgVerifier();

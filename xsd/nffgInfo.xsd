@@ -17,7 +17,7 @@
         <xsd:complexType>
             <xsd:sequence>
 
-                <!-- nffg_name_id_refer -->
+                <!-- nffg -->
                 <xsd:element name="nffg" minOccurs="0" maxOccurs="unbounded">
                     <xsd:complexType>
                         <xsd:sequence>
@@ -65,27 +65,32 @@
                         <xsd:field xpath="@link_name_id"/>
                     </xsd:unique>
                     <xsd:unique name="policy_name_id_key">
-                        <xsd:selector xpath="flo:policy"/>
+                        <xsd:selector xpath="flo:reachabilityPolicyType"/>
                         <xsd:field xpath="@policy_name_id"/>
                     </xsd:unique>
 
                     <!-- KEYREFs -->
                     <xsd:keyref name="link_source_node_name_id_keyref" refer="flo:node_name_id_key">
                         <xsd:selector xpath="flo:link"/>
-                        <xsd:field xpath="@source_node_name_id"/>
+                        <xsd:field xpath="@link_source_node_name_id_refer"/>
                     </xsd:keyref>
                     <xsd:keyref name="link_destination_node_name_id_keyref" refer="flo:node_name_id_key">
                         <xsd:selector xpath="flo:link"/>
-                        <xsd:field xpath="@destination_node_name_id"/>
+                        <xsd:field xpath="@link_destination_node_name_id_refer"/>
                     </xsd:keyref>
                     <xsd:keyref name="policy_source_node_name_id_keyref" refer="flo:node_name_id_key">
-                        <xsd:selector xpath="flo:node"/>
-                        <xsd:field xpath="@node_name_id"/>
+                        <xsd:selector xpath="flo:reachabilityPolicyType"/>
+                        <xsd:field xpath="@policy_source_node_name_id_refer"/>
                     </xsd:keyref>
                     <xsd:keyref name="policy_destination_node_name_id_keyref" refer="flo:node_name_id_key">
-                        <xsd:selector xpath="flo:node"/>
-                        <xsd:field xpath="@node_name_id"/>
+                        <xsd:selector xpath="flo:reachabilityPolicyType"/>
+                        <xsd:field xpath="@policy_destination_node_name_id_refer"/>
                     </xsd:keyref>
+                    <xsd:keyref name="policy_name_id_keyref" refer="flo:policy_name_id_key">
+                        <xsd:selector xpath="flo:reachabilityPolicyType/flo:verificationResult"/>
+                        <xsd:field xpath="@policy_name_id_refer"/>
+                    </xsd:keyref>
+
                 </xsd:element>
                 <!-- end nffg_name_id_refer -->
 
@@ -97,12 +102,23 @@
 
     <!-- Reachability Policy Type (Base Type) -->
     <xsd:complexType name="reachabilityPolicyType">
+        <xsd:sequence>
+
+            <!-- verification result -->
+            <xsd:element name="verificationResult" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:attribute name="policy_name_id_refer" type="xsd:string" use="required"/>
+                    <xsd:attribute name="result" type="xsd:boolean" use="optional"/>
+                    <xsd:attribute name="time" type="xsd:dateTime" use="optional"/>
+                    <xsd:attribute name="message" type="xsd:string" use="optional"/>
+                </xsd:complexType>
+            </xsd:element>
+            <!-- verification result -->
+
+        </xsd:sequence>
         <xsd:attribute name="policy_name_id" type="xsd:string" use="required"/>
         <xsd:attribute name="nffg_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="isPositive" type="xsd:boolean" use="required"/>
-        <xsd:attribute name="verificationResult" type="xsd:boolean"/>
-        <xsd:attribute name="verificationTime" type="xsd:dateTime"/>
-        <xsd:attribute name="verificationMessage" type="xsd:string"/>
         <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string" use="required"/>
         <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string" use="required"/>
     </xsd:complexType>
@@ -112,6 +128,7 @@
         <xsd:complexContent>
             <xsd:extension base="flo:reachabilityPolicyType">
                 <xsd:sequence>
+
                     <!-- request_node -->
                     <xsd:element name="traversal_requested_node" minOccurs="0" maxOccurs="unbounded">
                         <xsd:complexType>
@@ -119,6 +136,7 @@
                         </xsd:complexType>
                     </xsd:element>
                     <!-- end request_node -->
+
                 </xsd:sequence>
             </xsd:extension>
         </xsd:complexContent>

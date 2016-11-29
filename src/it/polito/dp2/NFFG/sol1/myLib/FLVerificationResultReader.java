@@ -4,6 +4,7 @@ import it.polito.dp2.NFFG.PolicyReader;
 import it.polito.dp2.NFFG.VerificationResultReader;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
@@ -14,9 +15,9 @@ public class FLVerificationResultReader implements VerificationResultReader {
      * Class' attributes
      */
     private PolicyReader policy;
-    private Boolean verificationResult;
-    private String verificationMessage;
-    private Calendar verificationTime;
+    private boolean result;
+    private GregorianCalendar time;
+    private String message;
 
     /**
      * Class' constructor
@@ -28,13 +29,13 @@ public class FLVerificationResultReader implements VerificationResultReader {
      */
     public FLVerificationResultReader(PolicyReader policy,
                                       Boolean verificationResult,
-                                      String verificationMessage,
-                                      Calendar verificationTime) {
+                                      GregorianCalendar verificationTime,
+                                      String verificationMessage) {
 
         this.policy = policy;
-        this.verificationResult = verificationResult;
-        this.verificationMessage = verificationMessage;
-        this.verificationTime = verificationTime;
+        this.result = verificationResult;
+        this.message = verificationMessage;
+        this.time = verificationTime;
     }
 
     /**
@@ -54,7 +55,7 @@ public class FLVerificationResultReader implements VerificationResultReader {
      */
     @Override
     public Boolean getVerificationResult() {
-        return this.verificationResult;
+        return Boolean.valueOf(this.result);
     }
 
     /**
@@ -64,7 +65,7 @@ public class FLVerificationResultReader implements VerificationResultReader {
      */
     @Override
     public String getVerificationResultMsg() {
-        return this.verificationMessage;
+        return this.message;
     }
 
     /**
@@ -74,7 +75,7 @@ public class FLVerificationResultReader implements VerificationResultReader {
      */
     @Override
     public Calendar getVerificationTime() {
-        return this.verificationTime;
+        return this.time != null ? (Calendar) this.time.clone() : null;
     }
 
 }

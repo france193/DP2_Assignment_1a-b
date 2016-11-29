@@ -31,36 +31,45 @@
         <flo:reachabilityPolicyType policy_name_id="policy_1"
                                     nffg_name_id_refer="service_1"
                                     isPositive="true"
-                                    verificationResult="true"
-                                    verificationTime="2016-11-09T17:19:57+01:00"
-                                    verificationMessage="Policy verificarion verificationResult true"
                                     policy_source_node_name_id_refer="node_1"
-                                    policy_destination_node_name_id_refer="node_5"/>
+                                    policy_destination_node_name_id_refer="node_5">
+            <flo:verificationResult policy_name_id_refer="policy_1"
+                                    result="true"
+                                    time="2016-11-09T17:19:57+01:00"
+                                    message="Policy verificarion verificationResult true"/>
+        </flo:reachabilityPolicyType>
+
         <flo:traversalPolicyType policy_name_id="policy_2"
                                  nffg_name_id_refer="service_1"
                                  isPositive="true"
-                                 verificationResult="true"
-                                 verificationTime="2016-11-09T17:20:27+01:00"
-                                 verificationMessage="Policy verificarion verificationResult true"
                                  policy_source_node_name_id_refer="node_1"
                                  policy_destination_node_name_id_refer="node_5">
+            <flo:verificationResult policy_name_id_refer="policy_2"
+                                    result="true"
+                                    time="2016-11-09T17:20:27+01:00"
+                                    message="Policy verificarion verificationResult true"/>
             <flo:traversal_requested_node functional_type="VPN"/>
             <flo:traversal_requested_node functional_type="DPI"/>
             <flo:traversal_requested_node functional_type="FW"/>
         </flo:traversalPolicyType>
+
         <flo:reachabilityPolicyType policy_name_id="policy_3"
                                     nffg_name_id_refer="service_1"
                                     isPositive="true"
                                     policy_source_node_name_id_refer="node_5"
                                     policy_destination_node_name_id_refer="node_1"/>
+
         <flo:reachabilityPolicyType policy_name_id="policy_4"
                                     nffg_name_id_refer="service_1"
                                     isPositive="false"
-                                    verificationResult="false"
-                                    verificationTime="2016-11-09T17:26:50+01:00"
-                                    verificationMessage="Policy verificarion verificationResult not true"
                                     policy_source_node_name_id_refer="node_5"
-                                    policy_destination_node_name_id_refer="node_4"/>
+                                    policy_destination_node_name_id_refer="node_4">
+            <flo:verificationResult policy_name_id_refer="policy_4"
+                                    result="false"
+                                    time="2016-11-09T17:26:50+01:00"
+                                    message="Policy verificarion verificationResult not true"/>
+        </flo:reachabilityPolicyType>
+
     </flo:nffg>
 
 </flo:network_service>

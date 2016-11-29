@@ -1,11 +1,14 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
+import it.polito.dp2.NFFG.TraversalPolicyReader;
 import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.NffgReader;
-import it.polito.dp2.NFFG.TraversalPolicyReader;
-import it.polito.dp2.NFFG.VerificationResultReader;
+import it.polito.dp2.NFFG.NodeReader;
 
-import java.util.HashSet;
+import it.polito.dp2.NFFG.sol1.jaxb_gen.TraversalPolicyType;
+
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,17 +25,25 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
      * @param nffg_refer
      * @param isPositive
      * @param nodeSource
-     * @param destination
+     * @param nodeDestination
+     * @param listOfRequiredTraversedNode
      */
     FLTraversalPolicyReader(String policy_name_id,
-                          NffgReader nffg_refer,
-                          boolean isPositive,
-                          FLNodeReader nodeSource,
-                          FLNodeReader destination) {
+                            NffgReader nffg_refer,
+                            boolean isPositive,
+                            NodeReader nodeSource,
+                            NodeReader nodeDestination,
+                            List<TraversalPolicyType.TraversalRequestedNode> listOfRequiredTraversedNode) {
 
-        super(policy_name_id, nffg_refer, isPositive, nodeSource, destination);
+        super(policy_name_id, nffg_refer, isPositive, nodeSource, nodeDestination);
 
-        listOfRequiredTraversedNode = new HashSet<FunctionalType>();
+        this.listOfRequiredTraversedNode = new LinkedHashSet();
+
+        if (listOfRequiredTraversedNode != null) {
+            for (TraversalPolicyType.TraversalRequestedNode t : listOfRequiredTraversedNode) {
+                this.listOfRequiredTraversedNode.add(FunctionalType.valueOf(t.getFunctionalType().value().toString()));
+            }
+        }
     }
 
     /**
@@ -42,12 +53,15 @@ public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implemen
      */
     @Override
     public Set<FunctionalType> getTraversedFuctionalTypes() {
-        return this.listOfRequiredTraversedNode;
+        return new LinkedHashSet(this.listOfRequiredTraversedNode);
     }
 
-    @Override
-    public void setPolicyVerificationReader(VerificationResultReader policyVerificationReader) {
-        super.setPolicyVerificationReader(policyVerificationReader);
+    /**
+     * Method that assign a VerificationResult element to the policy (if it is verified)
+     *
+     * @param verificationResult
+     */
+    public void setVerificationResult(FLVerificationResultReader verificationResult) {
+        super.setVerificationResult(verificationResult);
     }
-
 }

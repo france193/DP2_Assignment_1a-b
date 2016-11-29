@@ -4,29 +4,39 @@
              of the course Distributed Programming II in Politechnic University of Turin. -->
 
         <!-- NETWORK_SERVICES -->
-        <!ELEMENT NETWORK_SERVICES (NFFG*,POLICY*)>
+        <!ELEMENT NETWORK_SERVICES (NFFG*)>
+
         <!-- NFFG -->
         <!ELEMENT NFFG (NODE*,LINK*,POLICY*)>
         <!ATTLIST NFFG nffg_name_id ID #REQUIRED
                 last_update_time CDATA #REQUIRED>
+
         <!-- NODE -->
         <!ELEMENT NODE EMPTY>
         <!ATTLIST NODE node_name_id ID #REQUIRED
                 functional_type (firewall|dpi|nat|anti-spam|web-cache|vpn-gateway|web-server|web-client|mail-server|mail-client) "web-client">
+
         <!-- LINK -->
         <!ELEMENT LINK EMPTY>
         <!ATTLIST LINK link_name_id ID #REQUIRED
                 source_node IDREF #REQUIRED
                 destination_node IDREF #REQUIRED>
+
         <!-- POLICY -->
-        <!ELEMENT POLICY (TRAVERSAL_REQUESTED_NODE*)>
+        <!ELEMENT POLICY (VERIFICATION_RESULT+, TRAVERSAL_REQUESTED_NODE*)>
         <!ATTLIST POLICY policy_name_id ID #REQUIRED
                 referring_nffg IDREF #REQUIRED
                 policy_kind (traversal|reachability) "reachability"
-                verification_result (positive|negative) "negative"
                 source_node IDREF #REQUIRED
-                destination_node IDREF #REQUIRED
-                last_update_time CDATA #REQUIRED>
+                destination_node IDREF #REQUIRED>
+
+        <!-- VERIFICATION_RESULT -->
+        <!ELEMENT VERIFICATION_RESULT EMPTY>
+        <!ATTLIST VERIFICATION_RESULT policy_name_id IDREF #REQUIRED
+                result (positive|negative) "negative"
+                last_update_time CDATA #IMPLIED
+                message CDATA #IMPLIED>
+
         <!-- TRAVERSAL_REQUESTED_NODE -->
         <!ELEMENT TRAVERSAL_REQUESTED_NODE EMPTY>
         <!ATTLIST TRAVERSAL_REQUESTED_NODE functional_type (firewall|dpi|nat|anti-spam|web-cache|vpn-gateway|web-server|web-client|mail-server|mail-client) "web-client">

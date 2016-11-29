@@ -19,7 +19,6 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
     /**
      * Class' constructor
      *
-     * @param policy_name_id
      * @param nffg_refer
      * @param isPositive
      */
@@ -56,20 +55,15 @@ public class FLPolicyReader extends FLNamedEntityReader implements PolicyReader 
      */
     @Override
     public Boolean isPositive() {
-        return this.isPositive;
+        return Boolean.valueOf(this.isPositive);
     }
 
-    public void setPolicyVerificationReader(VerificationResultReader policyVerificationReader) {
-        this.policyVerificationReader = policyVerificationReader;
+    /**
+     * Method that assign a VerificationResult element to the policy (if it is verified)
+     *
+     * @param verificationResult
+     */
+    public void setVerificationResult(FLVerificationResultReader verificationResult) {
+        this.policyVerificationReader = verificationResult;
     }
-
-    /*
-    @Override
-    public String toString() {
-        return " -- PolicyReader: " + this.getName() + " --\n" +
-                "\t Referring Nffg: " + nffg_refer + " \n" +
-                "\t isPositive: " + isPositive  + " \n" +
-                "\t policy Verification Result: " + policyVerificationReader.toString() + " \n";
-    }
-    */
 }

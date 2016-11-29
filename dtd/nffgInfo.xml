@@ -22,25 +22,33 @@
         <POLICY policy_name_id="policy_1"
                 referring_nffg="service_1"
                 policy_kind="reachability"
-                verification_result="positive"
                 source_node="node_1"
-                destination_node="node_5"
-                last_update_time="2016-11-09T17:18:57+01:00"/>
+                destination_node="node_5">
+            <VERIFICATION_RESULT policy_name_id="policy_1"
+                                 result="positive"
+                                 last_update_time="2016-11-09T17:18:57+01:00"
+                                 message="Verification result is positive"/>
+        </POLICY>
         <POLICY policy_name_id="policy_2"
                 referring_nffg="service_1"
                 policy_kind="traversal"
-                verification_result="positive"
                 source_node="node_1"
-                destination_node="node_5"
-                last_update_time="2016-11-09T17:19:27+01:00">
+                destination_node="node_5">
+            <VERIFICATION_RESULT policy_name_id="policy_2"
+                                 result="negative"
+                                 last_update_time="2016-11-09T17:19:27+01:00"
+                                 message="Verification result is negative"/>
             <TRAVERSAL_REQUESTED_NODE functional_type="firewall"/>
         </POLICY>
         <POLICY policy_name_id="policy_3"
                 referring_nffg="service_1"
                 policy_kind="reachability"
-                verification_result="positive"
                 source_node="node_5"
-                destination_node="node_1"
-                last_update_time="2016-11-09T17:25:50+01:00"/>
+                destination_node="node_1">
+            <VERIFICATION_RESULT policy_name_id="policy_3"
+                                 result="positive"
+                                 last_update_time="2016-11-09T17:25:50+01:00"
+                                 message="Verification result is positive"/>
+        </POLICY>
     </NFFG>
 </NETWORK_SERVICES>

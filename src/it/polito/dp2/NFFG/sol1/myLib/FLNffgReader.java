@@ -2,6 +2,7 @@ package it.polito.dp2.NFFG.sol1.myLib;
 
 import it.polito.dp2.NFFG.NffgReader;
 import it.polito.dp2.NFFG.NodeReader;
+import it.polito.dp2.NFFG.PolicyReader;
 
 import java.util.*;
 
@@ -10,7 +11,8 @@ import java.util.*;
  */
 public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
 
-    private Set<NodeReader> Nodes;
+    private HashMap<String, FLPolicyReader> policies;
+    private HashMap<String, FLNodeReader> nodes;
     private Calendar last_updated_time;
 
     /**
@@ -23,7 +25,8 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
         super(nffg_name_id);
         this.last_updated_time = last_updated_time;
 
-        Nodes = new HashSet<NodeReader>();
+        nodes = new HashMap<>();
+        policies = new HashMap<>();
     }
 
     /**
@@ -36,10 +39,6 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
         return this.last_updated_time;
     }
 
-    /*********
-     * NODES *
-     *********/
-
     /**
      * Return a requested Node with the name node_name_id as a NodeReader
      *
@@ -47,13 +46,8 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      * @return
      */
     @Override
-    public NodeReader getNode(String node_name_id) {
-        for(NodeReader node : this.getNodes()){
-            if(node.getName().contains(node_name_id)){
-                return node;
-            }
-        }
-        return null;
+    public FLNodeReader getNode(String node_name_id) {
+        return node_name_id != null && this.nodes != null ? this.nodes.get(node_name_id) : null;
     }
 
     /**
@@ -63,7 +57,38 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      */
     @Override
     public Set<NodeReader> getNodes() {
-        return this.Nodes;
+        return new LinkedHashSet(this.nodes.values());
+    }
+
+    /**
+     * Method that adds a node into the HashMap containing all the nodes of the considered Nffg
+     *
+     * @param node
+     */
+    public void addNode(FLNodeReader node) {
+        if (node != null) {
+            this.nodes.put(node.getName(), node);
+        }
+    }
+
+    /**
+     * Method that returns all the policies of the considered Nffg
+     *
+     * @return
+     */
+    public Set<PolicyReader> getPolicies() {
+        return new LinkedHashSet(this.policies.values());
+    }
+
+    /**
+     * Method that adds a policy into the HashMap containing all the policies of the considered Nffg
+     *
+     * @param policy
+     */
+    public void addPolicy(FLPolicyReader policy) {
+        if (policy != null) {
+            policies.put(policy.getName(), policy);
+        }
     }
 
 }

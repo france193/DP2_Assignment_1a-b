@@ -1,10 +1,8 @@
 package it.polito.dp2.NFFG.sol1.myLib;
 
-
-import it.polito.dp2.NFFG.NffgReader;
-import it.polito.dp2.NFFG.NodeReader;
 import it.polito.dp2.NFFG.ReachabilityPolicyReader;
-import it.polito.dp2.NFFG.VerificationResultReader;
+import it.polito.dp2.NFFG.NodeReader;
+import it.polito.dp2.NFFG.NffgReader;
 
 /**
  * Created by FLDeviOS on 23/11/2016.
@@ -20,17 +18,16 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements Reacha
     /**
      * Class' constructor
      *
-     * @param policy_name_id
      * @param nffg_refer
      * @param isPositive
      * @param nodeSource
      * @param destination
      */
     FLReachabilityPolicyReader(String policy_name_id,
-                             NffgReader nffg_refer,
-                             boolean isPositive,
-                             NodeReader nodeSource,
-                             NodeReader destination) {
+                               NffgReader nffg_refer,
+                               boolean isPositive,
+                               NodeReader nodeSource,
+                               NodeReader destination) {
 
         super(policy_name_id, nffg_refer, isPositive);
         this.nodeSource = nodeSource;
@@ -57,9 +54,12 @@ public class FLReachabilityPolicyReader extends FLPolicyReader implements Reacha
         return this.nodeDestination;
     }
 
-    @Override
-    public void setPolicyVerificationReader(VerificationResultReader policyVerificationReader) {
-        super.setPolicyVerificationReader(policyVerificationReader);
+    /**
+     * Method that assign a VerificationResult element to the policy (if it is verified)
+     *
+     * @param verificationResult
+     */
+    public void setVerificationResult(FLVerificationResultReader verificationResult) {
+        super.setVerificationResult(verificationResult);
     }
-
 }

@@ -6,7 +6,7 @@
 //
 
 
-package it.polito.dp2.NFFG.sol1.jaxb;
+package it.polito.dp2.NFFG.sol1.jaxb_gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

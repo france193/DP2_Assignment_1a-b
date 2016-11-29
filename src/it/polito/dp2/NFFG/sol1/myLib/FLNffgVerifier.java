@@ -7,17 +7,19 @@ import java.util.*;
 
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
-import it.polito.dp2.NFFG.NffgReader;
+// import of ONLY NECESSARY resources of library classes and types
 import it.polito.dp2.NFFG.NffgVerifier;
-import it.polito.dp2.NFFG.PolicyReader;
+import it.polito.dp2.NFFG.NffgReader;
 import it.polito.dp2.NFFG.NodeReader;
-import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.LinkReader;
+import it.polito.dp2.NFFG.PolicyReader;
+import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.VerificationResultReader;
 
-import it.polito.dp2.NFFG.sol1.jaxb_generated.TraversalPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb_generated.NetworkService;
-import it.polito.dp2.NFFG.sol1.jaxb_generated.ReachabilityPolicyType;
+// import of ONLY NECESSARY resources of jaxb generated classes  and types
+import it.polito.dp2.NFFG.sol1.jaxb_gen.NetworkService;
+import it.polito.dp2.NFFG.sol1.jaxb_gen.ReachabilityPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb_gen.TraversalPolicyType;
 
 import org.xml.sax.SAXException;
 
@@ -28,30 +30,46 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 /**
+ * To test all the code:
+ * <p>
+ * ant -Dtestcase=0 -Dseed=100000 runFuncTest
+ */
+
+/**
  * Created by FLDeviOS on 23/11/2016.
  */
 public class FLNffgVerifier implements NffgVerifier {
 
     private DateFormat dateFormat;
 
-    private static final Boolean DEBUG = false;
+    /**
+     * true to enable debug printing
+     */
+    private static final Boolean DEBUG = true;
+    private static final Boolean VERBOSE = false;
 
     private static final String XSD_FOLDER = "xsd/";
     private static final String XSD_FILE = "nffgInfo.xsd";
-    private static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb_generated";
-    private static final String NO_RESULT_MSG = "No verification result for policy";
+    private static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb_gen";
 
     // set of Nffgs and Policy of all Nffgs
-    private Set<NffgReader> FLNffg;
-    private Set<PolicyReader> myPolicies;
+    private HashMap<String, FLNffgReader> myNffgs;
+    private HashMap<String, PolicyReader> allMyPolicies = new HashMap<>();
 
     private NetworkService myNetworkServices = null;
 
+    private int link_num;
+    private int policy_num;
+
+    /**
+     * Class' constructor that read an xml file and generate corresponding classes filled with xml data
+     *
+     * @throws SAXException
+     * @throws JAXBException
+     */
     public FLNffgVerifier() throws SAXException, JAXBException {
 
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-
-        myPolicies = new HashSet<PolicyReader>();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss z");
 
         try {
             // take file name from the property
@@ -75,10 +93,12 @@ public class FLNffgVerifier implements NffgVerifier {
             throw e;
         }
 
-        System.out.println("---> In this NetworkService there are " + myNetworkServices.getNffg().size() + " Nffgs");
+        if (VERBOSE) {
+            System.out.println("******************** This NetworkService has " + myNetworkServices.getNffg().size() + " NFFGS ****************");
+        }
 
         // add all of my nffgs on my HashMap of my NffgReader
-        FLNffg = new HashSet<NffgReader>();
+        myNffgs = new HashMap<>();
         for (NetworkService.Nffg t_nffg : myNetworkServices.getNffg()) {
 
             // NEW NFFG
@@ -86,166 +106,208 @@ public class FLNffgVerifier implements NffgVerifier {
                     t_nffg.getLastUpdatedTime().toGregorianCalendar());
 
             /** Nodes **/
-            //System.out.println("--> In this Nffg there are " + t_nffg.getNode().size() + " nodes");
-            System.out.println("This Nffg has " + t_nffg.getLink().size() + " links");
+            if (VERBOSE) {
+                System.out.println("--------------------------- NFFG: " + t_nffg.getNffgNameId() + " ---------------------------");
+                System.out.println("--(N)--> This Nffg has " + t_nffg.getNode().size() + " NODES");
+                System.out.println("--(L)--> This Nffg has " + t_nffg.getLink().size() + " LINKS");
+                System.out.println("--(P)--> This Nffg has " + t_nffg.getReachabilityPolicyTypeOrTraversalPolicyType().size() + " POLICIES");
+            }
             for (NetworkService.Nffg.Node node : t_nffg.getNode()) {
                 // create a new node
                 FLNodeReader nodeReader = new FLNodeReader(FunctionalType.valueOf(node.getFunctionalType().toString()),
                         node.getNodeNameId());
                 // add node to my nffg
-                flNffgReader.getNodes().add(nodeReader);
+                flNffgReader.addNode(nodeReader);
             }
-            //System.out.println("--> " + flNffgReader.getNodes().size() + " nodes were created.");
+            if (VERBOSE) {
+                System.out.println("--(N)--> Created " + flNffgReader.getNodes().size() + " NODES");
+            }
 
             /** Links **/
+            link_num = 0;
             for (NetworkService.Nffg.Node node : t_nffg.getNode()) {
                 for (NetworkService.Nffg.Link link : t_nffg.getLink()) {
-                    if (node.getNodeNameId().toString().contains(link.getLinkSourceNodeNameIdRefer().toString())) {
+                    if (node.getNodeNameId().toString().equals(link.getLinkSourceNodeNameIdRefer().toString())) {
+
+                        FLNodeReader srcNode;
+
+                        srcNode = flNffgReader.getNode(link.getLinkSourceNodeNameIdRefer().toString());
 
                         FLLinkReader linkReader = new FLLinkReader(link.getLinkNameId(),
-                                flNffgReader.getNode(link.getLinkSourceNodeNameIdRefer().toString()),
+                                srcNode,
                                 flNffgReader.getNode(link.getLinkDestinationNodeNameIdRefer().toString()));
 
-                        flNffgReader.getNode(link.getLinkSourceNodeNameIdRefer().toString()).getLinks().add(linkReader);
+                        srcNode.addLink(linkReader);
                     }
+
                 }
-                System.out.println("--> " + flNffgReader.getNode(node.getNodeNameId()).getLinks().size() + " links were created.");
+                link_num += flNffgReader.getNode(node.getNodeNameId()).getLinks().size();
             }
 
             /** Policies **/
-            System.out.println("---> " + flNffgReader.getName() + " has " + t_nffg.getReachabilityPolicyTypeOrTraversalPolicyType().size() + " policies");
+            policy_num = 0;
             for (ReachabilityPolicyType policy : t_nffg.getReachabilityPolicyTypeOrTraversalPolicyType()) {
+                if (flNffgReader.getName().contains(policy.getNffgNameIdRefer().toString())) {
+                    if (!(policy instanceof TraversalPolicyType)) {
 
-                if (!(policy instanceof TraversalPolicyType)) {
-
-                    FLReachabilityPolicyReader flReachabilityPolicyReader = new FLReachabilityPolicyReader(policy.getPolicyNameId(),
-                            flNffgReader,
-                            policy.isIsPositive(),
-                            fromNodeReaderTOFLNodeReader(flNffgReader.getNode(policy.getPolicySourceNodeNameIdRefer().toString())),
-                            fromNodeReaderTOFLNodeReader(flNffgReader.getNode(policy.getPolicyDestinationNodeNameIdRefer().toString())));
-
-                    FLVerificationResultReader verificationResultReader;
-
-                    if ((policy.getVerificationTime() != null) &&
-                            (policy.getVerificationMessage() != null) &&
-                            (policy.isVerificationResult() != null)) {
-                        verificationResultReader = new FLVerificationResultReader(flReachabilityPolicyReader,
+                        FLReachabilityPolicyReader flReachabilityPolicyReader = new FLReachabilityPolicyReader(policy.getPolicyNameId(),
+                                flNffgReader,
                                 policy.isIsPositive(),
-                                policy.getVerificationMessage(),
-                                policy.getVerificationTime().toGregorianCalendar());
-                        System.out.println("(R) " + flReachabilityPolicyReader.getName() + " - Has been verified!");
-                    } else {
-                        verificationResultReader = new FLVerificationResultReader(flReachabilityPolicyReader,
-                                null,
-                                null,
-                                null);
-                        System.out.println("(R) " + flReachabilityPolicyReader.getName() + " - " + NO_RESULT_MSG);
-                    }
+                                flNffgReader.getNode(policy.getPolicySourceNodeNameIdRefer().toString()),
+                                flNffgReader.getNode(policy.getPolicyDestinationNodeNameIdRefer().toString()));
 
-                    flReachabilityPolicyReader.setPolicyVerificationReader(verificationResultReader);
+                        FLVerificationResultReader policyVerificationReader;
 
-                    myPolicies.add(flReachabilityPolicyReader);
+                        if ((policy.getVerificationResult().isResult() != null) &&
+                                (policy.getVerificationResult().getTime() != null) &&
+                                (policy.getVerificationResult().getMessage() != null)) {
 
-                } else {
-
-                    FLTraversalPolicyReader flTraversalPolicyReader = new FLTraversalPolicyReader(policy.getPolicyNameId(),
-                            flNffgReader,
-                            policy.isIsPositive(),
-                            fromNodeReaderTOFLNodeReader(flNffgReader.getNode(policy.getPolicySourceNodeNameIdRefer().toString())),
-                            fromNodeReaderTOFLNodeReader(flNffgReader.getNode(policy.getPolicyDestinationNodeNameIdRefer().toString())));
-
-                    FLVerificationResultReader verificationResultReader;
-
-                    if ((policy.getVerificationTime() != null) &&
-                            (policy.getVerificationMessage() != null) &&
-                            (policy.isVerificationResult() != null)) {
-                        verificationResultReader = new FLVerificationResultReader(flTraversalPolicyReader,
-                                policy.isIsPositive(),
-                                policy.getVerificationMessage(),
-                                policy.getVerificationTime().toGregorianCalendar());
-                        System.out.println("(T) " + flTraversalPolicyReader.getName() + " - Has been verified!");
-                    } else {
-                        verificationResultReader = new FLVerificationResultReader(flTraversalPolicyReader,
-                                null,
-                                null,
-                                null);
-                        System.out.println("(T) " + flTraversalPolicyReader.getName() + " - " + NO_RESULT_MSG);
-                    }
-
-                    flTraversalPolicyReader.setPolicyVerificationReader(verificationResultReader);
-
-                    TraversalPolicyType p = (TraversalPolicyType) policy;
-
-                    if (p.getTraversalRequestedNode().size() > 0) {
-                        for (TraversalPolicyType.TraversalRequestedNode traversalRequestedNode : p.getTraversalRequestedNode()) {
-                            flTraversalPolicyReader.getTraversedFuctionalTypes().add(FunctionalType.valueOf(traversalRequestedNode.getFunctionalType().value()));
+                            policyVerificationReader = new FLVerificationResultReader(flReachabilityPolicyReader,
+                                    policy.getVerificationResult().isResult(),
+                                    policy.getVerificationResult().getTime().toGregorianCalendar(),
+                                    policy.getVerificationResult().getMessage());
+                        } else {
+                            policyVerificationReader = null;
                         }
+
+                        flReachabilityPolicyReader.setVerificationResult(policyVerificationReader);
+
+                        flNffgReader.addPolicy(flReachabilityPolicyReader);
+                        policy_num++;
+                    } else {
+
+                        TraversalPolicyType p = (TraversalPolicyType) policy;
+
+                        FLTraversalPolicyReader flTraversalPolicyReader = new FLTraversalPolicyReader(p.getPolicyNameId(),
+                                flNffgReader,
+                                p.isIsPositive(),
+                                flNffgReader.getNode(p.getPolicySourceNodeNameIdRefer().toString()),
+                                flNffgReader.getNode(p.getPolicyDestinationNodeNameIdRefer().toString()),
+                                p.getTraversalRequestedNode());
+
+                        FLVerificationResultReader policyVerificationReader;
+
+                        if ((policy.getVerificationResult().isResult() != null) &&
+                                (policy.getVerificationResult().getTime() != null) &&
+                                (policy.getVerificationResult().getMessage() != null)) {
+
+                            policyVerificationReader = new FLVerificationResultReader(flTraversalPolicyReader,
+                                    policy.getVerificationResult().isResult(),
+                                    policy.getVerificationResult().getTime().toGregorianCalendar(),
+                                    policy.getVerificationResult().getMessage());
+                        } else {
+                            policyVerificationReader = null;
+                        }
+
+                        flTraversalPolicyReader.setVerificationResult(policyVerificationReader);
+
+                        flNffgReader.addPolicy(flTraversalPolicyReader);
+                        policy_num++;
                     }
-
-                    myPolicies.add(flTraversalPolicyReader);
-
                 }
             }
 
-            this.FLNffg.add(flNffgReader);
+            myNffgs.put(flNffgReader.getName(), flNffgReader);
+            if (VERBOSE) {
+                System.out.println("--(L)--> Created " + link_num + " LINKS");
+                System.out.println("--(P)--> Created " + policy_num + " POLICIES");
+            }
         }
-        System.out.println("---> " + myPolicies.size() + " policies were created.");
-        System.out.println("---> Created " + this.FLNffg.size() + " Nffgs");
+
+        for (Map.Entry<String, FLNffgReader> entry : myNffgs.entrySet()) {
+            for ( PolicyReader policy : entry.getValue().getPolicies()) {
+                allMyPolicies.put(policy.getName(), policy);
+            }
+        }
+
+        if (VERBOSE) {
+            System.out.println("---------------------------------------------------------------------------------");
+            System.out.println("Now " + this.myNffgs.get("Nffg0").getName() + " has " + this.myNffgs.get("Nffg0").getPolicies().size() + " policies");
+            System.out.println("Now " + this.myNffgs.get("Nffg1").getName() + " has " + this.myNffgs.get("Nffg1").getPolicies().size() + " policies");
+            System.out.println("Now " + this.myNffgs.get("Nffg2").getName() + " has " + this.myNffgs.get("Nffg2").getPolicies().size() + " policies");
+            System.out.println("Now " + this.myNffgs.get("Nffg3").getName() + " has " + this.myNffgs.get("Nffg3").getPolicies().size() + " policies");
+            System.out.println("Now " + this.myNffgs.get("Nffg4").getName() + " has " + this.myNffgs.get("Nffg4").getPolicies().size() + " policies");
+            System.out.println("Now " + this.myNffgs.get("Nffg5").getName() + " has " + this.myNffgs.get("Nffg5").getPolicies().size() + " policies");
+            System.out.println("Now " + this.myNffgs.get("Nffg6").getName() + " has " + this.myNffgs.get("Nffg6").getPolicies().size() + " policies");
+            System.out.println("Now " + this.myNffgs.get("Nffg7").getName() + " has " + this.myNffgs.get("Nffg7").getPolicies().size() + " policies");
+            System.out.println("*************************** Created a total of " + this.myNffgs.size() + " NFFGS *****************************");
+            System.out.println("*************************** Created a total of" + this.allMyPolicies.size() + " POLICIES *************************");
+        }
+
 
         if (DEBUG) {
-            printAll(myPolicies, FLNffg);
+            printAll();
         }
     }
 
-
-    private FLNodeReader fromNodeReaderTOFLNodeReader(NodeReader node) {
-        return new FLNodeReader(FunctionalType.valueOf(node.getFuncType().value()), node.getName());
-    }
-
+    /**
+     * Gives access to the set of known NF-FGs.
+     *
+     * @return
+     */
     @Override
     public Set<NffgReader> getNffgs() {
-        return new LinkedHashSet(this.FLNffg);
+        return new LinkedHashSet(this.myNffgs.values());
     }
 
+    /**
+     * Gives access to a single NF-FG given its entityName.
+     *
+     * @param s
+     * @return
+     */
     @Override
     public NffgReader getNffg(String s) {
-        for (NffgReader nffg : this.FLNffg) {
-            if (nffg.getName().contains(s)) {
-                return nffg;
-            }
-        }
-        return null;
+        return (s != null && this.myNffgs != null) ? (this.myNffgs.get(s)) : (null);
     }
 
+    /**
+     * Gives access to the set of known policies to be verified.
+     *
+     * @return
+     */
     @Override
     public Set<PolicyReader> getPolicies() {
-        return new LinkedHashSet(this.myPolicies);
+        return new LinkedHashSet(this.allMyPolicies.values());
     }
 
+    /**
+     * Gives access to the set of known policies to be verified, filtered by NF-FG's entityName.
+     *
+     * @param s
+     * @return
+     */
     @Override
     public Set<PolicyReader> getPolicies(String s) {
-        Set<PolicyReader> policies = new HashSet<PolicyReader>();
+        Set<PolicyReader> policies = new HashSet<>();
 
-        for (PolicyReader policy : myPolicies) {
-            if (policy.getNffg().getName().contains(s)) {
-                policies.add(policy);
+        for (Map.Entry<String, PolicyReader> entry : allMyPolicies.entrySet()) {
+            if (entry.getValue().getNffg().getName().contains(s)) {
+                policies.add(entry.getValue());
             }
         }
 
-        return policies;
+        //TODO check
+        return (policies.size() == 0) ? (null) : policies;
     }
 
+    /**
+     * Gives access to the set of known policies to be verified, filtered by verification verificationTime and date.
+     *
+     * @param calendar
+     * @return
+     */
     @Override
     public Set<PolicyReader> getPolicies(Calendar calendar) {
-        Set<PolicyReader> policies = new HashSet<PolicyReader>();
+        Set<PolicyReader> policies = new HashSet<>();
 
-        for (PolicyReader policy : myPolicies) {
-            if (policy.getResult().getVerificationTime() != null) {
-                policies.add(policy);
+        for (Map.Entry<String, PolicyReader> entry : allMyPolicies.entrySet()) {
+            if (entry.getValue().getResult().getVerificationTime().after(calendar)) {
+                policies.add(entry.getValue());
             }
         }
 
-        return policies;
+        return (policies.size() == 0) ? (null) : policies;
     }
 
     /**
@@ -284,9 +346,12 @@ public class FLNffgVerifier implements NffgVerifier {
         return (NetworkService) myUnmarshaller.unmarshal(inputFile);
     }
 
-    public void printAll(Set<PolicyReader> PolicySet, Set<NffgReader> NffgSet) {
-        printNffgs(NffgSet);
-        printPolicies(PolicySet);
+    /**
+     * DEBUG PRINT INFORMATION
+     */
+    public void printAll() {
+        printNffgs(getNffgs());
+        printPolicies(getPolicies());
     }
 
     private void printPolicies(Set<PolicyReader> set) {
@@ -303,7 +368,9 @@ public class FLNffgVerifier implements NffgVerifier {
             pr.toString();
 
             if (!(pr instanceof FLTraversalPolicyReader)) {
-                System.out.println("tgh");
+                System.out.println("Reachability");
+            } else {
+                System.out.println("Traversal");
             }
             System.out.println("Policy name: " + pr.getName());
             System.out.println("Policy nffg name: " + pr.getNffg().getName());
@@ -347,7 +414,6 @@ public class FLNffgVerifier implements NffgVerifier {
             System.out.println();
             // Print update time
             Calendar updateTime = nffg_r.getUpdateTime();
-            printHeader("Update time: " + updateTime.getTime().toString());
             printHeader("Update time: " + dateFormat.format(updateTime.getTime()));
 
             // Print nodes
@@ -356,7 +422,7 @@ public class FLNffgVerifier implements NffgVerifier {
             for (NodeReader nr : nodeSet) {
                 System.out.println("Node " + nr.getName() + "\tType: " + nr.getFuncType().toString() + "\tNumber of links: " + nr.getLinks().size());
                 Set<LinkReader> linkSet = nr.getLinks();
-                System.out.println("List of Links for node " + nr.getName());
+                System.out.println("List of Links for node: " + nr.getName());
                 printHeader("Link name \tsource \tdestination");
                 for (LinkReader lr : linkSet)
                     System.out.println(lr.getName() + "\t" + lr.getSourceNode().getName() + "\t" + lr.getDestinationNode().getName());

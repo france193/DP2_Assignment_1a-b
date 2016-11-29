@@ -23,17 +23,17 @@ import java.util.TreeSet;
 
 public class NFFGTests {
 	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-    
+
     class NamedEntityReaderComparator implements Comparator<NamedEntityReader> {
         public int compare(NamedEntityReader f0, NamedEntityReader f1) {
         	return f0.getName().compareTo(f1.getName());
         }
     }
-    
+
 	private static NffgVerifier referenceNffgVerifier;	// reference data generator
 	private static NffgVerifier testNffgVerifier;		// implementation under test
 	private static long testcase;
-	
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
     	// Create reference data generator
@@ -45,7 +45,7 @@ public class NFFGTests {
         System.setProperty("it.polito.dp2.NFFG.NffgVerifierFactory", "it.polito.dp2.NFFG.sol1.NffgVerifierFactory");
 
         testNffgVerifier = NffgVerifierFactory.newInstance().newNffgVerifier();
-        
+
         // read testcase property
         Long testcaseObj = Long.getLong("it.polito.dp2.NFFG.Random.testcase");
         if (testcaseObj == null)
@@ -53,44 +53,44 @@ public class NFFGTests {
         else
         	testcase = testcaseObj.longValue();
     }
-    
+
     @Before
     public void setUp() throws Exception {
         assertNotNull("Internal tester error during test setup: null reference", referenceNffgVerifier);
         assertNotNull("Could not run tests: the implementation under test generated a null NffgVerifier", testNffgVerifier);
     }
 
-	// method for comparing two non-null strings    
+	// method for comparing two non-null strings
 	private void compareString(String rs, String ts, String meaning) {
 		assertNotNull("NULL "+meaning, ts);
-        assertEquals("Wrong "+meaning, rs, ts);		
+        assertEquals("Wrong "+meaning, rs, ts);
 	}
-	
+
 	private void compareTime(Calendar rc, Calendar tc, String meaning) {
 		if (testcase != 2) // no time checking in this case
 			return;
 		assertNotNull(rc);
 		assertNotNull("Null "+meaning, tc);
-		
+
 		// Compute lower and upper bounds for checking with precision of 1 minute
 		Calendar upperBound, lowerBound;
 		upperBound = (Calendar)rc.clone();
 		upperBound.add(Calendar.MINUTE, 1);
 		lowerBound = (Calendar)rc.clone();
 		lowerBound.add(Calendar.MINUTE, -1);
-		
+
 		// Compute the condition to be checked
 		boolean condition = tc.after(lowerBound) && tc.before(upperBound);
-		
+
 		assertTrue("Wrong "+meaning, condition);
 	}
-	
+
     @Test
     public final void testGetNffgs() {
     		// call getWorkflows on the two implementations
 			Set<NffgReader> rs = referenceNffgVerifier.getNffgs();
 			Set<NffgReader> ts = testNffgVerifier.getNffgs();
-			
+
 			compareNffgSets(rs, ts);
     }
 
@@ -106,17 +106,17 @@ public class NFFGTests {
 		    assertTrue("There are no Nffgs!", true);
 		    return;
 		}
-		
+
 		// check that the number of nffgs matches
 		assertEquals("Wrong Number of Nffgs", rs.size(), ts.size());
-		
-		// create treesets of nffgs, using the comparator for sorting, one for reference and one for impl. under test 
+
+		// create treesets of nffgs, using the comparator for sorting, one for reference and one for impl. under test
 		TreeSet<NffgReader> rts = new TreeSet<NffgReader>(new NamedEntityReaderComparator());
 		TreeSet<NffgReader> tts = new TreeSet<NffgReader>(new NamedEntityReaderComparator());
-   
+
 		rts.addAll(rs);
 		tts.addAll(ts);
-		
+
 		// check that all nffgs match one by one
 		Iterator<NffgReader> ri = rts.iterator();
 		Iterator<NffgReader> ti = tts.iterator();
@@ -151,17 +151,17 @@ public class NFFGTests {
 		    assertTrue("There are no nodes!", true);
 		    return;
 		}
-		
+
         // check that the number of nodes matches
 		assertEquals("Wrong Number of nodes", rs.size(), ts.size());
-		
+
         // create treesets of nodes, using the comparator for sorting, one for reference and one for impl. under test 
 		TreeSet<NodeReader> rts = new TreeSet<NodeReader>(new NamedEntityReaderComparator());
 		TreeSet<NodeReader> tts = new TreeSet<NodeReader>(new NamedEntityReaderComparator());
-   
+
 		rts.addAll(rs);
 		tts.addAll(ts);
-		
+
 		Iterator<NodeReader> ri = rts.iterator();
 		Iterator<NodeReader> ti = tts.iterator();
 
@@ -175,13 +175,13 @@ public class NFFGTests {
 	private void compareNodeReader(NodeReader rpr, NodeReader tpr) {
 		assertNotNull("Internal tester error: null node reader", rpr);
         assertNotNull("A null NodeReader has been found", tpr);
-        
+
         System.out.println("Comparing node " + rpr.getName());
-        
+
         // check the NodeReaders return the same name and functional type and links
-        compareString(rpr.getName(), tpr.getName(), "node name");       
+        compareString(rpr.getName(), tpr.getName(), "node name");
         assertEquals("wrong functional type", rpr.getFuncType(), tpr.getFuncType());
-        compareLinkReaderSets(rpr.getLinks(), tpr.getLinks(), "links");             
+        compareLinkReaderSets(rpr.getLinks(), tpr.getLinks(), "links");
 	}
 
 	private void compareLinkReaderSets(Set<LinkReader> rs, Set<LinkReader> ts, String string) {
@@ -196,17 +196,17 @@ public class NFFGTests {
 		    assertTrue("There are no links!", true);
 		    return;
 		}
-		
+
         // check that the number of nodes matches
 		assertEquals("Wrong Number of links", rs.size(), ts.size());
-		
+
         // create treesets of nodes, using the comparator for sorting, one for reference and one for impl. under test 
 		TreeSet<LinkReader> rts = new TreeSet<LinkReader>(new NamedEntityReaderComparator());
 		TreeSet<LinkReader> tts = new TreeSet<LinkReader>(new NamedEntityReaderComparator());
-   
+
 		rts.addAll(rs);
 		tts.addAll(ts);
-		
+
 		Iterator<LinkReader> ri = rts.iterator();
 		Iterator<LinkReader> ti = tts.iterator();
 
@@ -219,17 +219,17 @@ public class NFFGTests {
 
 	private void compareLinkReader(LinkReader rlr, LinkReader tlr) {
         // check the LinkReaders return the same name, source and destination
-        compareString(rlr.getName(), tlr.getName(), "node name");   
+        compareString(rlr.getName(), tlr.getName(), "node name");
         compareString(rlr.getSourceNode().getName(), tlr.getSourceNode().getName(), "source node");
         compareString(rlr.getDestinationNode().getName(), tlr.getDestinationNode().getName(), "destination node");
 	}
-	
+
     @Test
     public final void testGetPolicies() {
     	// call getPolicies on the two implementations
     	Set<PolicyReader> rs = referenceNffgVerifier.getPolicies();
 		Set<PolicyReader> ts = testNffgVerifier.getPolicies();
-		
+
 		// check the resulting policy sets are equal
 	    comparePolicySets(rs, ts);
     }
@@ -246,17 +246,17 @@ public class NFFGTests {
 		    assertTrue("There are no policies!", true);
 		    return;
 		}
-		
+
         // check that the number of policies matches
 		assertEquals("Wrong Number of policies", rs.size(), ts.size());
-		
+
         // create treesets of nodes, using the comparator for sorting, one for reference and one for impl. under test 
 		TreeSet<PolicyReader> rts = new TreeSet<PolicyReader>(new NamedEntityReaderComparator());
 		TreeSet<PolicyReader> tts = new TreeSet<PolicyReader>(new NamedEntityReaderComparator());
-   
+
 		rts.addAll(rs);
 		tts.addAll(ts);
-		
+
 		Iterator<PolicyReader> ri = rts.iterator();
 		Iterator<PolicyReader> ti = tts.iterator();
 
@@ -266,7 +266,7 @@ public class NFFGTests {
 		}
 
 	}
-    
+
 	private void comparePolicyReader(PolicyReader rpr, PolicyReader tpr) {
 		assertNotNull("Internal tester error: null policy reader", rpr);
         assertNotNull("A null PolicyReader has been found", tpr);

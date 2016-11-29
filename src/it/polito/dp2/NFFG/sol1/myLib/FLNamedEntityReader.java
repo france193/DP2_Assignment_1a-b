@@ -11,6 +11,7 @@ public class FLNamedEntityReader implements NamedEntityReader {
 
     /**
      * Class' construcotr
+     *
      * @param entityName
      */
     FLNamedEntityReader(String entityName) {

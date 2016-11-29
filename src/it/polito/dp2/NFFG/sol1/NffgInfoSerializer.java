@@ -10,15 +10,23 @@ package it.polito.dp2.NFFG.sol1;
  **/
 
 // import of ONLY NECESSARY resources of library classes and types
-
-import it.polito.dp2.NFFG.*;
+import it.polito.dp2.NFFG.NffgVerifierFactory;
+import it.polito.dp2.NFFG.NffgVerifierException;
+import it.polito.dp2.NFFG.NffgVerifier;
+import it.polito.dp2.NFFG.NffgReader;
+import it.polito.dp2.NFFG.NodeReader;
+import it.polito.dp2.NFFG.LinkReader;
+import it.polito.dp2.NFFG.PolicyReader;
+import it.polito.dp2.NFFG.ReachabilityPolicyReader;
+import it.polito.dp2.NFFG.TraversalPolicyReader;
+import it.polito.dp2.NFFG.FunctionalType;
+import it.polito.dp2.NFFG.FactoryConfigurationError;
 
 // import of ONLY NECESSARY resources of jaxb generated classes  and types
-import it.polito.dp2.NFFG.NffgVerifierFactory;
-import it.polito.dp2.NFFG.sol1.jaxb_generated.NetworkService;
-import it.polito.dp2.NFFG.sol1.jaxb_generated.ReachabilityPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb_generated.TraversalPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb_generated.NodeFunctionalType;
+import it.polito.dp2.NFFG.sol1.jaxb_gen.NetworkService;
+import it.polito.dp2.NFFG.sol1.jaxb_gen.ReachabilityPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb_gen.TraversalPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb_gen.NodeFunctionalType;
 
 // other import
 import org.xml.sax.SAXException;
@@ -39,12 +47,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
-
-/**
- * To test all the code:
- *
- * ant -Dtestcase=0 -Dseed=100000 runFuncTest
- */
 
 /************************************************************************
  * ant -Doutput=file1.xml -Dseed=100000 -Dtestcase=1 NffgInfoSerializer *
@@ -87,29 +89,32 @@ import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
  *
  *    NETWORK_SERVICE
  *           |
- *           |-- NFFG(*) (nffg_name_id,
- *                |       last_update_time)
+ *           |-- NFFG(*) (nffg_name_id(!),
+ *                |       last_update_time(!))
  *                |
- *                |-- NODE(*) (node_name_id,
- *                |            functional_type)
+ *                |-- NODE(*) (node_name_id(!),
+ *                |            functional_type(!))
  *                |
- *                |-- LINK(*) (link_name_id,
- *                |            link_source_node_name_id_refer,
- *                |            link_destination_node_name_id_refer)
+ *                |-- LINK(*) (link_name_id(!),
+ *                |            link_source_node_name_id_refer(!),
+ *                |            link_destination_node_name_id_refer(!))
  *                |
- *                |-- REACHABILITY_POLICY(*) (policy_name_id,
- *                              |             nffg_name_id_refer,
- *                              |             isPositive,
- *                              |             verificationResult,
- *                              |             verificationTime,
- *                              |             verificationMessage,
- *                              |             policy_source_node_name_id_refer,
- *                              |             policy_destination_node_name_id_refer)
+ *                |-- REACHABILITY_POLICY(*) (policy_name_id(!),
+ *                              |             nffg_name_id_refer(!),
+ *                              |             isPositive(!),
+ *                              |             policy_source_node_name_id_refer(!),
+ *                              |             policy_destination_node_name_id_refer(!))
  *                              |
  *                              |
- *                              |---> TRAVERSAL_POLICY(*)
- *                                             |
- *                                             |-- TRAVERSAL_REQUESTED_NODE(*) (functional_type)
+ *                              |-- VERIFICATION_RESULT(?) (policy_name_id_refer(!),
+ *                                                          result(?),
+ *                                                          time(?),
+ *                                                          message(?))
+ *
+ *
+ *            REACHABILITY_POLICY --> TRAVERSAL_POLICY
+ *                                            |
+ *                                            |-- TRAVERSAL_REQUESTED_NODE(*) (functional_type(!))
  **/
 
 public class NffgInfoSerializer {
@@ -117,7 +122,7 @@ public class NffgInfoSerializer {
     public static final String XSD_FOLDER = "xsd/";
     public static final String XSD_FILE = "nffgInfo.xsd";
     public static final String XSD_LOCATION = "https://france193.wordpress.com";
-    public static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb_generated";
+    public static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb_gen";
 
     private NffgVerifier monitor;
     private NetworkService myNetworkService;
@@ -301,15 +306,22 @@ public class NffgInfoSerializer {
     }
 
     private void readVerificationResult(ReachabilityPolicyType myPolicy, PolicyReader policy) {
-        if (policy.getResult() != null) {
-            myPolicy.setVerificationResult(policy.getResult().getVerificationResult());
-            myPolicy.setVerificationTime(getXMLCal(policy.getResult().getVerificationTime()));
-            myPolicy.setVerificationMessage(policy.getResult().getVerificationResultMsg());
+        //create a new verification result element
+        ReachabilityPolicyType.VerificationResult  verificationResult = new ReachabilityPolicyType.VerificationResult();
+
+        if (policy.getResult() == null) {
+            verificationResult.setPolicyNameIdRefer(policy.getName());
+            verificationResult.setResult(null);
+            verificationResult.setTime(null);
+            verificationResult.setMessage(null);
         } else {
-            myPolicy.setVerificationResult(null);
-            myPolicy.setVerificationTime(null);
-            myPolicy.setVerificationMessage("No verification result for policy");
+            verificationResult.setPolicyNameIdRefer(policy.getName());
+            verificationResult.setResult(policy.getResult().getVerificationResult());
+            verificationResult.setTime(getXMLCal(policy.getResult().getVerificationTime()));
+            verificationResult.setMessage(policy.getResult().getVerificationResultMsg());
         }
+
+        myPolicy.setVerificationResult(verificationResult);
     }
 
     private NetworkService.Nffg findNffg(String name) {
