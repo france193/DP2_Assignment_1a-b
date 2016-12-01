@@ -83,40 +83,6 @@ import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
  * ant -Dseed=100000 NFFGInfo > out1.txt
  **/
 
-/***************************************************************
- *                   My XSD schema structure                   *
- ***************************************************************
- *
- *    NETWORK_SERVICE
- *           |
- *           |-- NFFG(*) (nffg_name_id(!),
- *                |       last_update_time(!))
- *                |
- *                |-- NODE(*) (node_name_id(!),
- *                |            functional_type(!))
- *                |
- *                |-- LINK(*) (link_name_id(!),
- *                |            link_source_node_name_id_refer(!),
- *                |            link_destination_node_name_id_refer(!))
- *                |
- *                |-- REACHABILITY_POLICY(*) (policy_name_id(!),
- *                              |             nffg_name_id_refer(!),
- *                              |             isPositive(!),
- *                              |             policy_source_node_name_id_refer(!),
- *                              |             policy_destination_node_name_id_refer(!))
- *                              |
- *                              |
- *                              |-- VERIFICATION_RESULT(?) (policy_name_id_refer(!),
- *                                                          result(?),
- *                                                          time(?),
- *                                                          message(?))
- *
- *
- *            REACHABILITY_POLICY --> TRAVERSAL_POLICY
- *                                            |
- *                                            |-- TRAVERSAL_REQUESTED_NODE(*) (functional_type(!))
- **/
-
 public class NffgInfoSerializer {
 
     public static final String XSD_FOLDER = "xsd/";

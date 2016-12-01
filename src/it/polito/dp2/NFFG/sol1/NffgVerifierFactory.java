@@ -12,6 +12,12 @@ import javax.xml.bind.JAXBException;
 import java.util.HashMap;
 
 /**
+ * To test all the code:
+ * <p>
+ * ant -Dtestcase=0 -Dseed=100000 runFuncTest
+ */
+
+/**
  * Created by FLDeviOS on 23/11/2016.
  */
 public class NffgVerifierFactory extends it.polito.dp2.NFFG.NffgVerifierFactory {

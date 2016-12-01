@@ -30,12 +30,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
 /**
- * To test all the code:
- * <p>
- * ant -Dtestcase=0 -Dseed=100000 runFuncTest
- */
-
-/**
  * Created by FLDeviOS on 23/11/2016.
  */
 public class FLNffgVerifier implements NffgVerifier {
@@ -214,6 +208,7 @@ public class FLNffgVerifier implements NffgVerifier {
             }
         }
 
+        /* Retrieve all policies in a unique HashMap */
         for (Map.Entry<String, FLNffgReader> entry : myNffgs.entrySet()) {
             for ( PolicyReader policy : entry.getValue().getPolicies()) {
                 allMyPolicies.put(policy.getName(), policy);
