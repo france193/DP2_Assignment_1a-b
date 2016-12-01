@@ -23,7 +23,7 @@
                         <xsd:sequence>
 
                             <!-- node -->
-                            <xsd:element name="node" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:element name="node" minOccurs="0" maxOccurs="unbounded">
                                 <xsd:complexType>
                                     <xsd:attribute name="node_name_id" type="xsd:string" use="required"/>
                                     <xsd:attribute name="functional_type" type="flo:nodeFunctionalType" use="required"/>
