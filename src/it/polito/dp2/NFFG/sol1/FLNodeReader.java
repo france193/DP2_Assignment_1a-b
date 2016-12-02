@@ -1,4 +1,4 @@
-package it.polito.dp2.NFFG.sol1.myLib;
+package it.polito.dp2.NFFG.sol1;
 
 import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.LinkReader;

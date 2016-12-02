@@ -1,11 +1,11 @@
-package it.polito.dp2.NFFG.sol1.myLib;
+package it.polito.dp2.NFFG.sol1;
 
 import it.polito.dp2.NFFG.TraversalPolicyReader;
 import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.NffgReader;
 import it.polito.dp2.NFFG.NodeReader;
 
-import it.polito.dp2.NFFG.sol1.jaxb_gen.TraversalPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb.TraversalPolicyType;
 
 import java.util.LinkedHashSet;
 import java.util.List;

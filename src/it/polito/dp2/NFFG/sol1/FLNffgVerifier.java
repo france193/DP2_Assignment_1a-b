@@ -1,4 +1,4 @@
-package it.polito.dp2.NFFG.sol1.myLib;
+package it.polito.dp2.NFFG.sol1;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -17,9 +17,9 @@ import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.VerificationResultReader;
 
 // import of ONLY NECESSARY resources of jaxb generated classes  and types
-import it.polito.dp2.NFFG.sol1.jaxb_gen.NetworkService;
-import it.polito.dp2.NFFG.sol1.jaxb_gen.ReachabilityPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb_gen.TraversalPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb.NetworkService;
+import it.polito.dp2.NFFG.sol1.jaxb.ReachabilityPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb.TraversalPolicyType;
 
 import org.xml.sax.SAXException;
 
@@ -44,7 +44,7 @@ public class FLNffgVerifier implements NffgVerifier {
 
     private static final String XSD_FOLDER = "xsd/";
     private static final String XSD_FILE = "nffgInfo.xsd";
-    private static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb_gen";
+    private static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb";
 
     // set of Nffgs and Policy of all Nffgs
     private HashMap<String, FLNffgReader> myNffgs;

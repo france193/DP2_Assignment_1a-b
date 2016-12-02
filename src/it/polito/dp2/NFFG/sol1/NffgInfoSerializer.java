@@ -23,10 +23,10 @@ import it.polito.dp2.NFFG.FunctionalType;
 import it.polito.dp2.NFFG.FactoryConfigurationError;
 
 // import of ONLY NECESSARY resources of jaxb generated classes  and types
-import it.polito.dp2.NFFG.sol1.jaxb_gen.NetworkService;
-import it.polito.dp2.NFFG.sol1.jaxb_gen.ReachabilityPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb_gen.TraversalPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb_gen.NodeFunctionalType;
+import it.polito.dp2.NFFG.sol1.jaxb.NetworkService;
+import it.polito.dp2.NFFG.sol1.jaxb.ReachabilityPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb.TraversalPolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb.NodeFunctionalType;
 
 // other import
 import org.xml.sax.SAXException;
@@ -88,7 +88,7 @@ public class NffgInfoSerializer {
     public static final String XSD_FOLDER = "xsd/";
     public static final String XSD_FILE = "nffgInfo.xsd";
     public static final String XSD_LOCATION = "https://france193.wordpress.com";
-    public static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb_gen";
+    public static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb";
 
     private NffgVerifier monitor;
     private NetworkService myNetworkService;

@@ -4,12 +4,9 @@ package it.polito.dp2.NFFG.sol1;
 
 import it.polito.dp2.NFFG.NffgVerifier;
 import it.polito.dp2.NFFG.NffgVerifierException;
-import it.polito.dp2.NFFG.PolicyReader;
-import it.polito.dp2.NFFG.sol1.myLib.FLNffgVerifier;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
-import java.util.HashMap;
 
 /**
  * To test all the code:
