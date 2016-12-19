@@ -4,6 +4,11 @@
         xmlns:flo="https://france193.wordpress.com"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="https://france193.wordpress.com ./nffgInfo.xsd">
+
+    <!--
+    - policy must refers to existing nffg
+    -->
+
     <!-- nffg_name_id_refer -->
     <flo:nffg nffg_name_id="service_1" last_updated_time="2016-11-09T17:17:30+01:00">
         <!-- nodes -->
@@ -15,7 +20,75 @@
 
         <!-- links -->
         <flo:link link_name_id="a"
-                  link_source_node_name_id_refer="node_90"
+                  link_source_node_name_id_refer="node_1"
+                  link_destination_node_name_id_refer="node_2"/>
+        <flo:link link_name_id="b"
+                  link_source_node_name_id_refer="node_2"
+                  link_destination_node_name_id_refer="node_3"/>
+        <flo:link link_name_id="c"
+                  link_source_node_name_id_refer="node_3"
+                  link_destination_node_name_id_refer="node_4"/>
+        <flo:link link_name_id="d"
+                  link_source_node_name_id_refer="node_4"
+                  link_destination_node_name_id_refer="node_5"/>
+
+        <!-- policies -->
+        <flo:reachabilityPolicyType policy_name_id="policy_1"
+                                    nffg_name_id_refer="service_1"
+                                    isPositive="true"
+                                    policy_source_node_name_id_refer="node_1"
+                                    policy_destination_node_name_id_refer="node_5">
+            <flo:verificationResult policy_name_id_refer="policy_1"
+                                    result="true"
+                                    time="2016-11-09T17:19:57+01:00"
+                                    message="Policy verificarion verificationResult true"/>
+        </flo:reachabilityPolicyType>
+
+        <flo:traversalPolicyType policy_name_id="policy_2"
+                                 nffg_name_id_refer="service_1"
+                                 isPositive="true"
+                                 policy_source_node_name_id_refer="node_1"
+                                 policy_destination_node_name_id_refer="node_5">
+            <flo:verificationResult policy_name_id_refer="policy_2"
+                                    result="true"
+                                    time="2016-11-09T17:20:27+01:00"
+                                    message="Policy verificarion verificationResult true"/>
+            <flo:traversal_requested_node functional_type="VPN"/>
+            <flo:traversal_requested_node functional_type="DPI"/>
+            <flo:traversal_requested_node functional_type="FW"/>
+        </flo:traversalPolicyType>
+
+        <flo:reachabilityPolicyType policy_name_id="policy_3"
+                                    nffg_name_id_refer="service_1"
+                                    isPositive="true"
+                                    policy_source_node_name_id_refer="node_5"
+                                    policy_destination_node_name_id_refer="node_1"/>
+
+        <flo:reachabilityPolicyType policy_name_id="policy_4"
+                                    nffg_name_id_refer="service_1"
+                                    isPositive="false"
+                                    policy_source_node_name_id_refer="node_5"
+                                    policy_destination_node_name_id_refer="node_4">
+            <flo:verificationResult policy_name_id_refer="policy_4"
+                                    result="false"
+                                    time="2016-11-09T17:26:50+01:00"
+                                    message="Policy verificarion verificationResult not true"/>
+        </flo:reachabilityPolicyType>
+
+    </flo:nffg>
+
+    <!-- nffg_name_id_refer -->
+    <flo:nffg nffg_name_id="service_2" last_updated_time="2016-11-09T17:17:30+01:00">
+        <!-- nodes -->
+        <flo:node node_name_id="node_1" functional_type="WEB_CLIENT"/>
+        <flo:node node_name_id="node_2" functional_type="VPN"/>
+        <flo:node node_name_id="node_3" functional_type="FW"/>
+        <flo:node node_name_id="node_4" functional_type="CACHE"/>
+        <flo:node node_name_id="node_5" functional_type="WEB_SERVER"/>
+
+        <!-- links -->
+        <flo:link link_name_id="a"
+                  link_source_node_name_id_refer="node_1"
                   link_destination_node_name_id_refer="node_2"/>
         <flo:link link_name_id="b"
                   link_source_node_name_id_refer="node_2"

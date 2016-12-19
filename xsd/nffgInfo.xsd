@@ -65,7 +65,7 @@
                         <xsd:field xpath="@link_name_id"/>
                     </xsd:unique>
                     <xsd:unique name="policy_name_id_key">
-                        <xsd:selector xpath="flo:reachabilityPolicyType"/>
+                        <xsd:selector xpath="flo:reachabilityPolicyType|flo:traversalPolicyType"/>
                         <xsd:field xpath="@policy_name_id"/>
                     </xsd:unique>
 
@@ -87,7 +87,7 @@
                         <xsd:field xpath="@policy_destination_node_name_id_refer"/>
                     </xsd:keyref>
                     <xsd:keyref name="policy_name_id_keyref" refer="flo:policy_name_id_key">
-                        <xsd:selector xpath="flo:reachabilityPolicyType/flo:verificationResult"/>
+                        <xsd:selector xpath="flo:reachabilityPolicyType/flo:verificationResult|flo:traversalPolicyType/flo:verificationResult"/>
                         <xsd:field xpath="@policy_name_id_refer"/>
                     </xsd:keyref>
 
@@ -96,6 +96,18 @@
 
             </xsd:sequence>
         </xsd:complexType>
+
+        <!-- KEY -->
+        <xsd:unique name="nffg_name_id_key">
+            <xsd:selector xpath="flo:nffg"/>
+            <xsd:field xpath="@nffg_name_id"/>
+        </xsd:unique>
+
+        <!-- KEYREF -->
+        <xsd:keyref name="policy_nffg_id_keyref" refer="flo:nffg_name_id_key">
+            <xsd:selector xpath="flo:nffg/flo:reachabilityPolicyType|flo:nffg/flo:traversalPolicyType"/>
+            <xsd:field xpath="@nffg_name_id_refer"/>
+        </xsd:keyref>
     </xsd:element>
 
     <!-- POLICIES -->
