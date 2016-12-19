@@ -15,7 +15,7 @@
 
         <!-- links -->
         <flo:link link_name_id="a"
-                  link_source_node_name_id_refer="node_1"
+                  link_source_node_name_id_refer="node_90"
                   link_destination_node_name_id_refer="node_2"/>
         <flo:link link_name_id="b"
                   link_source_node_name_id_refer="node_2"
