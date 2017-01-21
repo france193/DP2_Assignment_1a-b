@@ -107,7 +107,6 @@ public class NffgInfoSerializer {
         myNetworkService = new NetworkService();
     }
 
-
     /**
      * @param args
      */
