@@ -1,1 +1,43 @@
-TODO doc xsd
+The xsd schema it is much complex and much powerfull tha a dtd schema.
+It is possible satisfy more precise requirements and there are more possibilities to
+reuse code, use inheritance and to specify more complex constraints.
+In fact it is possible to do more checks in verify the correctness of the nffg structure
+demanding some checks to the validation of the xsd schema instead to do it in the application.
+So it is a distributed way to proceed. If the validation process succeeded, it is sure that the data
+structure passed to the application it's valid.
+For example it is possible to check if in a nffg a link refers to two node that exists in the list of
+node or that some policy refers to an existing nffg, it is less work to do in the application.
+
+I try to maintain the same structure as the dtd schema:
+NETWORK_SERVICE
+      |
+      |-- NFFG(*)
+            |
+            |-- NODE(*)
+            |
+            |-- LINK(*)
+            |
+            |-- POLICY(*)
+                   |
+                   |-- VERIFICATION_RESULT(?)
+                   |
+                   |-- TRAVERSAL_REQUESTED_NODE(?)
+
+but in this case, the traversal policy it's an extension of the reachability policy
+and the traversal requested node is defined as a simple type that is the same of the
+functional type of the node: much more reusable code!
+
+As the dtd i have 1 root element represented by the network_service that can contains
+a sequence of nffg, each one as a unique identifier.
+In a nffg i can have a sequence of node, a sequence of link and a sequence of policies.
+Every element as defined some attributes and in the nffg are specified all the constraints:
+unique identifier and all the referring id from other element.
+I can have two different policies (reachability and traversal), which can have a verification
+result that inside has an attribute that refers to the policy id, with a single constraint
+i can tell to the xsd validator that the two attributes of the two policies in both cases
+refers to a same parameters of a policy: the policy id! (this is very powerfull).
+For each element i can establish the occurrence and for each attribute if it is required
+or optional.
+The occurrence can be also in a specific range.
+At the end the structure it is more human-friendly and much readable in a way that is easy to
+understant the hierarchy instead of the dtd schema.

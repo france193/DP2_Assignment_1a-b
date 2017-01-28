@@ -1,1 +1,36 @@
-TODO doc dtd
+Building a dtd schema is very different from building an xsd schema, it is much simpler but there are
+less possibilities to build a precise schema satisfying all requirements.
+It is not possible to reuse code so i have to rewrite all declaration every time i want to reuse them.
+In my project there is 1 root element that is the NETWORK_SERVICES (it contains a list of nffgs).
+
+In a nffg i can have 3 objects: nodes, links and policies:
+As the connection are unidirectional it is not redundant indicate a connection between to node as a link
+containing the two interested nodes.
+Policy can contain a verification result, in case that the policy has been verified, with all the resul
+values and (if it is a traversal policy) a list of requested nodes.
+
+All the link refers to the node (source or destination) with the IDREF, tha same is done for the policies
+for the source and destination done.
+
+With the dtd schema it is no possible to set up other constraints
+
+
+This is the schema representation:
+
+NETWORK_SERVICE
+      |
+      |-- NFFG(*)
+            |
+            |-- NODE(*)
+            |
+            |-- LINK(*)
+            |
+            |-- POLICY(*)
+                   |
+                   |-- VERIFICATION_RESULT(?)
+                   |
+                   |-- TRAVERSAL_REQUESTED_NODE(?)
+
+
+For each element it is possible to specify the occurrence and if it is required or optional (+, ?, *)
+if it is required or not (optionall).

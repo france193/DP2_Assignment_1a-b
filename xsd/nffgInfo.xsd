@@ -87,7 +87,8 @@
                         <xsd:field xpath="@policy_destination_node_name_id_refer"/>
                     </xsd:keyref>
                     <xsd:keyref name="policy_name_id_keyref" refer="flo:policy_name_id_key">
-                        <xsd:selector xpath="flo:reachabilityPolicyType/flo:verificationResult|flo:traversalPolicyType/flo:verificationResult"/>
+                        <xsd:selector
+                                xpath="flo:reachabilityPolicyType/flo:verificationResult|flo:traversalPolicyType/flo:verificationResult"/>
                         <xsd:field xpath="@policy_name_id_refer"/>
                     </xsd:keyref>
 
