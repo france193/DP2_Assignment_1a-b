@@ -1,36 +1,43 @@
+This is the hierarchy of my schema:
+NFFGS
+  |
+  |-- NFFG* (NAME, last_update_time)
+  |     |
+  |     |-- NODE* (NAME, functional_type)
+  |     |     |
+  |     |     |-- LINK (NAME, destination_node)
+  |     |
+  |     |-- POLICY* (NAME, nffg_name, ispositive, source_node, destination_node)
+  |            |
+  |            |-- TRAVERSAL_REQUESTED_NODE? (functional_type)
+  |
+  |-- VERIFICATION_RESULT* (POLICY, result, time, message)
+  
 Building a dtd schema is very different from building an xsd schema, it is much simpler but there are
 less possibilities to build a precise schema satisfying all requirements.
 It is not possible to reuse code so i have to rewrite all declaration every time i want to reuse them.
-In my project there is 1 root element that is the NETWORK_SERVICES (it contains a list of nffgs).
+In my project there is 1 root element that is the NFFGS (it contains a list of nffg).
 
-In a nffg i can have 3 objects: nodes, links and policies:
-As the connection are unidirectional it is not redundant indicate a connection between to node as a link
-containing the two interested nodes.
-Policy can contain a verification result, in case that the policy has been verified, with all the resul
-values and (if it is a traversal policy) a list of requested nodes.
+The big differences from the xsd schema is that it is not possible to define a key only in a specific level
+of my schema, in fact if i define an attribute as ID, the ID must be unique in all the xml file, this it means
+that it is not possible to have two node with same name in different NFFG, same thing for link.
 
-All the link refers to the node (source or destination) with the IDREF, tha same is done for the policies
+In a nffg I can have 2 objects: nodes, which contains all link that have that node as source, and policies:
+
+Policy can be Reachability or Traversal based on the presence of TRAVERSAL_REQUESTED_NODE and the check 
+must be done on the application (verify if there is a REQUESTED_NODE or not).
+
+I choose to separate the element VERIFICATION_RESULT in order to have a better correspondace with the policy:
+indicating a policy from verification_result.
+
+As the node are unique on the all nffgs, in this case it is possible to put the policy element ountside the nffg
+and it is possible to have a perfect correspondance but i choose to leave policy element under nffg in order to
+have the same schema of the xsd.
+
+All the link refers to the node (destination) with the IDREF, the same is done for the policies
 for the source and destination done.
 
-With the dtd schema it is no possible to set up other constraints
-
-
-This is the schema representation:
-
-NETWORK_SERVICE
-      |
-      |-- NFFG(*)
-            |
-            |-- NODE(*)
-            |
-            |-- LINK(*)
-            |
-            |-- POLICY(*)
-                   |
-                   |-- VERIFICATION_RESULT(?)
-                   |
-                   |-- TRAVERSAL_REQUESTED_NODE(?)
-
+Using the dtd schema it is no possible to set up more specific constraints.
 
 For each element it is possible to specify the occurrence and if it is required or optional (+, ?, *)
 if it is required or not (optionall).

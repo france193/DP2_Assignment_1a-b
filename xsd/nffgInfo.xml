@@ -1,148 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<fran:nffgs xmlns:fran="https://france193.wordpress.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://france193.wordpress.com ./nffgInfo.xsd">
 
-<flo:network_service
-        xmlns:flo="https://france193.wordpress.com"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="https://france193.wordpress.com ./nffgInfo.xsd">
+	<fran:nffg name="nffg0" last_updated_time="2008-09-29T03:49:45">
 
-    <!--
-    - policy must refers to existing nffg
-    -->
+		<fran:node name="node0" functional_type="MAIL_CLIENT">
+			<fran:link name="link0" destination_node="node1" />
+			<fran:link name="link1" destination_node="node2" />
+			<fran:link name="link2" destination_node="node3" />
+		</fran:node>
 
-    <!-- nffg_name_id_refer -->
-    <flo:nffg nffg_name_id="service_1" last_updated_time="2016-11-09T17:17:30+01:00">
-        <!-- nodes -->
-        <flo:node node_name_id="node_1" functional_type="WEB_CLIENT"/>
-        <flo:node node_name_id="node_2" functional_type="VPN"/>
-        <flo:node node_name_id="node_3" functional_type="FW"/>
-        <flo:node node_name_id="node_4" functional_type="CACHE"/>
-        <flo:node node_name_id="node_5" functional_type="WEB_SERVER"/>
+		<fran:node name="node1" functional_type="DPI">
+			<fran:link name="link3" destination_node="node2" />
+		</fran:node>
 
-        <!-- links -->
-        <flo:link link_name_id="a"
-                  link_source_node_name_id_refer="node_1"
-                  link_destination_node_name_id_refer="node_2"/>
-        <flo:link link_name_id="b"
-                  link_source_node_name_id_refer="node_2"
-                  link_destination_node_name_id_refer="node_3"/>
-        <flo:link link_name_id="c"
-                  link_source_node_name_id_refer="node_3"
-                  link_destination_node_name_id_refer="node_4"/>
-        <flo:link link_name_id="d"
-                  link_source_node_name_id_refer="node_4"
-                  link_destination_node_name_id_refer="node_5"/>
+		<fran:node name="node2" functional_type="CACHE">
+			<fran:link name="link4" destination_node="node3" />
+		</fran:node>
 
-        <!-- policies -->
-        <flo:reachabilityPolicyType policy_name_id="policy_1"
-                                    nffg_name_id_refer="service_1"
-                                    isPositive="true"
-                                    policy_source_node_name_id_refer="node_1"
-                                    policy_destination_node_name_id_refer="node_5">
-            <flo:verificationResult policy_name_id_refer="policy_1"
-                                    result="true"
-                                    time="2016-11-09T17:19:57+01:00"
-                                    message="Policy verificarion verificationResult true"/>
-        </flo:reachabilityPolicyType>
+		<fran:node name="node3" functional_type="SPAM" />
 
-        <flo:traversalPolicyType policy_name_id="policy_2"
-                                 nffg_name_id_refer="service_1"
-                                 isPositive="true"
-                                 policy_source_node_name_id_refer="node_1"
-                                 policy_destination_node_name_id_refer="node_5">
-            <flo:verificationResult policy_name_id_refer="policy_2"
-                                    result="true"
-                                    time="2016-11-09T17:20:27+01:00"
-                                    message="Policy verificarion verificationResult true"/>
-            <flo:traversal_requested_node functional_type="VPN"/>
-            <flo:traversal_requested_node functional_type="DPI"/>
-            <flo:traversal_requested_node functional_type="FW"/>
-        </flo:traversalPolicyType>
+		<fran:policy name="policy0" nffg_name="nffg0" isPositive="true"
+			source_node="node0" destination_node="node1">
+			<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+		</fran:policy>
 
-        <flo:reachabilityPolicyType policy_name_id="policy_3"
-                                    nffg_name_id_refer="service_1"
-                                    isPositive="true"
-                                    policy_source_node_name_id_refer="node_5"
-                                    policy_destination_node_name_id_refer="node_1"/>
+		<fran:policy name="policy1" nffg_name="nffg0" isPositive="true"
+			source_node="node1" destination_node="node2">
+			<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+		</fran:policy>
 
-        <flo:reachabilityPolicyType policy_name_id="policy_4"
-                                    nffg_name_id_refer="service_1"
-                                    isPositive="false"
-                                    policy_source_node_name_id_refer="node_5"
-                                    policy_destination_node_name_id_refer="node_4">
-            <flo:verificationResult policy_name_id_refer="policy_4"
-                                    result="false"
-                                    time="2016-11-09T17:26:50+01:00"
-                                    message="Policy verificarion verificationResult not true"/>
-        </flo:reachabilityPolicyType>
+		<fran:policy name="policy2" nffg_name="nffg0" isPositive="true"
+			source_node="node2" destination_node="node3" />
 
-    </flo:nffg>
+	</fran:nffg>
 
-    <!-- nffg_name_id_refer -->
-    <flo:nffg nffg_name_id="service_2" last_updated_time="2016-11-09T17:17:30+01:00">
-        <!-- nodes -->
-        <flo:node node_name_id="node_1" functional_type="WEB_CLIENT"/>
-        <flo:node node_name_id="node_2" functional_type="VPN"/>
-        <flo:node node_name_id="node_3" functional_type="FW"/>
-        <flo:node node_name_id="node_4" functional_type="CACHE"/>
-        <flo:node node_name_id="node_5" functional_type="WEB_SERVER"/>
+	<fran:nffg name="nffg1" last_updated_time="2008-09-29T03:49:45">
 
-        <!-- links -->
-        <flo:link link_name_id="a"
-                  link_source_node_name_id_refer="node_1"
-                  link_destination_node_name_id_refer="node_2"/>
-        <flo:link link_name_id="b"
-                  link_source_node_name_id_refer="node_2"
-                  link_destination_node_name_id_refer="node_3"/>
-        <flo:link link_name_id="c"
-                  link_source_node_name_id_refer="node_3"
-                  link_destination_node_name_id_refer="node_4"/>
-        <flo:link link_name_id="d"
-                  link_source_node_name_id_refer="node_4"
-                  link_destination_node_name_id_refer="node_5"/>
+		<fran:node name="node10" functional_type="MAIL_CLIENT">
+			<fran:link name="link0" destination_node="node1" />
+		</fran:node>
 
-        <!-- policies -->
-        <flo:reachabilityPolicyType policy_name_id="policy_1"
-                                    nffg_name_id_refer="service_1"
-                                    isPositive="true"
-                                    policy_source_node_name_id_refer="node_1"
-                                    policy_destination_node_name_id_refer="node_5">
-            <flo:verificationResult policy_name_id_refer="policy_1"
-                                    result="true"
-                                    time="2016-11-09T17:19:57+01:00"
-                                    message="Policy verificarion verificationResult true"/>
-        </flo:reachabilityPolicyType>
+		<fran:node name="node1" functional_type="DPI">
+			<fran:link name="link1" destination_node="node2" />
+		</fran:node>
 
-        <flo:traversalPolicyType policy_name_id="policy_2"
-                                 nffg_name_id_refer="service_1"
-                                 isPositive="true"
-                                 policy_source_node_name_id_refer="node_1"
-                                 policy_destination_node_name_id_refer="node_5">
-            <flo:verificationResult policy_name_id_refer="policy_2"
-                                    result="true"
-                                    time="2016-11-09T17:20:27+01:00"
-                                    message="Policy verificarion verificationResult true"/>
-            <flo:traversal_requested_node functional_type="VPN"/>
-            <flo:traversal_requested_node functional_type="DPI"/>
-            <flo:traversal_requested_node functional_type="FW"/>
-        </flo:traversalPolicyType>
+		<fran:node name="node2" functional_type="CACHE"/>
 
-        <flo:reachabilityPolicyType policy_name_id="policy_3"
-                                    nffg_name_id_refer="service_1"
-                                    isPositive="true"
-                                    policy_source_node_name_id_refer="node_5"
-                                    policy_destination_node_name_id_refer="node_1"/>
+		<fran:policy name="policy3" nffg_name="nffg0" isPositive="true"
+			source_node="node2" destination_node="node1">
+			<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+		</fran:policy>
 
-        <flo:reachabilityPolicyType policy_name_id="policy_4"
-                                    nffg_name_id_refer="service_1"
-                                    isPositive="false"
-                                    policy_source_node_name_id_refer="node_5"
-                                    policy_destination_node_name_id_refer="node_4">
-            <flo:verificationResult policy_name_id_refer="policy_4"
-                                    result="false"
-                                    time="2016-11-09T17:26:50+01:00"
-                                    message="Policy verificarion verificationResult not true"/>
-        </flo:reachabilityPolicyType>
+	</fran:nffg>
 
-    </flo:nffg>
+	<fran:verification_result policy="policy0"
+		time="2009-09-29T03:49:45" result="true" message="Policy is verified" />
 
-</flo:network_service>
+	<fran:verification_result policy="policy3"
+		time="2009-09-29T03:49:45" result="true" message="Policy is verified" />
+
+</fran:nffgs>

@@ -3,30 +3,28 @@
         <!-- This DTD file was developed by Francesco Longo for the Assignment 1
              of the course Distributed Programming II in Politechnic University of Turin. -->
 
-        <!-- NETWORK_SERVICES -->
-        <!ELEMENT NETWORK_SERVICES (NFFG*)>
+        <!-- NFFGS -->
+        <!ELEMENT NFFGS (NFFG*, VERIFICATION_RESULT*)>
 
         <!-- NFFG -->
-        <!ELEMENT NFFG (NODE*,LINK*,POLICY*)>
+        <!ELEMENT NFFG (NODE*,POLICY*)>
         <!ATTLIST NFFG nffg_name_id ID #REQUIRED
                 last_update_time CDATA #REQUIRED>
 
         <!-- NODE -->
-        <!ELEMENT NODE EMPTY>
+        <!ELEMENT NODE (LINK*)>
         <!ATTLIST NODE node_name_id ID #REQUIRED
                 functional_type (firewall|dpi|nat|anti-spam|web-cache|vpn-gateway|web-server|web-client|mail-server|mail-client) "web-client">
 
         <!-- LINK -->
         <!ELEMENT LINK EMPTY>
         <!ATTLIST LINK link_name_id ID #REQUIRED
-                source_node IDREF #REQUIRED
                 destination_node IDREF #REQUIRED>
 
         <!-- POLICY -->
-        <!ELEMENT POLICY (VERIFICATION_RESULT+, TRAVERSAL_REQUESTED_NODE*)>
+        <!ELEMENT POLICY (TRAVERSAL_REQUESTED_NODE*)>
         <!ATTLIST POLICY policy_name_id ID #REQUIRED
                 referring_nffg IDREF #REQUIRED
-                policy_kind (traversal|reachability) "reachability"
                 source_node IDREF #REQUIRED
                 destination_node IDREF #REQUIRED>
 

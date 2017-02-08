@@ -1,43 +1,64 @@
 The xsd schema it is much complex and much powerfull tha a dtd schema.
-It is possible satisfy more precise requirements and there are more possibilities to
+It is possible satisfy more precise constraints and there are more possibilities to
 reuse code, use inheritance and to specify more complex constraints.
 In fact it is possible to do more checks in verify the correctness of the nffg structure
 demanding some checks to the validation of the xsd schema instead to do it in the application.
 So it is a distributed way to proceed. If the validation process succeeded, it is sure that the data
-structure passed to the application it's valid.
+structure passed to the application it's valid. The file is well formed.
 For example it is possible to check if in a nffg a link refers to two node that exists in the list of
-node or that some policy refers to an existing nffg, it is less work to do in the application.
+node or that a policy refers to an existing nffg, it is less work to do in the application.
 
-I try to maintain the same structure as the dtd schema:
-NETWORK_SERVICE
-      |
-      |-- NFFG(*)
-            |
-            |-- NODE(*)
-            |
-            |-- LINK(*)
-            |
-            |-- POLICY(*)
-                   |
-                   |-- VERIFICATION_RESULT(?)
-                   |
-                   |-- TRAVERSAL_REQUESTED_NODE(?)
+This is the hierarchy of the schema:
+NFFGS
+  |
+  |-- NFFG* (NAME, last_update_time)
+  |     |
+  |     |-- NODE* (NAME, functional_type)
+  |     |     |
+  |     |     |-- LINK (NAME, destination_node)
+  |     |
+  |     |-- POLICY* (NAME, nffg_name, ispositive, source_node, destination_node)
+  |            |
+  |            |-- TRAVERSAL_REQUESTED_NODE? (functional_type)
+  |
+  |-- VERIFICATION_RESULT* (POLICY, result, time, message)
+  
+The root element is NFFGS element.
+Near each element name are indicated the occurrency (? is optionale 0 or 1 times, * is from 0 to 
+unbounded times).
+For every element it is indicated in capital letter the attribute used as the key.
+In my schema:
+ - inside an NFFGS it can't appear two NFFG with same name;
+ - inside an NFFGS it can't appear two POLICY with same name;
+ - inside an NFFGS it can't appear two VERIFICATION_RESULT with same policy (it this way only one
+ 	result for a policy is admitted, the verification result is an element because it is used in
+ 	assignment3b to request the verification of a policy);
+ - inside an NFFG it can't appear two NODE with same name;
+ - inside an NFFG it can't appear two link with same name;
+ 
+Under the node element i have all the link that have the considered node as source, doing this i
+can have more information without doing no more calculations in the application.
 
-but in this case, the traversal policy it's an extension of the reachability policy
-and the traversal requested node is defined as a simple type that is the same of the
-functional type of the node: much more reusable code!
+I made no distinction from Reachability Policy and Traversal Policy, infact the check it will 
+be made on the application: if i have some raversed_node the policy is a Traversal, else it is
+a Reachability, all the othere attributes are the same between the two policy types.
 
-As the dtd i have 1 root element represented by the network_service that can contains
-a sequence of nffg, each one as a unique identifier.
-In a nffg i can have a sequence of node, a sequence of link and a sequence of policies.
-Every element as defined some attributes and in the nffg are specified all the constraints:
-unique identifier and all the referring id from other element.
-I can have two different policies (reachability and traversal), which can have a verification
-result that inside has an attribute that refers to the policy id, with a single constraint
-i can tell to the xsd validator that the two attributes of the two policies in both cases
-refers to a same parameters of a policy: the policy id! (this is very powerfull).
-For each element i can establish the occurrence and for each attribute if it is required
-or optional.
-The occurrence can be also in a specific range.
-At the end the structure it is more human-friendly and much readable in a way that is easy to
-understant the hierarchy instead of the dtd schema.
+Because inside the Verification result i have an attributes Policy that refers to the policy i
+put the element outside the policy and i made a constraint between the policy name and the policy id.
+If i put the verification result inside the policy the constraits won't be correct at 100%, in fact
+i can have only a check that the verification result has a policy name that exist but i can't have
+no assurance that the name of the policy in the verification result is the same of the policy that
+contains the verification result, so i think it is much better to put the verification result outside
+(this choice is also useful for assignment3b).
+
+Same things for the policy inside the nffg, but in this case i must put the policy inside the nffg
+because of the constraints of the node id which the 2 attributes of the policy refers to (source_node and
+destination_node). In fact in this case i defined the key of the node inside the nffg because i would have
+two node with same name in different nffgs -> as a consequence if i put the policy ouside the nffg, i can't
+link to the node_id defined at lower level.
+So the policy will be putted inside of nffg and the only possible constraits for the attribute "nffg_name"
+will be to check if it is a name of an existing nffg: it is not possible to assure that is the same name
+of the nffg that include the policy, so in this case it will be checket in the application.
+
+The structure of XSD schema it is more human-friendly and much readable in a way that is easy to
+understant the hierarchy than the dtd schema.

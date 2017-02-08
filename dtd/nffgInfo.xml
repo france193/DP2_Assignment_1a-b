@@ -3,52 +3,73 @@
 <!-- syntax for external dtd -->
 <!DOCTYPE NETWORK_SERVICES SYSTEM "nffgInfo.dtd">
 <!-- network_services -->
-<NETWORK_SERVICES>
-    <!-- one nffg_name_id_refer -->
-    <NFFG nffg_name_id="service_1"
-          last_update_time="2016-11-09T17:17:30+01:00">
-        <!-- list of nodes -->
-        <NODE node_name_id="node_1" functional_type="web-client"/>
-        <NODE node_name_id="node_2" functional_type="firewall"/>
-        <NODE node_name_id="node_3" functional_type="nat"/>
-        <NODE node_name_id="node_4" functional_type="firewall"/>
-        <NODE node_name_id="node_5" functional_type="web-server"/>
-        <!-- list of all CONNECTIONS between nodes for this nffg_name_id_refer -->
-        <LINK link_name_id="a" source_node="node_1" destination_node="node_2"/>
-        <LINK link_name_id="b" source_node="node_2" destination_node="node_3"/>
-        <LINK link_name_id="c" source_node="node_3" destination_node="node_4"/>
-        <LINK link_name_id="d" source_node="node_4" destination_node="node_5"/>
-        <!-- list of all POLICIES for this nffg_name_id_refer -->
-        <POLICY policy_name_id="policy_1"
-                referring_nffg="service_1"
-                policy_kind="reachability"
-                source_node="node_1"
-                destination_node="node_5">
-            <VERIFICATION_RESULT policy_name_id="policy_1"
-                                 result="positive"
-                                 last_update_time="2016-11-09T17:18:57+01:00"
-                                 message="Verification result is positive"/>
-        </POLICY>
-        <POLICY policy_name_id="policy_2"
-                referring_nffg="service_1"
-                policy_kind="traversal"
-                source_node="node_1"
-                destination_node="node_5">
-            <VERIFICATION_RESULT policy_name_id="policy_2"
-                                 result="negative"
-                                 last_update_time="2016-11-09T17:19:27+01:00"
-                                 message="Verification result is negative"/>
-            <TRAVERSAL_REQUESTED_NODE functional_type="firewall"/>
-        </POLICY>
-        <POLICY policy_name_id="policy_3"
-                referring_nffg="service_1"
-                policy_kind="reachability"
-                source_node="node_5"
-                destination_node="node_1">
-            <VERIFICATION_RESULT policy_name_id="policy_3"
-                                 result="positive"
-                                 last_update_time="2016-11-09T17:25:50+01:00"
-                                 message="Verification result is positive"/>
-        </POLICY>
-    </NFFG>
-</NETWORK_SERVICES>
+<NFFGS>
+
+	<!-- one nffg -->
+	<NFFG nffg_name_id="nffg0" last_update_time="2016-11-09T17:17:30+01:00">
+
+		<!-- list of all NODES with all LINKS for each one -->
+		<NODE node_name_id="node_1" functional_type="web-client">
+			<LINK link_name_id="a" destination_node="node_2" />
+			<LINK link_name_id="b" destination_node="node_2" />
+		</NODE>
+
+		<NODE node_name_id="node_2" functional_type="firewall">
+			<LINK link_name_id="c" destination_node="node_3" />
+		</NODE>
+
+		<NODE node_name_id="node_3" functional_type="nat">
+			<LINK link_name_id="d" destination_node="node_4" />
+		</NODE>
+
+		<NODE node_name_id="node_4" functional_type="firewall">
+			<LINK link_name_id="e" destination_node="node_5" />
+		</NODE>
+
+		<NODE node_name_id="node_5" functional_type="web-server" />
+
+		<!-- list of all POLICIES -->
+		<POLICY policy_name_id="policy_1" referring_nffg="nffg0"
+			source_node="node_1" destination_node="node_5" />
+
+		<POLICY policy_name_id="policy_2" referring_nffg="nffg0"
+			source_node="node_1" destination_node="node_5">
+			<TRAVERSAL_REQUESTED_NODE functional_type="firewall" />
+		</POLICY>
+
+		<POLICY policy_name_id="policy_3" referring_nffg="nffg0"
+			source_node="node_5" destination_node="node_1" />
+	</NFFG>
+	
+	<!-- one nffg -->
+	<NFFG nffg_name_id="nffg1" last_update_time="2016-11-09T17:17:30+01:00">
+
+		<!-- list of all NODES with all LINKS for each one -->
+		<NODE node_name_id="node_6" functional_type="web-client">
+			<LINK link_name_id="x" destination_node="node_7" />
+		</NODE>
+
+		<NODE node_name_id="node_7" functional_type="firewall">
+			<LINK link_name_id="y" destination_node="node_6" />
+		</NODE>
+
+		<!-- list of all POLICIES -->
+		<POLICY policy_name_id="policy_4" referring_nffg="nffg1"
+			source_node="node_6" destination_node="node_7" />
+			
+	</NFFG>
+	
+	<!-- list of all VERIFICATION_RESULT -->
+		<VERIFICATION_RESULT policy_name_id="policy_1"
+			result="positive" last_update_time="2016-11-09T17:18:57+01:00"
+			message="Verification result is positive" />
+
+		<VERIFICATION_RESULT policy_name_id="policy_3"
+			result="positive" last_update_time="2016-11-09T17:25:50+01:00"
+			message="Verification result is positive" />
+
+		<VERIFICATION_RESULT policy_name_id="policy_4"
+			result="negative" last_update_time="2016-11-09T17:19:27+01:00"
+			message="Verification result is negative" />
+			
+</NFFGS>

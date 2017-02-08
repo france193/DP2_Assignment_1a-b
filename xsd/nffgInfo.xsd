@@ -1,174 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- This XSD file was developed by Francesco Longo for the Assignment 1
-	 of the course Distributed Programming II in Politechnic University of Turin. -->
+<!-- This XSD file was developed by Francesco Longo for the Assignment 1 
+	of the course Distributed Programming II in Politechnic University of Turin. -->
 
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="https://france193.wordpress.com"
-            xmlns:flo="https://france193.wordpress.com"
-            elementFormDefault="qualified">
+	targetNamespace="https://france193.wordpress.com" xmlns:flo="https://france193.wordpress.com"
+	elementFormDefault="qualified">
 
-    <xsd:annotation>
-        <xsd:documentation>This is an XML Schema for NFFGs</xsd:documentation>
-    </xsd:annotation>
+	<!-- ROOT ELEMENT -->
+	<xsd:element name="nffgs">
+		<xsd:complexType>
+			<xsd:sequence>
 
-    <!-- ROOT ELEMENT: NETWORK_SERVICES -->
-    <xsd:element name="network_service">
-        <xsd:complexType>
-            <xsd:sequence>
+				<!-- NFFG -->
+				<xsd:element name="nffg" type="flo:nffgType" minOccurs="0"
+					maxOccurs="unbounded">
 
-                <!-- nffg -->
-                <xsd:element name="nffg" minOccurs="0" maxOccurs="unbounded">
-                    <xsd:complexType>
-                        <xsd:sequence>
+					<!-- UNIQUENESS OF NODE INSIDE NFFG -->
+					<xsd:key name="node_id">
+						<xsd:selector xpath="flo:node" />
+						<xsd:field xpath="@name" />
+					</xsd:key>
 
-                            <!-- node -->
-                            <xsd:element name="node" minOccurs="0" maxOccurs="unbounded">
-                                <xsd:complexType>
-                                    <xsd:attribute name="node_name_id" type="xsd:string" use="required"/>
-                                    <xsd:attribute name="functional_type" type="flo:nodeFunctionalType" use="required"/>
-                                </xsd:complexType>
-                            </xsd:element>
-                            <!-- end node -->
+					<!-- UNIQUENESS OF LINK INSIDE NFFG -->
+					<xsd:key name="link_id">
+						<xsd:selector xpath="flo:node/flo:link" />
+						<xsd:field xpath="@name" />
+					</xsd:key>
 
-                            <!-- link -->
-                            <xsd:element name="link" minOccurs="0" maxOccurs="unbounded">
-                                <xsd:complexType>
-                                    <xsd:attribute name="link_name_id" type="xsd:string" use="required"/>
-                                    <xsd:attribute name="link_source_node_name_id_refer" type="xsd:string"
-                                                   use="required"/>
-                                    <xsd:attribute name="link_destination_node_name_id_refer" type="xsd:string"
-                                                   use="required"/>
-                                </xsd:complexType>
-                            </xsd:element>
-                            <!-- end link -->
+					<!-- REFER DESTINATION_NODE OF LINK TO NODE -->
+					<xsd:keyref name="link_refer_to_destination_node" refer="flo:node_id">
+						<xsd:selector xpath="flo:node/flo:link" />
+						<xsd:field xpath="@destination_node" />
+					</xsd:keyref>
 
-                            <!-- policy -->
-                            <xsd:choice minOccurs="0" maxOccurs="unbounded">
-                                <xsd:element name="reachabilityPolicyType" type="flo:reachabilityPolicyType"/>
-                                <xsd:element name="traversalPolicyType" type="flo:traversalPolicyType"/>
-                            </xsd:choice>
-                            <!-- end policy -->
+					<!-- REFER SOURCE_NODE OF POLICY TO NODE -->
+					<xsd:keyref name="policy_refer_to_source_node" refer="flo:node_id">
+						<xsd:selector xpath="flo:policy" />
+						<xsd:field xpath="@source_node" />
+					</xsd:keyref>
 
-                        </xsd:sequence>
-                        <xsd:attribute name="nffg_name_id" type="xsd:string" use="required"/>
-                        <xsd:attribute name="last_updated_time" type="xsd:dateTime" use="required"/>
-                    </xsd:complexType>
+					<!-- REFER DESTINATION_NODE OF POLICY TO NODE -->
+					<xsd:keyref name="policy_refer_to_destination_node"
+						refer="flo:node_id">
+						<xsd:selector xpath="flo:policy" />
+						<xsd:field xpath="@destination_node" />
+					</xsd:keyref>
 
-                    <!-- KEYs -->
-                    <xsd:unique name="node_name_id_key">
-                        <xsd:selector xpath="flo:node"/>
-                        <xsd:field xpath="@node_name_id"/>
-                    </xsd:unique>
-                    <xsd:unique name="link_name_id_key">
-                        <xsd:selector xpath="flo:link"/>
-                        <xsd:field xpath="@link_name_id"/>
-                    </xsd:unique>
-                    <xsd:unique name="policy_name_id_key">
-                        <xsd:selector xpath="flo:reachabilityPolicyType|flo:traversalPolicyType"/>
-                        <xsd:field xpath="@policy_name_id"/>
-                    </xsd:unique>
+				</xsd:element>
+				<!--.-.-.-.-.-. -->
 
-                    <!-- KEYREFs -->
-                    <xsd:keyref name="link_source_node_name_id_keyref" refer="flo:node_name_id_key">
-                        <xsd:selector xpath="flo:link"/>
-                        <xsd:field xpath="@link_source_node_name_id_refer"/>
-                    </xsd:keyref>
-                    <xsd:keyref name="link_destination_node_name_id_keyref" refer="flo:node_name_id_key">
-                        <xsd:selector xpath="flo:link"/>
-                        <xsd:field xpath="@link_destination_node_name_id_refer"/>
-                    </xsd:keyref>
-                    <xsd:keyref name="policy_source_node_name_id_keyref" refer="flo:node_name_id_key">
-                        <xsd:selector xpath="flo:reachabilityPolicyType"/>
-                        <xsd:field xpath="@policy_source_node_name_id_refer"/>
-                    </xsd:keyref>
-                    <xsd:keyref name="policy_destination_node_name_id_keyref" refer="flo:node_name_id_key">
-                        <xsd:selector xpath="flo:reachabilityPolicyType"/>
-                        <xsd:field xpath="@policy_destination_node_name_id_refer"/>
-                    </xsd:keyref>
-                    <xsd:keyref name="policy_name_id_keyref" refer="flo:policy_name_id_key">
-                        <xsd:selector
-                                xpath="flo:reachabilityPolicyType/flo:verificationResult|flo:traversalPolicyType/flo:verificationResult"/>
-                        <xsd:field xpath="@policy_name_id_refer"/>
-                    </xsd:keyref>
+				<!-- VERIFICATION RESULT -->
+				<xsd:element name="verification_result" type="flo:verificationResultType"
+					minOccurs="0" maxOccurs="unbounded">
+				</xsd:element>
+				<!--.-.-.-.-.-. -->
 
-                </xsd:element>
-                <!-- end nffg_name_id_refer -->
+			</xsd:sequence>
+		</xsd:complexType>
 
-            </xsd:sequence>
-        </xsd:complexType>
+		<!-- UNIQUENESS OF NFFG INSIDE NFFGS -->
+		<xsd:key name="nffg_id">
+			<xsd:selector xpath="flo:nffg" />
+			<xsd:field xpath="@name" />
+		</xsd:key>
 
-        <!-- KEY -->
-        <xsd:unique name="nffg_name_id_key">
-            <xsd:selector xpath="flo:nffg"/>
-            <xsd:field xpath="@nffg_name_id"/>
-        </xsd:unique>
+		<!-- UNIQUENESS OF POLICY INSIDE NFFGS -->
+		<xsd:key name="policy_id">
+			<xsd:selector xpath="flo:nffg/flo:policy" />
+			<xsd:field xpath="@name" />
+		</xsd:key>
 
-        <!-- KEYREF -->
-        <xsd:keyref name="policy_nffg_id_keyref" refer="flo:nffg_name_id_key">
-            <xsd:selector xpath="flo:nffg/flo:reachabilityPolicyType|flo:nffg/flo:traversalPolicyType"/>
-            <xsd:field xpath="@nffg_name_id_refer"/>
-        </xsd:keyref>
-    </xsd:element>
+		<!-- UNIQUENESS OF VERFICATION_RESULT INSIDE NFFGS -->
+		<xsd:key name="verification_result_id">
+			<xsd:selector xpath="flo:verification_result" />
+			<xsd:field xpath="@policy" />
+		</xsd:key>
 
-    <!-- POLICIES -->
+		<!-- REFER VERIFICATION_RESULT TO EXISTING POLICY -->
+		<xsd:keyref name="verification_result_ref_to_policy" refer="flo:policy_id">
+			<xsd:selector xpath="flo:verification_result" />
+			<xsd:field xpath="@policy" />
+		</xsd:keyref>
 
-    <!-- Reachability Policy Type (Base Type) -->
-    <xsd:complexType name="reachabilityPolicyType">
-        <xsd:sequence>
+		<!-- REFER NFFG_NAME OF POLICY TO NFFG -->
+		<xsd:keyref name="policy_refer_to_nffg_name" refer="flo:nffg_id">
+			<xsd:selector xpath="flo:nffg/flo:policy" />
+			<xsd:field xpath="@nffg_name" />
+		</xsd:keyref>
 
-            <!-- verification result -->
-            <xsd:element name="verificationResult" minOccurs="0" maxOccurs="1">
-                <xsd:complexType>
-                    <xsd:attribute name="policy_name_id_refer" type="xsd:string" use="required"/>
-                    <xsd:attribute name="result" type="xsd:boolean" use="optional"/>
-                    <xsd:attribute name="time" type="xsd:dateTime" use="optional"/>
-                    <xsd:attribute name="message" type="xsd:string" use="optional"/>
-                </xsd:complexType>
-            </xsd:element>
-            <!-- verification result -->
+	</xsd:element>
 
-        </xsd:sequence>
-        <xsd:attribute name="policy_name_id" type="xsd:string" use="required"/>
-        <xsd:attribute name="nffg_name_id_refer" type="xsd:string" use="required"/>
-        <xsd:attribute name="isPositive" type="xsd:boolean" use="required"/>
-        <xsd:attribute name="policy_source_node_name_id_refer" type="xsd:string" use="required"/>
-        <xsd:attribute name="policy_destination_node_name_id_refer" type="xsd:string" use="required"/>
-    </xsd:complexType>
+	<!-- COMPLEX TYPES -->
+	<xsd:complexType name="nffgType">
+		<xsd:sequence>
 
-    <!-- Traversal Policy Type (Policy Base Type) -->
-    <xsd:complexType name="traversalPolicyType">
-        <xsd:complexContent>
-            <xsd:extension base="flo:reachabilityPolicyType">
-                <xsd:sequence>
+			<!-- NODE -->
+			<xsd:element name="node" type="flo:nodeType" minOccurs="0"
+				maxOccurs="unbounded" />
+			<!--.-.-.-.-.-. -->
 
-                    <!-- request_node -->
-                    <xsd:element name="traversal_requested_node" minOccurs="0" maxOccurs="unbounded">
-                        <xsd:complexType>
-                            <xsd:attribute name="functional_type" type="flo:nodeFunctionalType" use="required"/>
-                        </xsd:complexType>
-                    </xsd:element>
-                    <!-- end request_node -->
+			<!-- POLICY -->
+			<xsd:element name="policy" type="flo:policyType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<!--.-.-.-.-.-. -->
 
-                </xsd:sequence>
-            </xsd:extension>
-        </xsd:complexContent>
-    </xsd:complexType>
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="last_updated_time" type="xsd:dateTime"
+			use="required" />
+	</xsd:complexType>
 
-    <!-- CUSTOM TYPES -->
-    <xsd:simpleType name="nodeFunctionalType">
-        <xsd:restriction base="xsd:string">
-            <xsd:enumeration value="CACHE"/>
-            <xsd:enumeration value="DPI"/>
-            <xsd:enumeration value="FW"/>
-            <xsd:enumeration value="MAIL_CLIENT"/>
-            <xsd:enumeration value="MAIL_SERVER"/>
-            <xsd:enumeration value="NAT"/>
-            <xsd:enumeration value="SPAM"/>
-            <xsd:enumeration value="VPN"/>
-            <xsd:enumeration value="WEB_CLIENT"/>
-            <xsd:enumeration value="WEB_SERVER"/>
-        </xsd:restriction>
-    </xsd:simpleType>
+	<xsd:complexType name="nodeType">
+		<xsd:sequence>
+			<!-- LINK -->
+			<xsd:element name="link" type="flo:linkType" minOccurs="0"
+				maxOccurs="unbounded" />
+			<!--.-.-.-.-.-. -->
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="functional_type" type="flo:FLNodeFunctionalType"
+			use="optional" />
+	</xsd:complexType>
+
+	<xsd:complexType name="linkType">
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="destination_node" type="xsd:string"
+			use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="policyType">
+		<xsd:sequence>
+
+			<!-- TRAVERSED NODE -->
+			<xsd:element name="traversed_node" type="flo:FLNodeFunctionalType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<!--.-.-.-.-.-. -->
+
+		</xsd:sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="nffg_name" type="xsd:string" use="required" />
+		<xsd:attribute name="isPositive" type="xsd:boolean" use="required" />
+		<xsd:attribute name="source_node" type="xsd:string" use="required" />
+		<xsd:attribute name="destination_node" type="xsd:string"
+			use="required" />
+	</xsd:complexType>
+
+	<xsd:complexType name="verificationResultType">
+		<xsd:attribute name="policy" type="xsd:string" use="required" />
+		<xsd:attribute name="result" type="xsd:boolean" use="optional" />
+		<xsd:attribute name="time" type="xsd:dateTime" use="optional" />
+		<xsd:attribute name="message" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+	<!-- SIMPLE TYPES -->
+	<xsd:simpleType name="FLNodeFunctionalType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="CACHE" />
+			<xsd:enumeration value="DPI" />
+			<xsd:enumeration value="FW" />
+			<xsd:enumeration value="MAIL_CLIENT" />
+			<xsd:enumeration value="MAIL_SERVER" />
+			<xsd:enumeration value="NAT" />
+			<xsd:enumeration value="SPAM" />
+			<xsd:enumeration value="VPN" />
+			<xsd:enumeration value="WEB_CLIENT" />
+			<xsd:enumeration value="WEB_SERVER" />
+		</xsd:restriction>
+	</xsd:simpleType>
 
 </xsd:schema>
