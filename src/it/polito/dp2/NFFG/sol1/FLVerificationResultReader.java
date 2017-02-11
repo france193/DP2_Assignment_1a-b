@@ -4,78 +4,41 @@ import it.polito.dp2.NFFG.PolicyReader;
 import it.polito.dp2.NFFG.VerificationResultReader;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLVerificationResultReader implements VerificationResultReader {
+    private PolicyReader policyReader;
+    private Boolean verificationResult;
+    private String verificationResultMsg;
+    private Calendar verificationTime;
 
-    /**
-     * Class' attributes
-     */
-    private PolicyReader policy;
-    private boolean result;
-    private GregorianCalendar time;
-    private String message;
-
-    /**
-     * Class' constructor
-     *
-     * @param policy
-     * @param verificationResult
-     * @param verificationMessage
-     * @param verificationTime
-     */
-    public FLVerificationResultReader(PolicyReader policy,
-                                      Boolean verificationResult,
-                                      GregorianCalendar verificationTime,
-                                      String verificationMessage) {
-
-        this.policy = policy;
-        this.result = verificationResult;
-        this.message = verificationMessage;
-        this.time = verificationTime;
+    public FLVerificationResultReader(PolicyReader policyReader, Boolean verificationResult,
+                                      String verificationResultMsg, Calendar verificationTime) {
+        this.policyReader = policyReader;
+        this.verificationResult = verificationResult;
+        this.verificationResultMsg = verificationResultMsg;
+        this.verificationTime = verificationTime;
     }
 
-    /**
-     * Gives the policy to which this verificationResult is associated.
-     *
-     * @return
-     */
     @Override
     public PolicyReader getPolicy() {
-        return this.policy;
+        return policyReader;
     }
 
-    /**
-     * Gives the verificationResult of the verification. The policy is violated if the verification verificationResult is false, otherwise it is satisfied.
-     *
-     * @return
-     */
     @Override
     public Boolean getVerificationResult() {
-        return Boolean.valueOf(this.result);
+        return verificationResult;
     }
 
-    /**
-     * Gives a human-readable verificationMessage associated with the verificationResult of the verification.
-     *
-     * @return
-     */
     @Override
     public String getVerificationResultMsg() {
-        return this.message;
+        return verificationResultMsg;
     }
 
-    /**
-     * Gives the date when the policy has been verified.
-     *
-     * @return
-     */
     @Override
     public Calendar getVerificationTime() {
-        return this.time != null ? (Calendar) this.time.clone() : null;
+        return verificationTime;
     }
-
 }

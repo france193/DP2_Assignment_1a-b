@@ -1,23 +1,23 @@
-The xsd schema it is much complex and much powerfull tha a dtd schema.
-It is possible satisfy more precise constraints and there are more possibilities to
-reuse code, use inheritance and to specify more complex constraints.
-In fact it is possible to do more checks in verify the correctness of the nffg structure
+The xsd schema it is much complex and much powerfull than a dtd schema.
+It is possible to satisfy more precise constraints and there are more possibilities to
+reuse the code using extension of an element and to specify more complex constraints.
+In fact it is possible to do more checks verifying the correctness of the nffg structure
 demanding some checks to the validation of the xsd schema instead to do it in the application.
 So it is a distributed way to proceed. If the validation process succeeded, it is sure that the data
-structure passed to the application it's valid. The file is well formed.
+structure passed to the application it's valid: the file is well formed.
 For example it is possible to check if in a nffg a link refers to two node that exists in the list of
 node or that a policy refers to an existing nffg, it is less work to do in the application.
 
-This is the hierarchy of the schema:
+This is the hierarchy of my schema:
 NFFGS
   |
   |-- NFFG* (NAME, last_update_time)
   |     |
   |     |-- NODE* (NAME, functional_type)
-  |     |     |
-  |     |     |-- LINK (NAME, destination_node)
-  |     |
-  |     |-- POLICY* (NAME, nffg_name, ispositive, source_node, destination_node)
+  |           |
+  |           |-- LINK (NAME, destination_node)
+  |     
+  |-- POLICY* (NAME, nffg_name, ispositive, source_node, destination_node)
   |            |
   |            |-- TRAVERSAL_REQUESTED_NODE? (functional_type)
   |
@@ -27,6 +27,7 @@ The root element is NFFGS element.
 Near each element name are indicated the occurrency (? is optionale 0 or 1 times, * is from 0 to 
 unbounded times).
 For every element it is indicated in capital letter the attribute used as the key.
+
 In my schema:
  - inside an NFFGS it can't appear two NFFG with same name;
  - inside an NFFGS it can't appear two POLICY with same name;
@@ -37,28 +38,23 @@ In my schema:
  - inside an NFFG it can't appear two link with same name;
  
 Under the node element i have all the link that have the considered node as source, doing this i
-can have more information without doing no more calculations in the application.
+can have more information without doing other calculations in the application.
 
-I made no distinction from Reachability Policy and Traversal Policy, infact the check it will 
-be made on the application: if i have some raversed_node the policy is a Traversal, else it is
+I made no distinction from Reachability Policy and Traversal Policy, in fact the check it will 
+be made on the application: if i have some traversed_node the policy is a Traversal, otherwise it is
 a Reachability, all the othere attributes are the same between the two policy types.
 
 Because inside the Verification result i have an attributes Policy that refers to the policy i
-put the element outside the policy and i made a constraint between the policy name and the policy id.
+put the element outside the policy and i made a constraint (keyref) between the policy name and the policy id.
 If i put the verification result inside the policy the constraits won't be correct at 100%, in fact
 i can have only a check that the verification result has a policy name that exist but i can't have
 no assurance that the name of the policy in the verification result is the same of the policy that
-contains the verification result, so i think it is much better to put the verification result outside
+contains the verification result, so i think it is better to put the verification result outside
 (this choice is also useful for assignment3b).
 
-Same things for the policy inside the nffg, but in this case i must put the policy inside the nffg
-because of the constraints of the node id which the 2 attributes of the policy refers to (source_node and
-destination_node). In fact in this case i defined the key of the node inside the nffg because i would have
-two node with same name in different nffgs -> as a consequence if i put the policy ouside the nffg, i can't
-link to the node_id defined at lower level.
-So the policy will be putted inside of nffg and the only possible constraits for the attribute "nffg_name"
-will be to check if it is a name of an existing nffg: it is not possible to assure that is the same name
-of the nffg that include the policy, so in this case it will be checket in the application.
-
-The structure of XSD schema it is more human-friendly and much readable in a way that is easy to
-understant the hierarchy than the dtd schema.
+Same things for the policy, but in this case, putting the policy outside the nffg i can't define a keyref
+for source and destination of the policy with the key of the node of the nffg: in this case this check is done
+on the application.
+So the policy will be putted outside of the nffg and the only possible constraits for the attribute "nffg_name"
+that refers to an nffg.
+The structure of XSD schema it is more human-friendly and much readable than the dtd schema.

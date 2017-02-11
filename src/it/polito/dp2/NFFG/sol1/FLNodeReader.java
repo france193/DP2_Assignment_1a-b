@@ -9,10 +9,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
-
     /**
      * Class' attributes
      */
@@ -28,7 +27,7 @@ public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
     FLNodeReader(FunctionalType type, String node_name_id) {
         super(node_name_id);
         this.myFunctionalType = type;
-        links = new HashMap();
+        links = new HashMap<String, LinkReader>();
     }
 
     /**
@@ -42,13 +41,14 @@ public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
     }
 
     /**
-     * Gives the known links that connect this node (i.e. have this node as the source node) in the network topology.
+     * Gives the known links that connect this node (i.e. have this node as the
+     * source node) in the network topology.
      *
      * @return
      */
     @Override
     public Set<LinkReader> getLinks() {
-        return new LinkedHashSet(this.links.values());
+        return new LinkedHashSet<LinkReader>(this.links.values());
     }
 
     /**
@@ -61,5 +61,4 @@ public class FLNodeReader extends FLNamedEntityReader implements NodeReader {
             this.links.put(link.getName(), link);
         }
     }
-
 }

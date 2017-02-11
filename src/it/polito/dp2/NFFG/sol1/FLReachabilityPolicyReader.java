@@ -1,65 +1,43 @@
 package it.polito.dp2.NFFG.sol1;
 
-import it.polito.dp2.NFFG.ReachabilityPolicyReader;
-import it.polito.dp2.NFFG.NodeReader;
 import it.polito.dp2.NFFG.NffgReader;
+import it.polito.dp2.NFFG.NodeReader;
+import it.polito.dp2.NFFG.ReachabilityPolicyReader;
+import it.polito.dp2.NFFG.VerificationResultReader;
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLReachabilityPolicyReader extends FLPolicyReader implements ReachabilityPolicyReader {
+    private NodeReader sourceNode;
+    private NodeReader destinationNode;
 
     /**
-     * Class' attributes
-     */
-    private NodeReader nodeSource;
-    private NodeReader nodeDestination;
-
-    /**
-     * Class' constructor
      *
-     * @param nffg_refer
-     * @param isPositive
-     * @param nodeSource
-     * @param destination
+     * @param entityName
+     * @param nffgReader
+     * @param positive
+     * @param sourceNode
+     * @param destinationNode
      */
-    FLReachabilityPolicyReader(String policy_name_id,
-                               NffgReader nffg_refer,
-                               boolean isPositive,
-                               NodeReader nodeSource,
-                               NodeReader destination) {
-
-        super(policy_name_id, nffg_refer, isPositive);
-        this.nodeSource = nodeSource;
-        this.nodeDestination = destination;
+    public FLReachabilityPolicyReader(String entityName, NffgReader nffgReader, Boolean positive, NodeReader sourceNode,
+                                      NodeReader destinationNode) {
+        super(entityName, nffgReader, positive);
+        this.sourceNode = sourceNode;
+        this.destinationNode = destinationNode;
     }
 
-    /**
-     * Gives the nodeSourceNode node of this policy.
-     *
-     * @return
-     */
     @Override
     public NodeReader getSourceNode() {
-        return this.nodeSource;
+        return sourceNode;
     }
 
-    /**
-     * Gives the destination node of this policy.
-     *
-     * @return
-     */
     @Override
     public NodeReader getDestinationNode() {
-        return this.nodeDestination;
+        return destinationNode;
     }
 
-    /**
-     * Method that assign a VerificationResult element to the policy (if it is verified)
-     *
-     * @param verificationResult
-     */
-    public void setVerificationResult(FLVerificationResultReader verificationResult) {
-        super.setVerificationResult(verificationResult);
+    public void setVerificationResultReader(VerificationResultReader verificationResultReader) {
+        super.setVerificationResultReader(verificationResultReader);
     }
 }

@@ -1,41 +1,12 @@
 package it.polito.dp2.NFFG.sol1;
 
-/**
- * Created by Francesco Longo on 14/11/2016.
- * <p>
- * Aim of this application is to read information passed from a NFFG random
- * generator and fill java classes representing my xsd schema.
- * Then Marshalling this document, it is possible to obtain a valid xml
- * respecting constraints obtained from the previous created xsd schema
- **/
-
-// import of ONLY NECESSARY resources of library classes and types
-import it.polito.dp2.NFFG.NffgVerifierFactory;
-import it.polito.dp2.NFFG.NffgVerifierException;
-import it.polito.dp2.NFFG.NffgVerifier;
-import it.polito.dp2.NFFG.NffgReader;
-import it.polito.dp2.NFFG.NodeReader;
-import it.polito.dp2.NFFG.LinkReader;
-import it.polito.dp2.NFFG.PolicyReader;
-import it.polito.dp2.NFFG.ReachabilityPolicyReader;
-import it.polito.dp2.NFFG.TraversalPolicyReader;
-import it.polito.dp2.NFFG.FunctionalType;
-import it.polito.dp2.NFFG.FactoryConfigurationError;
-
-// import of ONLY NECESSARY resources of jaxb generated classes  and types
-import it.polito.dp2.NFFG.sol1.jaxb.NetworkService;
-import it.polito.dp2.NFFG.sol1.jaxb.ReachabilityPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb.TraversalPolicyType;
-import it.polito.dp2.NFFG.sol1.jaxb.NodeFunctionalType;
-
-// other import
-import org.xml.sax.SAXException;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.Set;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -46,52 +17,46 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 
+import org.xml.sax.SAXException;
+
+import it.polito.dp2.NFFG.FactoryConfigurationError;
+import it.polito.dp2.NFFG.FunctionalType;
+import it.polito.dp2.NFFG.LinkReader;
+import it.polito.dp2.NFFG.NffgReader;
+import it.polito.dp2.NFFG.NffgVerifier;
+import it.polito.dp2.NFFG.NffgVerifierException;
+import it.polito.dp2.NFFG.NffgVerifierFactory;
+import it.polito.dp2.NFFG.NodeReader;
+import it.polito.dp2.NFFG.PolicyReader;
+import it.polito.dp2.NFFG.ReachabilityPolicyReader;
+import it.polito.dp2.NFFG.TraversalPolicyReader;
+import it.polito.dp2.NFFG.sol1.jaxb.FLNodeFunctionalType;
+import it.polito.dp2.NFFG.sol1.jaxb.LinkType;
+import it.polito.dp2.NFFG.sol1.jaxb.NffgType;
+import it.polito.dp2.NFFG.sol1.jaxb.Nffgs;
+import it.polito.dp2.NFFG.sol1.jaxb.NodeType;
+import it.polito.dp2.NFFG.sol1.jaxb.PolicyType;
+import it.polito.dp2.NFFG.sol1.jaxb.VerificationResultType;
+
 import static javax.xml.XMLConstants.W3C_XML_SCHEMA_NS_URI;
 
-/************************************************************************
- * ant -Doutput=file1.xml -Dseed=100000 -Dtestcase=1 NffgInfoSerializer *
- ************************************************************************
+/**
+ * Created by Francesco Longo (223428) on 10/11/2016.
  *
- * -Doutput
- * give name to assign to the desidered xml file
- *
- * -Dseed
- * use seed with a value of 100000 for pseudo-random generator
- *
- * -Dtestcase
- * create only one nffg with no policies
- *
- * execute the target NffgInfoSerializer of the build.xml ant file
- *
- * test with policies:
- * ant -Doutput=file1.xml -Dseed=100000 NffgInfoSerializer
- **/
-
-/******************************************************
- * ant -Dseed=100000 -Dtestcase=1 NFFGInfo > out1.txt *
- ******************************************************
- *
- * -Dseed
- * use seed with a value of 100000 for pseudo-random generator
- *
- * -Dtestcase
- * create only one nffg with no policies
- *
- * execute the target NFFGInfo of the build.xml ant file
- *
- * test with policies:
- * ant -Dseed=100000 NFFGInfo > out1.txt
+ * Aim of this application is to read information passed from a NFFG random
+ * generator and fill java classes representing my xsd schema. Then Marshalling
+ * this document, it is possible to obtain a valid xml respecting constraints
+ * obtained from the previous created xsd schema
  **/
 
 public class NffgInfoSerializer {
-
     public static final String XSD_FOLDER = "xsd/";
     public static final String XSD_FILE = "nffgInfo.xsd";
     public static final String XSD_LOCATION = "https://france193.wordpress.com";
     public static final String PACKAGE = "it.polito.dp2.NFFG.sol1.jaxb";
 
     private NffgVerifier monitor;
-    private NetworkService myNetworkService;
+    private static Nffgs myNffgs;
 
     private static String xml_filename;
 
@@ -103,14 +68,14 @@ public class NffgInfoSerializer {
     public NffgInfoSerializer() throws NffgVerifierException {
         NffgVerifierFactory factory = NffgVerifierFactory.newInstance();
         monitor = factory.newNffgVerifier();
-        // create a new NetworkServices root element
-        myNetworkService = new NetworkService();
     }
 
     /**
+     *
      * @param args
+     * @throws NffgVerifierException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NffgVerifierException {
 
         // check parameter
         if (args.length != 1) {
@@ -121,196 +86,167 @@ public class NffgInfoSerializer {
 
         System.out.println(" > This program will serialize your Nffg into an XML file!");
 
-        //read desidered name for new xml file
+        // read desidered name for new xml file
         xml_filename = args[0].toString();
 
         try {
             NffgInfoSerializer myInfoserializer = new NffgInfoSerializer();
             myInfoserializer.readAll();
-            System.out.println(" > The data structure was created!\n");
+            System.out.println(" > Data structure correctly created!\n");
+            myInfoserializer.checkConstraints(myNffgs);
+            System.out.println(" > Constraints correctly satisfied!\n");
             myInfoserializer.writeXMLToFile();
             System.out.println(" > File xml correctly generated!\n");
         } catch (FactoryConfigurationError e) {
-            System.err.println("(!) - Could not create a DocumentBuilderFactory: " + e.getMessage());
             e.printStackTrace();
-            System.exit(11);
-        } catch (NffgVerifierException e) {
-            System.err.println("(!) - Could not instantiate the class: " + e.getMessage());
-            e.printStackTrace();
-            System.exit(1);
-        } catch (JAXBException e) {
-            System.err.println(e.getMessage());
-            e.printStackTrace();
-            System.exit(2);
+            throw new NffgVerifierException("(!) - Could not create a DocumentBuilderFactory: " + e.getMessage());
         } catch (IllegalArgumentException e) {
-            System.err.println("(!) - Error, some argument are wrong!");
             e.printStackTrace();
-            System.exit(3);
+            throw new NffgVerifierException("(!) - Error, some argument are wrong!");
         } catch (FileNotFoundException e) {
-            System.err.println("(!) - Error! The file: " + args[0] + " does not exists!");
             e.printStackTrace();
-            System.exit(4);
+            throw new NffgVerifierException("(!) - Error! The file: " + args[0] + " does not exists!");
         } catch (SAXException e) {
-            System.err.println(e.getMessage());
             e.printStackTrace();
-            System.exit(5);
+            throw new NffgVerifierException("(!) - Error! SAXExceptions!");
         } catch (IOException e) {
-            System.err.println(e.getMessage());
             e.printStackTrace();
-            System.exit(6);
+            throw new NffgVerifierException("(!) - Error! IOException!");
+        } catch (DatatypeConfigurationException e) {
+            e.printStackTrace();
+            throw new NffgVerifierException("(!) - Error! Conversion error from Calendar to XMLCalendar!");
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            throw new NffgVerifierException("(!) - JAXBException: " + e.getMessage());
         }
     }
 
-    public void readAll() {
-        readNffgs();
-        readPolicy();
-    }
+    private void readAll() throws DatatypeConfigurationException {
+        // create a new NetworkServices root element
+        myNffgs = new Nffgs();
 
-    private void readNffgs() {
-        // get the list of NFFGs as a set
-        Set<NffgReader> nffgs_set = monitor.getNffgs();
+        // NFFGS
+        for (NffgReader nffg : monitor.getNffgs()) {
 
-        // for each Nffg read
-        for (NffgReader nffg : nffgs_set) {
+            // NFFG
+            NffgType nffgType = new NffgType();
+            nffgType.setName(nffg.getName());
+            nffgType.setLastUpdatedTime(getXMLCal(nffg.getUpdateTime()));
 
-            /** NFFG **/
-            /* create myNffg */
-            NetworkService.Nffg myNffg = new NetworkService.Nffg();
-            /* setting parameter on myNffg */
-            myNffg.setNffgNameId(nffg.getName());
-            myNffg.setLastUpdatedTime(getXMLCal(nffg.getUpdateTime()));
+            // NODES
+            for (NodeReader node : nffg.getNodes()) {
+                NodeType nodeType = new NodeType();
+                nodeType.setName(node.getName());
+                nodeType.setFunctionalType(FLNodeFunctionalType.valueOf(node.getFuncType().value()));
 
-            /** NODES **/
-            /* take nodes of myNffg */
-            Set<NodeReader> node_set = nffg.getNodes();
+                // LINKS
+                for (LinkReader link : node.getLinks()) {
+                    LinkType linkType = new LinkType();
+                    linkType.setName(link.getName());
+                    linkType.setDestinationNode(link.getDestinationNode().getName());
 
-            /* for each node */
-            for (NodeReader node : node_set) {
-
-                /* create myNode */
-                NetworkService.Nffg.Node myNode = new NetworkService.Nffg.Node();
-                /* setting parameter of myNode */
-                myNode.setNodeNameId(node.getName());
-                myNode.setFunctionalType(NodeFunctionalType.valueOf(node.getFuncType().value()));
-
-                /* add myNode to my myNffg */
-                myNffg.getNode().add(myNode);
-
-                /** LINKS **/
-                /* take links of every node and save it to my nffg */
-                Set<LinkReader> link_set = node.getLinks();
-
-                for (LinkReader link : link_set) {
-                    /* create myNode */
-                    NetworkService.Nffg.Link myLink = new NetworkService.Nffg.Link();
-
-                    /* setting parameter of myLink */
-                    myLink.setLinkNameId(link.getName());
-                    myLink.setLinkSourceNodeNameIdRefer(link.getSourceNode().getName());
-                    myLink.setLinkDestinationNodeNameIdRefer(link.getDestinationNode().getName());
-
-                    myNffg.getLink().add(myLink);
+                    // add links to node
+                    nodeType.getLink().add(linkType);
                 }
+
+                // add node to nffg
+                nffgType.getNode().add(nodeType);
             }
 
-            /* add myNffg to my NetworkService */
-            myNetworkService.getNffg().add(myNffg);
+            // add nffg to nffgs
+            myNffgs.getNffg().add(nffgType);
         }
-    }
 
-    private void readPolicy() {
-        // get the list of NFFGs as a set
-        Set<PolicyReader> policy_set = monitor.getPolicies();
+        // POLICIES
+        for (PolicyReader policy : monitor.getPolicies()) {
+            PolicyType policyType = new PolicyType();
 
-        for (PolicyReader general_policy : policy_set) {
+            // set common parameters of Policy
+            policyType.setName(policy.getName());
+            policyType.setNffgName(policy.getNffg().getName());
+            policyType.setIsPositive(policy.isPositive());
 
-            // find the Nffg of the policy
-            NetworkService.Nffg myNffg = findNffg(general_policy.getNffg().getName());
+            if (policy.getResult() != null) {
+                VerificationResultType verificationResultType = new VerificationResultType();
 
-            // read Reachability Policy
-            if (!(general_policy instanceof TraversalPolicyReader)) {
-                ReachabilityPolicyReader policy = (ReachabilityPolicyReader) general_policy;
-                ReachabilityPolicyType myPolicy = new ReachabilityPolicyType();
+                verificationResultType.setPolicy(policy.getName());
+                verificationResultType.setResult(policy.getResult().getVerificationResult());
+                verificationResultType.setTime(getXMLCal(policy.getResult().getVerificationTime()));
+                verificationResultType.setMessage(policy.getResult().getVerificationResultMsg());
 
-                myPolicy.setPolicyNameId(policy.getName());
-                myPolicy.setNffgNameIdRefer(policy.getNffg().getName());
-                myPolicy.setIsPositive(policy.isPositive().booleanValue());
+                myNffgs.getVerificationResult().add(verificationResultType);
+            }
 
-                readVerificationResult(myPolicy, policy);
+            if (policy instanceof ReachabilityPolicyReader) {
+                // cast to Reachability policy to get Source and Destination
+                // Node
+                ReachabilityPolicyReader policy_r = (ReachabilityPolicyReader) policy;
+                policyType.setSourceNode(policy_r.getSourceNode().getName());
+                policyType.setDestinationNode(policy_r.getDestinationNode().getName());
 
-                myPolicy.setPolicySourceNodeNameIdRefer(policy.getSourceNode().getName());
-                myPolicy.setPolicyDestinationNodeNameIdRefer(policy.getDestinationNode().getName());
+                // if it is a traversal, cast to Traversal and read also
+                // Traversed Node
+                if (policy instanceof TraversalPolicyReader) {
+                    TraversalPolicyReader policy_t = (TraversalPolicyReader) policy;
 
-                myNffg.getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
-
-            } else {
-                // read Traversal Policy
-                TraversalPolicyReader policy = (TraversalPolicyReader) general_policy;
-                TraversalPolicyType myPolicy = new TraversalPolicyType();
-
-                myPolicy.setPolicyNameId(policy.getName());
-                myPolicy.setNffgNameIdRefer(policy.getNffg().getName());
-                myPolicy.setIsPositive(policy.isPositive());
-
-                readVerificationResult(myPolicy, policy);
-
-                myPolicy.setPolicySourceNodeNameIdRefer(policy.getSourceNode().getName());
-                myPolicy.setPolicyDestinationNodeNameIdRefer(policy.getDestinationNode().getName());
-                if (policy.getTraversedFuctionalTypes().size() > 0) {
-                    for (FunctionalType myFunctionalType : policy.getTraversedFuctionalTypes()) {
-                        TraversalPolicyType.TraversalRequestedNode myRequestedNode = new TraversalPolicyType.TraversalRequestedNode();
-                        myRequestedNode.setFunctionalType(NodeFunctionalType.valueOf(myFunctionalType.value()));
-                        myPolicy.getTraversalRequestedNode().add(myRequestedNode);
+                    for (FunctionalType functionalType : policy_t.getTraversedFuctionalTypes()) {
+                        policyType.getTraversedNode().add(FLNodeFunctionalType.valueOf(functionalType.value()));
                     }
                 }
+            }
 
-                myNffg.getReachabilityPolicyTypeOrTraversalPolicyType().add(myPolicy);
+            myNffgs.getPolicy().add(policyType);
+        }
+    }
+
+    private void checkConstraints(Nffgs nffgs) throws JAXBException {
+        for (PolicyType p : myNffgs.getPolicy()) {
+            specificNffgContainsAllNodesWhichAPolicyRefersTo(p.getSourceNode(), p.getDestinationNode(), p.getNffgName(), nffgs);
+        }
+    }
+
+    private void specificNffgContainsAllNodesWhichAPolicyRefersTo(String srcNode, String dstNode, String nffgName, Nffgs nffgs) throws JAXBException {
+        NffgType n = findNffg(nffgName, nffgs);
+
+        if (n != null) {
+            if ( nodeExists(n, srcNode) == false ) {
+                throw new JAXBException("Error: can't find srcNode: \"" + srcNode + "\" on Nffg: " + n.getName());
+            }
+            if ( nodeExists(n, dstNode) == false ) {
+                throw new JAXBException("Error: can't find dstNode: \"" + dstNode + "\" on Nffg: " + n.getName());
+            }
+        }
+    }
+
+    private boolean nodeExists(NffgType n, String srcNode) {
+        for (NodeType node : n.getNode()) {
+            if (node.getName().equals(srcNode)) {
+                return true;
             }
         }
 
+        return false;
     }
 
-    private void readVerificationResult(ReachabilityPolicyType myPolicy, PolicyReader policy) {
-        //create a new verification result element
-        ReachabilityPolicyType.VerificationResult  verificationResult = new ReachabilityPolicyType.VerificationResult();
-
-        if (policy.getResult() == null) {
-            verificationResult.setPolicyNameIdRefer(policy.getName());
-            verificationResult.setResult(null);
-            verificationResult.setTime(null);
-            verificationResult.setMessage(null);
-        } else {
-            verificationResult.setPolicyNameIdRefer(policy.getName());
-            verificationResult.setResult(policy.getResult().getVerificationResult());
-            verificationResult.setTime(getXMLCal(policy.getResult().getVerificationTime()));
-            verificationResult.setMessage(policy.getResult().getVerificationResultMsg());
-        }
-
-        myPolicy.setVerificationResult(verificationResult);
-    }
-
-    private NetworkService.Nffg findNffg(String name) {
-
-        // get the list of NFFGs as a set
-        List<NetworkService.Nffg> nffg_list = myNetworkService.getNffg();
-
-        for (NetworkService.Nffg nffg : nffg_list) {
-            if (nffg.getNffgNameId().contains(name)) {
-                return nffg;
+    private NffgType findNffg(String name, Nffgs nffgs) {
+        for (NffgType n : nffgs.getNffg()) {
+            if (n.getName().equals(name)) {
+                return n;
             }
         }
 
         return null;
     }
 
-    private void writeXMLToFile() throws SAXException, JAXBException, IOException {
+    private void writeXMLToFile() throws SAXException, IOException, JAXBException {
         try {
             // create jaxb context
             JAXBContext jaxbContext = JAXBContext.newInstance(PACKAGE);
 
             // set validation with my xsd
             SchemaFactory mySchemaFactory = SchemaFactory.newInstance(W3C_XML_SCHEMA_NS_URI);
-            Schema mySchema = mySchemaFactory.newSchema(new File(XSD_FOLDER + XSD_FILE));
+            Schema mySchema;
+            mySchema = mySchemaFactory.newSchema(new File(XSD_FOLDER + XSD_FILE));
 
             String extension;
             if (xml_filename.contains(".xml")) {
@@ -326,32 +262,31 @@ public class NffgInfoSerializer {
             myMarchaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             myMarchaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, XSD_LOCATION + " " + XSD_FOLDER + XSD_FILE);
             myMarchaller.setSchema(mySchema);
-            myMarchaller.marshal(myNetworkService, fileOutputStream);
+            myMarchaller.marshal(myNffgs, fileOutputStream);
 
             fileOutputStream.close();
-        } catch (JAXBException e) {
-            throw new JAXBException("(!) - Error creating the new instance of the JAXBContent");
         } catch (IOException e) {
             e.printStackTrace();
             throw new IOException("(!) - Error in the IO");
-        } catch (SAXException e) {
-            throw new SAXException("(!) - Error creating the XML Schema object");
         } catch (NullPointerException e) {
-            throw new NullPointerException("(!) - Error! The instance of the schema or the file of the schema is not well created!");
+            throw new NullPointerException(
+                    "(!) - Error! The instance of the schema or the file of the schema is not well created!");
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("(!) - Error! No implementation of the schema language is available");
         }
     }
 
-    private XMLGregorianCalendar getXMLCal(Calendar calendar) {
-        GregorianCalendar cal = (GregorianCalendar) calendar;
+    /**
+     * If the conversion fail, it will generate a DatatypeConfigurationException
+     *
+     * @param calendar
+     * @return
+     * @throws DatatypeConfigurationException
+     */
+    private XMLGregorianCalendar getXMLCal(Calendar calendar) throws DatatypeConfigurationException {
         XMLGregorianCalendar xmlCal = null;
-
-        try {
-            xmlCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
-        }
+        GregorianCalendar cal = (GregorianCalendar) calendar;
+        xmlCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
 
         return xmlCal;
     }

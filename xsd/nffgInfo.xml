@@ -20,19 +20,6 @@
 
 		<fran:node name="node3" functional_type="SPAM" />
 
-		<fran:policy name="policy0" nffg_name="nffg0" isPositive="true"
-			source_node="node0" destination_node="node1">
-			<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
-		</fran:policy>
-
-		<fran:policy name="policy1" nffg_name="nffg0" isPositive="true"
-			source_node="node1" destination_node="node2">
-			<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
-		</fran:policy>
-
-		<fran:policy name="policy2" nffg_name="nffg0" isPositive="true"
-			source_node="node2" destination_node="node3" />
-
 	</fran:nffg>
 
 	<fran:nffg name="nffg1" last_updated_time="2008-09-29T03:49:45">
@@ -45,18 +32,30 @@
 			<fran:link name="link1" destination_node="node2" />
 		</fran:node>
 
-		<fran:node name="node2" functional_type="CACHE"/>
-
-		<fran:policy name="policy3" nffg_name="nffg0" isPositive="true"
-			source_node="node2" destination_node="node1">
-			<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
-		</fran:policy>
+		<fran:node name="node2" functional_type="CACHE" />
 
 	</fran:nffg>
 
+	<fran:policy name="policy0" nffg_name="nffg0" isPositive="true"
+		source_node="node0" destination_node="node1">
+		<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+	</fran:policy>
+
+	<fran:policy name="policy1" nffg_name="nffg0" isPositive="true"
+		source_node="node1" destination_node="node2">
+		<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+	</fran:policy>
+
+	<fran:policy name="policy2" nffg_name="nffg0" isPositive="true"
+		source_node="node20" destination_node="node3" />
+
+	<fran:policy name="policy3" nffg_name="nffg0" isPositive="true"
+		source_node="node2" destination_node="node1">
+		<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+	</fran:policy>
+
 	<fran:verification_result policy="policy0"
 		time="2009-09-29T03:49:45" result="true" message="Policy is verified" />
-
 	<fran:verification_result policy="policy3"
 		time="2009-09-29T03:49:45" result="true" message="Policy is verified" />
 

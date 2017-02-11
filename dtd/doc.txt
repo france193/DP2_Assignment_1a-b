@@ -14,7 +14,7 @@ NFFGS
   |-- VERIFICATION_RESULT* (POLICY, result, time, message)
   
 Building a dtd schema is very different from building an xsd schema, it is much simpler but there are
-less possibilities to build a precise schema satisfying all requirements.
+less possibilities to build a preciser schema satisfying all requirements.
 It is not possible to reuse code so i have to rewrite all declaration every time i want to reuse them.
 In my project there is 1 root element that is the NFFGS (it contains a list of nffg).
 
@@ -30,9 +30,8 @@ must be done on the application (verify if there is a REQUESTED_NODE or not).
 I choose to separate the element VERIFICATION_RESULT in order to have a better correspondace with the policy:
 indicating a policy from verification_result.
 
-As the node are unique on the all nffgs, in this case it is possible to put the policy element ountside the nffg
-and it is possible to have a perfect correspondance but i choose to leave policy element under nffg in order to
-have the same schema of the xsd.
+As the node are unique on the all nffgs, in this case it is possible to leave policy element under the nffg
+element.
 
 All the link refers to the node (destination) with the IDREF, the same is done for the policies
 for the source and destination done.

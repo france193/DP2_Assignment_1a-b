@@ -28,18 +28,6 @@
 						<xsd:field xpath="@name" />
 					</xsd:key>
 
-					<!-- REFER DESTINATION_NODE OF LINK TO NODE -->
-					<xsd:keyref name="link_refer_to_destination_node" refer="flo:node_id">
-						<xsd:selector xpath="flo:node/flo:link" />
-						<xsd:field xpath="@destination_node" />
-					</xsd:keyref>
-
-					<!-- REFER SOURCE_NODE OF POLICY TO NODE -->
-					<xsd:keyref name="policy_refer_to_source_node" refer="flo:node_id">
-						<xsd:selector xpath="flo:policy" />
-						<xsd:field xpath="@source_node" />
-					</xsd:keyref>
-
 					<!-- REFER DESTINATION_NODE OF POLICY TO NODE -->
 					<xsd:keyref name="policy_refer_to_destination_node"
 						refer="flo:node_id">
@@ -50,10 +38,14 @@
 				</xsd:element>
 				<!--.-.-.-.-.-. -->
 
+				<!-- POLICY -->
+				<xsd:element name="policy" type="flo:policyType"
+					minOccurs="0" maxOccurs="unbounded" />
+				<!--.-.-.-.-.-. -->
+
 				<!-- VERIFICATION RESULT -->
 				<xsd:element name="verification_result" type="flo:verificationResultType"
-					minOccurs="0" maxOccurs="unbounded">
-				</xsd:element>
+					minOccurs="0" maxOccurs="unbounded" />
 				<!--.-.-.-.-.-. -->
 
 			</xsd:sequence>
@@ -67,26 +59,26 @@
 
 		<!-- UNIQUENESS OF POLICY INSIDE NFFGS -->
 		<xsd:key name="policy_id">
-			<xsd:selector xpath="flo:nffg/flo:policy" />
+			<xsd:selector xpath="flo:policy" />
 			<xsd:field xpath="@name" />
 		</xsd:key>
-
-		<!-- UNIQUENESS OF VERFICATION_RESULT INSIDE NFFGS -->
+		
+		<!-- UNIQUENESS OF VERIFICATION_RESULT INSIDE NFFGS -->
 		<xsd:key name="verification_result_id">
 			<xsd:selector xpath="flo:verification_result" />
 			<xsd:field xpath="@policy" />
 		</xsd:key>
 
-		<!-- REFER VERIFICATION_RESULT TO EXISTING POLICY -->
-		<xsd:keyref name="verification_result_ref_to_policy" refer="flo:policy_id">
-			<xsd:selector xpath="flo:verification_result" />
-			<xsd:field xpath="@policy" />
-		</xsd:keyref>
-
 		<!-- REFER NFFG_NAME OF POLICY TO NFFG -->
 		<xsd:keyref name="policy_refer_to_nffg_name" refer="flo:nffg_id">
 			<xsd:selector xpath="flo:nffg/flo:policy" />
 			<xsd:field xpath="@nffg_name" />
+		</xsd:keyref>
+
+		<!-- REFER VERIFICATION_RESULT TO EXISTING POLICY -->
+		<xsd:keyref name="verification_result_ref_to_policy" refer="flo:policy_id">
+			<xsd:selector xpath="flo:verification_result" />
+			<xsd:field xpath="@policy" />
 		</xsd:keyref>
 
 	</xsd:element>
@@ -98,11 +90,6 @@
 			<!-- NODE -->
 			<xsd:element name="node" type="flo:nodeType" minOccurs="0"
 				maxOccurs="unbounded" />
-			<!--.-.-.-.-.-. -->
-
-			<!-- POLICY -->
-			<xsd:element name="policy" type="flo:policyType"
-				minOccurs="0" maxOccurs="unbounded" />
 			<!--.-.-.-.-.-. -->
 
 		</xsd:sequence>
@@ -148,9 +135,9 @@
 
 	<xsd:complexType name="verificationResultType">
 		<xsd:attribute name="policy" type="xsd:string" use="required" />
-		<xsd:attribute name="result" type="xsd:boolean" use="optional" />
-		<xsd:attribute name="time" type="xsd:dateTime" use="optional" />
-		<xsd:attribute name="message" type="xsd:string" use="optional" />
+		<xsd:attribute name="result" type="xsd:boolean" use="required" />
+		<xsd:attribute name="time" type="xsd:dateTime" use="required" />
+		<xsd:attribute name="message" type="xsd:string" use="required" />
 	</xsd:complexType>
 
 	<!-- SIMPLE TYPES -->

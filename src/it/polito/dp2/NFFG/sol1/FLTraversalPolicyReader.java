@@ -1,67 +1,36 @@
 package it.polito.dp2.NFFG.sol1;
 
-import it.polito.dp2.NFFG.TraversalPolicyReader;
-import it.polito.dp2.NFFG.FunctionalType;
-import it.polito.dp2.NFFG.NffgReader;
-import it.polito.dp2.NFFG.NodeReader;
+import it.polito.dp2.NFFG.*;
 
-import it.polito.dp2.NFFG.sol1.jaxb.TraversalPolicyType;
-
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implements TraversalPolicyReader {
-
-    private Set<FunctionalType> listOfRequiredTraversedNode;
+    private Set<FunctionalType> traversedFunctionalType;
 
     /**
-     * Class' constructor
      *
-     * @param policy_name_id
-     * @param nffg_refer
-     * @param isPositive
-     * @param nodeSource
-     * @param nodeDestination
-     * @param listOfRequiredTraversedNode
+     * @param entityName
+     * @param nffgReader
+     * @param positive
+     * @param sourceNode
+     * @param destinationNode
+     * @param traversedFunctionalType
      */
-    FLTraversalPolicyReader(String policy_name_id,
-                            NffgReader nffg_refer,
-                            boolean isPositive,
-                            NodeReader nodeSource,
-                            NodeReader nodeDestination,
-                            List<TraversalPolicyType.TraversalRequestedNode> listOfRequiredTraversedNode) {
-
-        super(policy_name_id, nffg_refer, isPositive, nodeSource, nodeDestination);
-
-        this.listOfRequiredTraversedNode = new LinkedHashSet();
-
-        if (listOfRequiredTraversedNode != null) {
-            for (TraversalPolicyType.TraversalRequestedNode t : listOfRequiredTraversedNode) {
-                this.listOfRequiredTraversedNode.add(FunctionalType.valueOf(t.getFunctionalType().value().toString()));
-            }
-        }
+    public FLTraversalPolicyReader(String entityName, NffgReader nffgReader, Boolean positive, NodeReader sourceNode,
+                                   NodeReader destinationNode, Set<FunctionalType> traversedFunctionalType) {
+        super(entityName, nffgReader, positive, sourceNode, destinationNode);
+        this.traversedFunctionalType = traversedFunctionalType;
     }
 
-    /**
-     * Gives the set of network functionalities that must be traversed for the property of this policy to hold.
-     *
-     * @return
-     */
     @Override
     public Set<FunctionalType> getTraversedFuctionalTypes() {
-        return new LinkedHashSet(this.listOfRequiredTraversedNode);
+        return traversedFunctionalType;
     }
 
-    /**
-     * Method that assign a VerificationResult element to the policy (if it is verified)
-     *
-     * @param verificationResult
-     */
-    public void setVerificationResult(FLVerificationResultReader verificationResult) {
-        super.setVerificationResult(verificationResult);
+    public void setVerificationResultReader(VerificationResultReader verificationResultReader) {
+        super.setVerificationResultReader(verificationResultReader);
     }
 }

@@ -4,7 +4,7 @@ import it.polito.dp2.NFFG.LinkReader;
 import it.polito.dp2.NFFG.NodeReader;
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
 
@@ -28,7 +28,8 @@ public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
     }
 
     /**
-     * Gives access to the information associated to the destination node of this link.
+     * Gives access to the information associated to the destination node of
+     * this link.
      *
      * @return
      */
@@ -38,7 +39,8 @@ public class FLLinkReader extends FLNamedEntityReader implements LinkReader {
     }
 
     /**
-     * Gives access to the information associated to the sourceNode node of this link.
+     * Gives access to the information associated to the sourceNode node of this
+     * link.
      *
      * @return
      */

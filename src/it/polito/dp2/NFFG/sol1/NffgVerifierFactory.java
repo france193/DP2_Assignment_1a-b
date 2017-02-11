@@ -4,18 +4,15 @@ package it.polito.dp2.NFFG.sol1;
 
 import it.polito.dp2.NFFG.NffgVerifier;
 import it.polito.dp2.NFFG.NffgVerifierException;
-import org.xml.sax.SAXException;
-
-import javax.xml.bind.JAXBException;
 
 /**
  * To test all the code:
- * <p>
+ *
  * ant -Dtestcase=0 -Dseed=100000 runFuncTest
  */
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class NffgVerifierFactory extends it.polito.dp2.NFFG.NffgVerifierFactory {
 
@@ -26,37 +23,15 @@ public class NffgVerifierFactory extends it.polito.dp2.NFFG.NffgVerifierFactory 
     }
 
     /**
-     * Create an instance of the concrete class NffgVerifier which extends the abstrac interface NffgVerifier
+     * Create an instance of the concrete class NffgVerifier which extends the
+     * abstrac interface NffgVerifier
+     *
      * @return
      * @throws it.polito.dp2.NFFG.NffgVerifierException
      */
     @Override
     public NffgVerifier newNffgVerifier() throws NffgVerifierException {
-
-        NffgVerifier myNffgVerifier;
-
-        try {
-            myNffgVerifier = new FLNffgVerifier();
-        } catch (JAXBException e) {
-            System.err.println("JAXBException Error: "+e.getMessage());
-            e.printStackTrace();
-            throw new NffgVerifierException(e.getMessage());
-        } catch (SAXException e) {
-            System.err.println("NffgVerifierException Error: "+e.getMessage());
-            e.printStackTrace();
-            throw new NffgVerifierException(e.getMessage());
-        } catch (NullPointerException e) {
-            System.err.println("NullPointerException Error: "+e.getMessage());
-            e.printStackTrace();
-            throw new NffgVerifierException(e.getMessage());
-        }
-
+        NffgVerifier myNffgVerifier = new FLNffgVerifier();
         return myNffgVerifier;
-    }
-
-    //toString() implemented for debugging purposes
-    @Override
-    public String toString(){
-        return "This is a custom NffgVerifierFactory implementation for the assignment 2.";
     }
 }

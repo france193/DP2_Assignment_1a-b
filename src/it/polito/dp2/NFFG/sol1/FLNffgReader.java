@@ -4,15 +4,18 @@ import it.polito.dp2.NFFG.NffgReader;
 import it.polito.dp2.NFFG.NodeReader;
 import it.polito.dp2.NFFG.PolicyReader;
 
-import java.util.*;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
-
     private HashMap<String, FLPolicyReader> policies;
     private HashMap<String, FLNodeReader> nodes;
+    private HashMap<String, String> namOfNode;
     private Calendar last_updated_time;
 
     /**
@@ -27,6 +30,15 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
 
         nodes = new HashMap<>();
         policies = new HashMap<>();
+        namOfNode = new HashMap<>();
+    }
+
+    public HashMap<String, String> getNamOfNode() {
+        return namOfNode;
+    }
+
+    public void addNameOfNode(String s1, String s2) {
+        namOfNode.put(s1, s2);
     }
 
     /**
@@ -57,11 +69,12 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      */
     @Override
     public Set<NodeReader> getNodes() {
-        return new LinkedHashSet(this.nodes.values());
+        return new LinkedHashSet<NodeReader>(this.nodes.values());
     }
 
     /**
-     * Method that adds a node into the HashMap containing all the nodes of the considered Nffg
+     * Method that adds a node into the HashMap containing all the nodes of the
+     * considered Nffg
      *
      * @param node
      */
@@ -77,11 +90,12 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
      * @return
      */
     public Set<PolicyReader> getPolicies() {
-        return new LinkedHashSet(this.policies.values());
+        return new LinkedHashSet<PolicyReader>(this.policies.values());
     }
 
     /**
-     * Method that adds a policy into the HashMap containing all the policies of the considered Nffg
+     * Method that adds a policy into the HashMap containing all the policies of
+     * the considered Nffg
      *
      * @param policy
      */
@@ -90,5 +104,4 @@ public class FLNffgReader extends FLNamedEntityReader implements NffgReader {
             policies.put(policy.getName(), policy);
         }
     }
-
 }

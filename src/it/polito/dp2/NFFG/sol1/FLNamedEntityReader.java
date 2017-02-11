@@ -3,10 +3,9 @@ package it.polito.dp2.NFFG.sol1;
 import it.polito.dp2.NFFG.NamedEntityReader;
 
 /**
- * Created by FLDeviOS on 23/11/2016.
+ * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLNamedEntityReader implements NamedEntityReader {
-
     private String entityName;
 
     /**
@@ -26,14 +25,5 @@ public class FLNamedEntityReader implements NamedEntityReader {
     @Override
     public String getName() {
         return this.entityName;
-    }
-
-    /**
-     * Set the entityName of this entity.
-     *
-     * @param entityName
-     */
-    public void setEntityName(String entityName) {
-        this.entityName = entityName;
     }
 }
