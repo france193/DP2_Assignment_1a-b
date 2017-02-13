@@ -1,7 +1,5 @@
 package it.polito.dp2.NFFG.sol1;
 
-/** Assignment 1b.2 **/
-
 import it.polito.dp2.NFFG.NffgVerifier;
 import it.polito.dp2.NFFG.NffgVerifierException;
 

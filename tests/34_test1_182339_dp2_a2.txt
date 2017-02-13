@@ -1,0 +1,67 @@
+Buildfile: /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/build.xml
+
+setseed:
+
+runFuncTest:
+
+init:
+
+-chk-bindings:
+
+generate-bindings:
+
+build:
+     [echo] Building the submitted solution (if needed)...
+     [echo] Done.
+
+runFuncTest.real:
+     [echo] The tests will run using '/Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1736620108' as working directory.
+     [echo] Testcase: 1
+     [echo] Seed: 182339
+     [echo] 
+     [echo] Copying the xsd/nffgInfo.xsd file to the working directory...
+     [copy] Copying 1 file to /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1736620108/xsd
+     [echo] File copied.
+
+init:
+
+-chk-bindings:
+
+generate-bindings:
+
+build:
+     [echo] Building the submitted solution (if needed)...
+     [echo] Done.
+
+NffgInfoSerializer.test:
+     [java]  > This program will serialize your Nffg into an XML file!
+     [java] Random NffgVerifier: Using seed: 182339
+     [java] Random NffgVerifier: Test case: 1
+     [java]  > Data structure correctly created!
+     [java] 
+     [java]  > Constraints correctly satisfied!
+     [java] 
+     [java]  > File xml correctly generated!
+     [java] 
+     [echo] Done.
+     [echo] Validating the generated XML file: /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1736620108/out1224854104.xml
+     [java] Parsing successful!
+     [echo] *** XML file validated ***
+    [junit] Running it.polito.dp2.NFFG.lab1.tests.NFFGTests
+    [junit] Testsuite: it.polito.dp2.NFFG.lab1.tests.NFFGTests
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.591 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.591 sec
+    [junit] 
+    [junit] ------------- Standard Output ---------------
+    [junit] Random NffgVerifier: Using seed: 182339
+    [junit] Random NffgVerifier: Test case: 1
+    [junit] Comparing nffg Nffg0
+    [junit] Comparing node MAILCLIENT0
+    [junit] Comparing node SPAM0
+    [junit] Comparing node WEBSERVER0
+    [junit] ------------- ---------------- ---------------
+     [echo] *** All Tests PASSED  ***
+   [delete] Deleting directory /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1736620108
+
+BUILD SUCCESSFUL
+Total time: 2 seconds

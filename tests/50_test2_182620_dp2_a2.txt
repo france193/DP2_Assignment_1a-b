@@ -1,0 +1,108 @@
+Buildfile: /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/build.xml
+
+setseed:
+
+runFuncTest:
+
+init:
+
+-chk-bindings:
+
+generate-bindings:
+
+build:
+     [echo] Building the submitted solution (if needed)...
+     [echo] Done.
+
+runFuncTest.real:
+     [echo] The tests will run using '/Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1336027545' as working directory.
+     [echo] Testcase: 2
+     [echo] Seed: 182620
+     [echo] 
+     [echo] Copying the xsd/nffgInfo.xsd file to the working directory...
+     [copy] Copying 1 file to /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1336027545/xsd
+     [echo] File copied.
+
+init:
+
+-chk-bindings:
+
+generate-bindings:
+
+build:
+     [echo] Building the submitted solution (if needed)...
+     [echo] Done.
+
+NffgInfoSerializer.test:
+     [java]  > This program will serialize your Nffg into an XML file!
+     [java] Random NffgVerifier: Using seed: 182620
+     [java] Random NffgVerifier: Test case: 2
+     [java]  > Data structure correctly created!
+     [java] 
+     [java]  > Constraints correctly satisfied!
+     [java] 
+     [java]  > File xml correctly generated!
+     [java] 
+     [echo] Done.
+     [echo] Validating the generated XML file: /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1336027545/out1794530136.xml
+     [java] Parsing successful!
+     [echo] *** XML file validated ***
+    [junit] Running it.polito.dp2.NFFG.lab1.tests.NFFGTests
+    [junit] Testsuite: it.polito.dp2.NFFG.lab1.tests.NFFGTests
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.453 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.453 sec
+    [junit] 
+    [junit] ------------- Standard Output ---------------
+    [junit] Random NffgVerifier: Using seed: 182620
+    [junit] Random NffgVerifier: Test case: 2
+    [junit] Comparing policy Policy0
+    [junit] Comparing policy Policy1
+    [junit] Comparing policy Policy10
+    [junit] Comparing policy Policy11
+    [junit] Comparing policy Policy12
+    [junit] Comparing policy Policy13
+    [junit] Comparing policy Policy14
+    [junit] Comparing policy Policy15
+    [junit] Comparing policy Policy16
+    [junit] Comparing policy Policy17
+    [junit] Comparing policy Policy2
+    [junit] Comparing policy Policy3
+    [junit] Comparing policy Policy4
+    [junit] Comparing policy Policy5
+    [junit] Comparing policy Policy6
+    [junit] Comparing policy Policy7
+    [junit] Comparing policy Policy8
+    [junit] Comparing policy Policy9
+    [junit] Comparing nffg Nffg0
+    [junit] Comparing node CACHE4
+    [junit] Comparing node DPI0
+    [junit] Comparing node DPI10
+    [junit] Comparing node DPI8
+    [junit] Comparing node FW2
+    [junit] Comparing node FW5
+    [junit] Comparing node MAILCLIENT1
+    [junit] Comparing node MAILCLIENT2
+    [junit] Comparing node MAILSERVER1
+    [junit] Comparing node MAILSERVER2
+    [junit] Comparing node MAILSERVER3
+    [junit] Comparing node MAILSERVER4
+    [junit] Comparing node MAILSERVER5
+    [junit] Comparing node MAILSERVER6
+    [junit] Comparing node MAILSERVER7
+    [junit] Comparing node MAILSERVER8
+    [junit] Comparing node NAT11
+    [junit] Comparing node NAT6
+    [junit] Comparing node SPAM7
+    [junit] Comparing node SPAM9
+    [junit] Comparing node VPN1
+    [junit] Comparing node VPN3
+    [junit] Comparing node WEBCLIENT0
+    [junit] Comparing node WEBCLIENT3
+    [junit] Comparing node WEBSERVER0
+    [junit] Comparing node WEBSERVER9
+    [junit] ------------- ---------------- ---------------
+     [echo] *** All Tests PASSED  ***
+   [delete] Deleting directory /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1336027545
+
+BUILD SUCCESSFUL
+Total time: 2 seconds

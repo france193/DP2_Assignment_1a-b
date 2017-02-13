@@ -1,0 +1,366 @@
+Buildfile: /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/build.xml
+
+setseed:
+
+runFuncTest:
+
+init:
+
+-chk-bindings:
+
+generate-bindings:
+
+build:
+     [echo] Building the submitted solution (if needed)...
+     [echo] Done.
+
+runFuncTest.real:
+     [echo] The tests will run using '/Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1929694013' as working directory.
+     [echo] Testcase: 2
+     [echo] Seed: 181933
+     [echo] 
+     [echo] Copying the xsd/nffgInfo.xsd file to the working directory...
+     [copy] Copying 1 file to /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1929694013/xsd
+     [echo] File copied.
+
+init:
+
+-chk-bindings:
+
+generate-bindings:
+
+build:
+     [echo] Building the submitted solution (if needed)...
+     [echo] Done.
+
+NffgInfoSerializer.test:
+     [java]  > This program will serialize your Nffg into an XML file!
+     [java] Random NffgVerifier: Using seed: 181933
+     [java] Random NffgVerifier: Test case: 2
+     [java]  > Data structure correctly created!
+     [java] 
+     [java]  > Constraints correctly satisfied!
+     [java] 
+     [java]  > File xml correctly generated!
+     [java] 
+     [echo] Done.
+     [echo] Validating the generated XML file: /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1929694013/out1963679100.xml
+     [java] Parsing successful!
+     [echo] *** XML file validated ***
+    [junit] Running it.polito.dp2.NFFG.lab1.tests.NFFGTests
+    [junit] Testsuite: it.polito.dp2.NFFG.lab1.tests.NFFGTests
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.652 sec
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.652 sec
+    [junit] 
+    [junit] ------------- Standard Output ---------------
+    [junit] Random NffgVerifier: Using seed: 181933
+    [junit] Random NffgVerifier: Test case: 2
+    [junit] Comparing policy Policy0
+    [junit] Comparing policy Policy1
+    [junit] Comparing policy Policy10
+    [junit] Comparing policy Policy100
+    [junit] Comparing policy Policy101
+    [junit] Comparing policy Policy102
+    [junit] Comparing policy Policy103
+    [junit] Comparing policy Policy104
+    [junit] Comparing policy Policy105
+    [junit] Comparing policy Policy106
+    [junit] Comparing policy Policy107
+    [junit] Comparing policy Policy108
+    [junit] Comparing policy Policy109
+    [junit] Comparing policy Policy11
+    [junit] Comparing policy Policy110
+    [junit] Comparing policy Policy111
+    [junit] Comparing policy Policy112
+    [junit] Comparing policy Policy113
+    [junit] Comparing policy Policy114
+    [junit] Comparing policy Policy115
+    [junit] Comparing policy Policy116
+    [junit] Comparing policy Policy117
+    [junit] Comparing policy Policy118
+    [junit] Comparing policy Policy119
+    [junit] Comparing policy Policy12
+    [junit] Comparing policy Policy120
+    [junit] Comparing policy Policy121
+    [junit] Comparing policy Policy122
+    [junit] Comparing policy Policy123
+    [junit] Comparing policy Policy124
+    [junit] Comparing policy Policy125
+    [junit] Comparing policy Policy126
+    [junit] Comparing policy Policy127
+    [junit] Comparing policy Policy128
+    [junit] Comparing policy Policy129
+    [junit] Comparing policy Policy13
+    [junit] Comparing policy Policy130
+    [junit] Comparing policy Policy131
+    [junit] Comparing policy Policy132
+    [junit] Comparing policy Policy133
+    [junit] Comparing policy Policy134
+    [junit] Comparing policy Policy135
+    [junit] Comparing policy Policy136
+    [junit] Comparing policy Policy14
+    [junit] Comparing policy Policy15
+    [junit] Comparing policy Policy16
+    [junit] Comparing policy Policy17
+    [junit] Comparing policy Policy18
+    [junit] Comparing policy Policy19
+    [junit] Comparing policy Policy2
+    [junit] Comparing policy Policy20
+    [junit] Comparing policy Policy21
+    [junit] Comparing policy Policy22
+    [junit] Comparing policy Policy23
+    [junit] Comparing policy Policy24
+    [junit] Comparing policy Policy25
+    [junit] Comparing policy Policy26
+    [junit] Comparing policy Policy27
+    [junit] Comparing policy Policy28
+    [junit] Comparing policy Policy29
+    [junit] Comparing policy Policy3
+    [junit] Comparing policy Policy30
+    [junit] Comparing policy Policy31
+    [junit] Comparing policy Policy32
+    [junit] Comparing policy Policy33
+    [junit] Comparing policy Policy34
+    [junit] Comparing policy Policy35
+    [junit] Comparing policy Policy36
+    [junit] Comparing policy Policy37
+    [junit] Comparing policy Policy38
+    [junit] Comparing policy Policy39
+    [junit] Comparing policy Policy4
+    [junit] Comparing policy Policy40
+    [junit] Comparing policy Policy41
+    [junit] Comparing policy Policy42
+    [junit] Comparing policy Policy43
+    [junit] Comparing policy Policy44
+    [junit] Comparing policy Policy45
+    [junit] Comparing policy Policy46
+    [junit] Comparing policy Policy47
+    [junit] Comparing policy Policy48
+    [junit] Comparing policy Policy49
+    [junit] Comparing policy Policy5
+    [junit] Comparing policy Policy50
+    [junit] Comparing policy Policy51
+    [junit] Comparing policy Policy52
+    [junit] Comparing policy Policy53
+    [junit] Comparing policy Policy54
+    [junit] Comparing policy Policy55
+    [junit] Comparing policy Policy56
+    [junit] Comparing policy Policy57
+    [junit] Comparing policy Policy58
+    [junit] Comparing policy Policy59
+    [junit] Comparing policy Policy6
+    [junit] Comparing policy Policy60
+    [junit] Comparing policy Policy61
+    [junit] Comparing policy Policy62
+    [junit] Comparing policy Policy63
+    [junit] Comparing policy Policy64
+    [junit] Comparing policy Policy65
+    [junit] Comparing policy Policy66
+    [junit] Comparing policy Policy67
+    [junit] Comparing policy Policy68
+    [junit] Comparing policy Policy69
+    [junit] Comparing policy Policy7
+    [junit] Comparing policy Policy70
+    [junit] Comparing policy Policy71
+    [junit] Comparing policy Policy72
+    [junit] Comparing policy Policy73
+    [junit] Comparing policy Policy74
+    [junit] Comparing policy Policy75
+    [junit] Comparing policy Policy76
+    [junit] Comparing policy Policy77
+    [junit] Comparing policy Policy78
+    [junit] Comparing policy Policy79
+    [junit] Comparing policy Policy8
+    [junit] Comparing policy Policy80
+    [junit] Comparing policy Policy81
+    [junit] Comparing policy Policy82
+    [junit] Comparing policy Policy83
+    [junit] Comparing policy Policy84
+    [junit] Comparing policy Policy85
+    [junit] Comparing policy Policy86
+    [junit] Comparing policy Policy87
+    [junit] Comparing policy Policy88
+    [junit] Comparing policy Policy89
+    [junit] Comparing policy Policy9
+    [junit] Comparing policy Policy90
+    [junit] Comparing policy Policy91
+    [junit] Comparing policy Policy92
+    [junit] Comparing policy Policy93
+    [junit] Comparing policy Policy94
+    [junit] Comparing policy Policy95
+    [junit] Comparing policy Policy96
+    [junit] Comparing policy Policy97
+    [junit] Comparing policy Policy98
+    [junit] Comparing policy Policy99
+    [junit] Comparing nffg Nffg0
+    [junit] Comparing node CACHE2
+    [junit] Comparing node DPI1
+    [junit] Comparing node DPI13
+    [junit] Comparing node DPI6
+    [junit] Comparing node FW7
+    [junit] Comparing node FW8
+    [junit] Comparing node MAILSERVER1
+    [junit] Comparing node MAILSERVER3
+    [junit] Comparing node MAILSERVER4
+    [junit] Comparing node MAILSERVER5
+    [junit] Comparing node NAT0
+    [junit] Comparing node NAT14
+    [junit] Comparing node SPAM11
+    [junit] Comparing node SPAM3
+    [junit] Comparing node SPAM9
+    [junit] Comparing node VPN10
+    [junit] Comparing node VPN12
+    [junit] Comparing node VPN4
+    [junit] Comparing node VPN5
+    [junit] Comparing node WEBCLIENT0
+    [junit] Comparing node WEBCLIENT1
+    [junit] Comparing node WEBCLIENT2
+    [junit] Comparing node WEBSERVER0
+    [junit] Comparing node WEBSERVER2
+    [junit] Comparing nffg Nffg1
+    [junit] Comparing node CACHE0
+    [junit] Comparing node CACHE1
+    [junit] Comparing node MAILCLIENT2
+    [junit] Comparing node MAILCLIENT3
+    [junit] Comparing node MAILCLIENT4
+    [junit] Comparing node MAILCLIENT5
+    [junit] Comparing node MAILCLIENT6
+    [junit] Comparing node MAILCLIENT7
+    [junit] Comparing node MAILSERVER1
+    [junit] Comparing node MAILSERVER2
+    [junit] Comparing node MAILSERVER3
+    [junit] Comparing node MAILSERVER4
+    [junit] Comparing node SPAM3
+    [junit] Comparing node VPN2
+    [junit] Comparing node WEBCLIENT0
+    [junit] Comparing node WEBCLIENT1
+    [junit] Comparing node WEBCLIENT8
+    [junit] Comparing node WEBCLIENT9
+    [junit] Comparing node WEBSERVER0
+    [junit] Comparing node WEBSERVER5
+    [junit] Comparing nffg Nffg2
+    [junit] Comparing node CACHE15
+    [junit] Comparing node CACHE16
+    [junit] Comparing node CACHE2
+    [junit] Comparing node CACHE6
+    [junit] Comparing node DPI10
+    [junit] Comparing node DPI7
+    [junit] Comparing node DPI9
+    [junit] Comparing node FW12
+    [junit] Comparing node MAILCLIENT0
+    [junit] Comparing node MAILCLIENT2
+    [junit] Comparing node MAILCLIENT3
+    [junit] Comparing node MAILCLIENT4
+    [junit] Comparing node MAILSERVER2
+    [junit] Comparing node NAT1
+    [junit] Comparing node SPAM13
+    [junit] Comparing node SPAM14
+    [junit] Comparing node SPAM17
+    [junit] Comparing node SPAM4
+    [junit] Comparing node VPN0
+    [junit] Comparing node VPN11
+    [junit] Comparing node VPN3
+    [junit] Comparing node VPN5
+    [junit] Comparing node VPN8
+    [junit] Comparing node WEBCLIENT1
+    [junit] Comparing node WEBSERVER0
+    [junit] Comparing node WEBSERVER1
+    [junit] Comparing node WEBSERVER3
+    [junit] Comparing node WEBSERVER4
+    [junit] Comparing node WEBSERVER5
+    [junit] Comparing nffg Nffg3
+    [junit] Comparing node DPI1
+    [junit] Comparing node DPI2
+    [junit] Comparing node DPI3
+    [junit] Comparing node DPI5
+    [junit] Comparing node MAILCLIENT0
+    [junit] Comparing node MAILCLIENT4
+    [junit] Comparing node MAILCLIENT5
+    [junit] Comparing node MAILSERVER4
+    [junit] Comparing node MAILSERVER6
+    [junit] Comparing node MAILSERVER7
+    [junit] Comparing node MAILSERVER8
+    [junit] Comparing node NAT4
+    [junit] Comparing node SPAM0
+    [junit] Comparing node WEBCLIENT1
+    [junit] Comparing node WEBCLIENT2
+    [junit] Comparing node WEBCLIENT3
+    [junit] Comparing node WEBSERVER0
+    [junit] Comparing node WEBSERVER1
+    [junit] Comparing node WEBSERVER2
+    [junit] Comparing node WEBSERVER3
+    [junit] Comparing node WEBSERVER5
+    [junit] Comparing nffg Nffg4
+    [junit] Comparing node CACHE8
+    [junit] Comparing node CACHE9
+    [junit] Comparing node DPI3
+    [junit] Comparing node FW14
+    [junit] Comparing node FW15
+    [junit] Comparing node FW7
+    [junit] Comparing node MAILCLIENT0
+    [junit] Comparing node MAILCLIENT3
+    [junit] Comparing node MAILCLIENT4
+    [junit] Comparing node MAILSERVER1
+    [junit] Comparing node MAILSERVER2
+    [junit] Comparing node MAILSERVER3
+    [junit] Comparing node MAILSERVER6
+    [junit] Comparing node NAT10
+    [junit] Comparing node SPAM11
+    [junit] Comparing node SPAM13
+    [junit] Comparing node SPAM2
+    [junit] Comparing node SPAM4
+    [junit] Comparing node SPAM5
+    [junit] Comparing node VPN0
+    [junit] Comparing node VPN1
+    [junit] Comparing node VPN12
+    [junit] Comparing node VPN6
+    [junit] Comparing node WEBCLIENT1
+    [junit] Comparing node WEBCLIENT2
+    [junit] Comparing node WEBSERVER0
+    [junit] Comparing node WEBSERVER4
+    [junit] Comparing node WEBSERVER5
+    [junit] Comparing node WEBSERVER7
+    [junit] Comparing node WEBSERVER8
+    [junit] Comparing nffg Nffg5
+    [junit] Comparing node CACHE0
+    [junit] Comparing node CACHE4
+    [junit] Comparing node DPI1
+    [junit] Comparing node DPI8
+    [junit] Comparing node DPI9
+    [junit] Comparing node FW10
+    [junit] Comparing node MAILSERVER0
+    [junit] Comparing node MAILSERVER1
+    [junit] Comparing node NAT5
+    [junit] Comparing node SPAM6
+    [junit] Comparing node VPN2
+    [junit] Comparing node VPN3
+    [junit] Comparing node VPN7
+    [junit] Comparing node WEBCLIENT0
+    [junit] Comparing nffg Nffg6
+    [junit] Comparing node CACHE2
+    [junit] Comparing node CACHE3
+    [junit] Comparing node DPI5
+    [junit] Comparing node DPI7
+    [junit] Comparing node MAILCLIENT1
+    [junit] Comparing node MAILCLIENT3
+    [junit] Comparing node MAILCLIENT4
+    [junit] Comparing node MAILCLIENT6
+    [junit] Comparing node MAILCLIENT7
+    [junit] Comparing node MAILCLIENT8
+    [junit] Comparing node MAILSERVER0
+    [junit] Comparing node NAT0
+    [junit] Comparing node NAT1
+    [junit] Comparing node SPAM4
+    [junit] Comparing node SPAM8
+    [junit] Comparing node SPAM9
+    [junit] Comparing node VPN6
+    [junit] Comparing node WEBCLIENT0
+    [junit] Comparing node WEBCLIENT2
+    [junit] Comparing node WEBCLIENT5
+    [junit] Comparing node WEBSERVER1
+    [junit] ------------- ---------------- ---------------
+     [echo] *** All Tests PASSED  ***
+   [delete] Deleting directory /Users/FLDeviOS/Documents/workspace_2016_2017/DP2_Assignment_1b/temp1929694013
+
+BUILD SUCCESSFUL
+Total time: 2 seconds
