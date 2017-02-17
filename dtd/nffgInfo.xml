@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!-- syntax for external dtd -->
-<!DOCTYPE NETWORK_SERVICES SYSTEM "nffgInfo.dtd">
+<!DOCTYPE NFFGS SYSTEM "nffgInfo.dtd">
 <!-- network_services -->
 <NFFGS>
 
