@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<nffgs xmlns="https://france193.wordpress.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://france193.wordpress.com xsd/nffgInfo.xsd">
+<nffgs xmlns="https://france193.wordpress.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="https://france193.wordpress.com xsd/nffgInfo.xsd">
     <nffg name="Nffg4" last_updated_time="2016-09-28T23:13:20.000+02:00">
         <node name="MAILSERVER3" functional_type="MAIL_SERVER">
             <link name="Link10" destination_node="CACHE5"/>
@@ -1179,32 +1180,40 @@
     <policy name="Policy12" nffg_name="Nffg0" isPositive="true" source_node="MAILSERVER2" destination_node="WEBCLIENT0">
         <traversed_node>NAT</traversed_node>
     </policy>
-    <policy name="Policy56" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER0" destination_node="WEBCLIENT2"/>
-    <policy name="Policy11" nffg_name="Nffg0" isPositive="false" source_node="MAILCLIENT4" destination_node="WEBSERVER8">
+    <policy name="Policy56" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER0"
+            destination_node="WEBCLIENT2"/>
+    <policy name="Policy11" nffg_name="Nffg0" isPositive="false" source_node="MAILCLIENT4"
+            destination_node="WEBSERVER8">
         <traversed_node>WEB_SERVER</traversed_node>
         <traversed_node>SPAM</traversed_node>
     </policy>
-    <policy name="Policy55" nffg_name="Nffg5" isPositive="false" source_node="MAILSERVER0" destination_node="MAILCLIENT4"/>
+    <policy name="Policy55" nffg_name="Nffg5" isPositive="false" source_node="MAILSERVER0"
+            destination_node="MAILCLIENT4"/>
     <policy name="Policy10" nffg_name="Nffg0" isPositive="true" source_node="MAILCLIENT2" destination_node="WEBSERVER5">
         <traversed_node>WEB_SERVER</traversed_node>
         <traversed_node>VPN</traversed_node>
         <traversed_node>DPI</traversed_node>
     </policy>
-    <policy name="Policy54" nffg_name="Nffg5" isPositive="false" source_node="MAILCLIENT4" destination_node="MAILSERVER0"/>
-    <policy name="Policy53" nffg_name="Nffg5" isPositive="false" source_node="MAILCLIENT4" destination_node="MAILSERVER0">
+    <policy name="Policy54" nffg_name="Nffg5" isPositive="false" source_node="MAILCLIENT4"
+            destination_node="MAILSERVER0"/>
+    <policy name="Policy53" nffg_name="Nffg5" isPositive="false" source_node="MAILCLIENT4"
+            destination_node="MAILSERVER0">
         <traversed_node>DPI</traversed_node>
     </policy>
     <policy name="Policy16" nffg_name="Nffg0" isPositive="true" source_node="WEBSERVER5" destination_node="WEBCLIENT1">
         <traversed_node>WEB_SERVER</traversed_node>
     </policy>
     <policy name="Policy15" nffg_name="Nffg0" isPositive="true" source_node="WEBSERVER0" destination_node="WEBCLIENT1"/>
-    <policy name="Policy59" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER2" destination_node="WEBCLIENT3"/>
+    <policy name="Policy59" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER2"
+            destination_node="WEBCLIENT3"/>
     <policy name="Policy14" nffg_name="Nffg0" isPositive="false" source_node="WEBSERVER4" destination_node="WEBCLIENT1">
         <traversed_node>VPN</traversed_node>
         <traversed_node>FW</traversed_node>
     </policy>
-    <policy name="Policy58" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER0" destination_node="WEBCLIENT3"/>
-    <policy name="Policy13" nffg_name="Nffg0" isPositive="true" source_node="WEBSERVER3" destination_node="MAILCLIENT2"/>
+    <policy name="Policy58" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER0"
+            destination_node="WEBCLIENT3"/>
+    <policy name="Policy13" nffg_name="Nffg0" isPositive="true" source_node="WEBSERVER3"
+            destination_node="MAILCLIENT2"/>
     <policy name="Policy57" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER1" destination_node="WEBCLIENT0">
         <traversed_node>NAT</traversed_node>
     </policy>
@@ -1220,61 +1229,83 @@
     <policy name="Policy17" nffg_name="Nffg0" isPositive="true" source_node="WEBSERVER1" destination_node="WEBCLIENT0">
         <traversed_node>CACHE</traversed_node>
     </policy>
-    <policy name="Policy52" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT3" destination_node="MAILSERVER0"/>
-    <policy name="Policy51" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT3" destination_node="MAILSERVER2"/>
-    <policy name="Policy50" nffg_name="Nffg5" isPositive="true" source_node="WEBCLIENT2" destination_node="MAILSERVER1"/>
-    <policy name="Policy45" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT0" destination_node="MAILSERVER0">
+    <policy name="Policy52" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT3"
+            destination_node="MAILSERVER0"/>
+    <policy name="Policy51" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT3"
+            destination_node="MAILSERVER2"/>
+    <policy name="Policy50" nffg_name="Nffg5" isPositive="true" source_node="WEBCLIENT2"
+            destination_node="MAILSERVER1"/>
+    <policy name="Policy45" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT0"
+            destination_node="MAILSERVER0">
         <traversed_node>MAIL_CLIENT</traversed_node>
         <traversed_node>NAT</traversed_node>
     </policy>
-    <policy name="Policy44" nffg_name="Nffg4" isPositive="false" source_node="WEBSERVER1" destination_node="MAILCLIENT1"/>
-    <policy name="Policy43" nffg_name="Nffg4" isPositive="false" source_node="MAILCLIENT1" destination_node="WEBSERVER0">
+    <policy name="Policy44" nffg_name="Nffg4" isPositive="false" source_node="WEBSERVER1"
+            destination_node="MAILCLIENT1"/>
+    <policy name="Policy43" nffg_name="Nffg4" isPositive="false" source_node="MAILCLIENT1"
+            destination_node="WEBSERVER0">
         <traversed_node>DPI</traversed_node>
         <traversed_node>WEB_CLIENT</traversed_node>
         <traversed_node>SPAM</traversed_node>
     </policy>
-    <policy name="Policy42" nffg_name="Nffg4" isPositive="false" source_node="MAILCLIENT1" destination_node="WEBSERVER1"/>
-    <policy name="Policy49" nffg_name="Nffg5" isPositive="true" source_node="WEBCLIENT2" destination_node="MAILSERVER0"/>
-    <policy name="Policy48" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT2" destination_node="MAILSERVER3"/>
-    <policy name="Policy47" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT0" destination_node="MAILSERVER1"/>
+    <policy name="Policy42" nffg_name="Nffg4" isPositive="false" source_node="MAILCLIENT1"
+            destination_node="WEBSERVER1"/>
+    <policy name="Policy49" nffg_name="Nffg5" isPositive="true" source_node="WEBCLIENT2"
+            destination_node="MAILSERVER0"/>
+    <policy name="Policy48" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT2"
+            destination_node="MAILSERVER3"/>
+    <policy name="Policy47" nffg_name="Nffg5" isPositive="false" source_node="WEBCLIENT0"
+            destination_node="MAILSERVER1"/>
     <policy name="Policy46" nffg_name="Nffg5" isPositive="true" source_node="WEBCLIENT0" destination_node="MAILSERVER1">
         <traversed_node>NAT</traversed_node>
     </policy>
-    <policy name="Policy41" nffg_name="Nffg4" isPositive="false" source_node="MAILCLIENT1" destination_node="WEBSERVER1"/>
-    <policy name="Policy40" nffg_name="Nffg3" isPositive="false" source_node="MAILSERVER0" destination_node="MAILCLIENT1">
+    <policy name="Policy41" nffg_name="Nffg4" isPositive="false" source_node="MAILCLIENT1"
+            destination_node="WEBSERVER1"/>
+    <policy name="Policy40" nffg_name="Nffg3" isPositive="false" source_node="MAILSERVER0"
+            destination_node="MAILCLIENT1">
         <traversed_node>CACHE</traversed_node>
         <traversed_node>MAIL_CLIENT</traversed_node>
     </policy>
-    <policy name="Policy34" nffg_name="Nffg3" isPositive="false" source_node="MAILCLIENT1" destination_node="MAILSERVER2"/>
+    <policy name="Policy34" nffg_name="Nffg3" isPositive="false" source_node="MAILCLIENT1"
+            destination_node="MAILSERVER2"/>
     <policy name="Policy33" nffg_name="Nffg3" isPositive="true" source_node="WEBCLIENT0" destination_node="MAILSERVER0">
         <traversed_node>NAT</traversed_node>
         <traversed_node>SPAM</traversed_node>
     </policy>
-    <policy name="Policy77" nffg_name="Nffg7" isPositive="true" source_node="WEBSERVER1" destination_node="MAILCLIENT0"/>
-    <policy name="Policy32" nffg_name="Nffg3" isPositive="false" source_node="WEBCLIENT0" destination_node="MAILSERVER0">
+    <policy name="Policy77" nffg_name="Nffg7" isPositive="true" source_node="WEBSERVER1"
+            destination_node="MAILCLIENT0"/>
+    <policy name="Policy32" nffg_name="Nffg3" isPositive="false" source_node="WEBCLIENT0"
+            destination_node="MAILSERVER0">
         <traversed_node>WEB_CLIENT</traversed_node>
     </policy>
-    <policy name="Policy76" nffg_name="Nffg7" isPositive="false" source_node="WEBSERVER1" destination_node="MAILCLIENT1">
+    <policy name="Policy76" nffg_name="Nffg7" isPositive="false" source_node="WEBSERVER1"
+            destination_node="MAILCLIENT1">
         <traversed_node>NAT</traversed_node>
     </policy>
-    <policy name="Policy31" nffg_name="Nffg2" isPositive="false" source_node="WEBSERVER3" destination_node="WEBCLIENT1"/>
+    <policy name="Policy31" nffg_name="Nffg2" isPositive="false" source_node="WEBSERVER3"
+            destination_node="WEBCLIENT1"/>
     <policy name="Policy75" nffg_name="Nffg7" isPositive="true" source_node="WEBSERVER1" destination_node="MAILCLIENT5">
         <traversed_node>WEB_SERVER</traversed_node>
     </policy>
     <policy name="Policy38" nffg_name="Nffg3" isPositive="true" source_node="WEBCLIENT6" destination_node="MAILSERVER1">
         <traversed_node>DPI</traversed_node>
     </policy>
-    <policy name="Policy37" nffg_name="Nffg3" isPositive="false" source_node="WEBCLIENT6" destination_node="MAILSERVER1"/>
-    <policy name="Policy36" nffg_name="Nffg3" isPositive="true" source_node="MAILCLIENT2" destination_node="MAILSERVER1">
+    <policy name="Policy37" nffg_name="Nffg3" isPositive="false" source_node="WEBCLIENT6"
+            destination_node="MAILSERVER1"/>
+    <policy name="Policy36" nffg_name="Nffg3" isPositive="true" source_node="MAILCLIENT2"
+            destination_node="MAILSERVER1">
         <traversed_node>MAIL_SERVER</traversed_node>
         <traversed_node>FW</traversed_node>
     </policy>
-    <policy name="Policy35" nffg_name="Nffg3" isPositive="false" source_node="MAILCLIENT1" destination_node="MAILSERVER0">
+    <policy name="Policy35" nffg_name="Nffg3" isPositive="false" source_node="MAILCLIENT1"
+            destination_node="MAILSERVER0">
         <traversed_node>CACHE</traversed_node>
         <traversed_node>MAIL_CLIENT</traversed_node>
     </policy>
-    <policy name="Policy39" nffg_name="Nffg3" isPositive="true" source_node="MAILSERVER1" destination_node="WEBCLIENT6"/>
-    <policy name="Policy9" nffg_name="Nffg0" isPositive="false" source_node="MAILCLIENT2" destination_node="WEBSERVER3"/>
+    <policy name="Policy39" nffg_name="Nffg3" isPositive="true" source_node="MAILSERVER1"
+            destination_node="WEBCLIENT6"/>
+    <policy name="Policy9" nffg_name="Nffg0" isPositive="false" source_node="MAILCLIENT2"
+            destination_node="WEBSERVER3"/>
     <policy name="Policy70" nffg_name="Nffg7" isPositive="true" source_node="WEBSERVER1" destination_node="MAILCLIENT5">
         <traversed_node>DPI</traversed_node>
         <traversed_node>VPN</traversed_node>
@@ -1289,7 +1320,8 @@
     </policy>
     <policy name="Policy6" nffg_name="Nffg0" isPositive="false" source_node="WEBCLIENT1" destination_node="WEBSERVER5"/>
     <policy name="Policy5" nffg_name="Nffg0" isPositive="false" source_node="WEBCLIENT1" destination_node="WEBSERVER0"/>
-    <policy name="Policy30" nffg_name="Nffg2" isPositive="true" source_node="MAILSERVER8" destination_node="WEBCLIENT1"/>
+    <policy name="Policy30" nffg_name="Nffg2" isPositive="true" source_node="MAILSERVER8"
+            destination_node="WEBCLIENT1"/>
     <policy name="Policy74" nffg_name="Nffg7" isPositive="true" source_node="WEBSERVER0" destination_node="WEBCLIENT9"/>
     <policy name="Policy4" nffg_name="Nffg0" isPositive="false" source_node="WEBCLIENT1" destination_node="WEBSERVER5">
         <traversed_node>WEB_SERVER</traversed_node>
@@ -1300,16 +1332,19 @@
     <policy name="Policy3" nffg_name="Nffg0" isPositive="true" source_node="WEBCLIENT0" destination_node="WEBSERVER1">
         <traversed_node>CACHE</traversed_node>
     </policy>
-    <policy name="Policy72" nffg_name="Nffg7" isPositive="false" source_node="WEBSERVER0" destination_node="MAILCLIENT2">
+    <policy name="Policy72" nffg_name="Nffg7" isPositive="false" source_node="WEBSERVER0"
+            destination_node="MAILCLIENT2">
         <traversed_node>CACHE</traversed_node>
         <traversed_node>SPAM</traversed_node>
         <traversed_node>DPI</traversed_node>
     </policy>
     <policy name="Policy2" nffg_name="Nffg0" isPositive="true" source_node="WEBCLIENT0" destination_node="WEBSERVER0"/>
-    <policy name="Policy71" nffg_name="Nffg7" isPositive="false" source_node="WEBSERVER0" destination_node="WEBCLIENT3"/>
+    <policy name="Policy71" nffg_name="Nffg7" isPositive="false" source_node="WEBSERVER0"
+            destination_node="WEBCLIENT3"/>
     <policy name="Policy1" nffg_name="Nffg0" isPositive="true" source_node="WEBCLIENT0" destination_node="MAILSERVER7"/>
     <policy name="Policy23" nffg_name="Nffg1" isPositive="true" source_node="WEBSERVER1" destination_node="WEBCLIENT0"/>
-    <policy name="Policy67" nffg_name="Nffg7" isPositive="false" source_node="MAILCLIENT5" destination_node="WEBSERVER1">
+    <policy name="Policy67" nffg_name="Nffg7" isPositive="false" source_node="MAILCLIENT5"
+            destination_node="WEBSERVER1">
         <traversed_node>DPI</traversed_node>
         <traversed_node>VPN</traversed_node>
         <traversed_node>SPAM</traversed_node>
@@ -1330,17 +1365,21 @@
         <traversed_node>DPI</traversed_node>
     </policy>
     <policy name="Policy20" nffg_name="Nffg1" isPositive="true" source_node="WEBCLIENT0" destination_node="WEBSERVER3"/>
-    <policy name="Policy64" nffg_name="Nffg7" isPositive="false" source_node="MAILCLIENT2" destination_node="WEBSERVER0">
+    <policy name="Policy64" nffg_name="Nffg7" isPositive="false" source_node="MAILCLIENT2"
+            destination_node="WEBSERVER0">
         <traversed_node>WEB_CLIENT</traversed_node>
     </policy>
-    <policy name="Policy27" nffg_name="Nffg2" isPositive="true" source_node="WEBCLIENT1" destination_node="MAILSERVER8"/>
-    <policy name="Policy26" nffg_name="Nffg2" isPositive="false" source_node="MAILCLIENT0" destination_node="MAILSERVER5">
+    <policy name="Policy27" nffg_name="Nffg2" isPositive="true" source_node="WEBCLIENT1"
+            destination_node="MAILSERVER8"/>
+    <policy name="Policy26" nffg_name="Nffg2" isPositive="false" source_node="MAILCLIENT0"
+            destination_node="MAILSERVER5">
         <traversed_node>CACHE</traversed_node>
         <traversed_node>MAIL_CLIENT</traversed_node>
         <traversed_node>SPAM</traversed_node>
     </policy>
     <policy name="Policy25" nffg_name="Nffg1" isPositive="true" source_node="WEBSERVER3" destination_node="WEBCLIENT0"/>
-    <policy name="Policy69" nffg_name="Nffg7" isPositive="false" source_node="WEBCLIENT9" destination_node="WEBSERVER0"/>
+    <policy name="Policy69" nffg_name="Nffg7" isPositive="false" source_node="WEBCLIENT9"
+            destination_node="WEBSERVER0"/>
     <policy name="Policy24" nffg_name="Nffg1" isPositive="true" source_node="WEBSERVER0" destination_node="WEBCLIENT0">
         <traversed_node>SPAM</traversed_node>
         <traversed_node>DPI</traversed_node>
@@ -1358,48 +1397,92 @@
     <policy name="Policy63" nffg_name="Nffg7" isPositive="true" source_node="MAILCLIENT1" destination_node="WEBSERVER1">
         <traversed_node>NAT</traversed_node>
     </policy>
-    <policy name="Policy62" nffg_name="Nffg7" isPositive="true" source_node="MAILCLIENT1" destination_node="WEBSERVER1"/>
-    <policy name="Policy61" nffg_name="Nffg7" isPositive="false" source_node="MAILCLIENT0" destination_node="WEBSERVER1"/>
-    <policy name="Policy60" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER1" destination_node="WEBCLIENT2"/>
-    <verification_result policy="Policy56" result="false" time="2016-09-25T02:39:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy11" result="true" time="2016-09-24T23:53:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy10" result="false" time="2016-09-24T23:53:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy54" result="false" time="2016-09-25T10:17:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy53" result="true" time="2016-09-25T04:15:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy16" result="false" time="2016-09-25T03:50:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy14" result="false" time="2016-09-25T00:17:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy13" result="true" time="2016-09-25T02:12:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy17" result="false" time="2016-09-25T16:51:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy52" result="false" time="2016-09-24T23:53:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy50" result="false" time="2016-09-24T23:53:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy47" result="false" time="2016-09-25T05:23:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy46" result="true" time="2016-09-25T04:41:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy40" result="true" time="2016-09-25T11:28:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy34" result="false" time="2016-09-25T12:28:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy33" result="false" time="2016-09-25T07:07:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy77" result="false" time="2016-09-25T11:18:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy76" result="false" time="2016-09-25T12:45:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy31" result="true" time="2016-09-26T12:46:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy38" result="false" time="2016-09-25T16:13:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy37" result="false" time="2016-09-25T18:48:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy9" result="true" time="2016-09-25T00:32:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy6" result="true" time="2016-09-25T12:10:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy4" result="true" time="2016-09-25T15:13:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy73" result="false" time="2016-09-25T00:14:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy3" result="true" time="2016-09-25T17:10:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy2" result="true" time="2016-09-25T02:56:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy71" result="true" time="2016-09-25T15:01:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy23" result="true" time="2016-09-25T00:36:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy67" result="false" time="2016-09-25T04:28:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy0" result="false" time="2016-09-25T14:08:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy22" result="false" time="2016-09-25T00:48:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy21" result="false" time="2016-09-25T00:52:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy65" result="false" time="2016-09-25T04:10:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy20" result="false" time="2016-09-25T02:06:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy26" result="true" time="2016-09-26T06:05:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy25" result="true" time="2016-09-24T23:53:20.000+02:00" message="Policy verificarion result true"/>
-    <verification_result policy="Policy24" result="false" time="2016-09-24T23:53:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy28" result="false" time="2016-09-26T06:46:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy63" result="false" time="2016-09-25T02:39:20.000+02:00" message="Policy verification result not true"/>
-    <verification_result policy="Policy62" result="true" time="2016-09-25T17:27:20.000+02:00" message="Policy verificarion result true"/>
+    <policy name="Policy62" nffg_name="Nffg7" isPositive="true" source_node="MAILCLIENT1"
+            destination_node="WEBSERVER1"/>
+    <policy name="Policy61" nffg_name="Nffg7" isPositive="false" source_node="MAILCLIENT0"
+            destination_node="WEBSERVER1"/>
+    <policy name="Policy60" nffg_name="Nffg5" isPositive="true" source_node="MAILSERVER1"
+            destination_node="WEBCLIENT2"/>
+    <verification_result policy="Policy56" result="false" time="2016-09-25T02:39:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy11" result="true" time="2016-09-24T23:53:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy10" result="false" time="2016-09-24T23:53:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy54" result="false" time="2016-09-25T10:17:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy53" result="true" time="2016-09-25T04:15:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy16" result="false" time="2016-09-25T03:50:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy14" result="false" time="2016-09-25T00:17:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy13" result="true" time="2016-09-25T02:12:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy17" result="false" time="2016-09-25T16:51:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy52" result="false" time="2016-09-24T23:53:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy50" result="false" time="2016-09-24T23:53:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy47" result="false" time="2016-09-25T05:23:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy46" result="true" time="2016-09-25T04:41:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy40" result="true" time="2016-09-25T11:28:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy34" result="false" time="2016-09-25T12:28:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy33" result="false" time="2016-09-25T07:07:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy77" result="false" time="2016-09-25T11:18:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy76" result="false" time="2016-09-25T12:45:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy31" result="true" time="2016-09-26T12:46:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy38" result="false" time="2016-09-25T16:13:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy37" result="false" time="2016-09-25T18:48:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy9" result="true" time="2016-09-25T00:32:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy6" result="true" time="2016-09-25T12:10:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy4" result="true" time="2016-09-25T15:13:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy73" result="false" time="2016-09-25T00:14:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy3" result="true" time="2016-09-25T17:10:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy2" result="true" time="2016-09-25T02:56:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy71" result="true" time="2016-09-25T15:01:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy23" result="true" time="2016-09-25T00:36:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy67" result="false" time="2016-09-25T04:28:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy0" result="false" time="2016-09-25T14:08:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy22" result="false" time="2016-09-25T00:48:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy21" result="false" time="2016-09-25T00:52:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy65" result="false" time="2016-09-25T04:10:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy20" result="false" time="2016-09-25T02:06:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy26" result="true" time="2016-09-26T06:05:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy25" result="true" time="2016-09-24T23:53:20.000+02:00"
+                         message="Policy verificarion result true"/>
+    <verification_result policy="Policy24" result="false" time="2016-09-24T23:53:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy28" result="false" time="2016-09-26T06:46:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy63" result="false" time="2016-09-25T02:39:20.000+02:00"
+                         message="Policy verification result not true"/>
+    <verification_result policy="Policy62" result="true" time="2016-09-25T17:27:20.000+02:00"
+                         message="Policy verificarion result true"/>
 </nffgs>

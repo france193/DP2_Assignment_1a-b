@@ -10,7 +10,7 @@ import it.polito.dp2.NFFG.NffgVerifierException;
 
 /**
  * To test all the code:
- *
+ * <p>
  * ant -Dtestcase=0 -Dseed=100000 runFuncTest
  */
 

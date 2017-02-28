@@ -1,62 +1,62 @@
 <fran:nffgs xmlns:fran="https://france193.wordpress.com"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="https://france193.wordpress.com ./nffgInfo.xsd">
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="https://france193.wordpress.com ./nffgInfo.xsd">
 
-	<fran:nffg name="nffg0" last_updated_time="2008-09-29T03:49:45">
+    <fran:nffg name="nffg0" last_updated_time="2008-09-29T03:49:45">
 
-		<fran:node name="node0" functional_type="MAIL_CLIENT">
-			<fran:link name="link0" destination_node="node1" />
-			<fran:link name="link1" destination_node="node2" />
-			<fran:link name="link2" destination_node="node3" />
-		</fran:node>
+        <fran:node name="node0" functional_type="MAIL_CLIENT">
+            <fran:link name="link0" destination_node="node1"/>
+            <fran:link name="link1" destination_node="node2"/>
+            <fran:link name="link2" destination_node="node3"/>
+        </fran:node>
 
-		<fran:node name="node1" functional_type="DPI">
-			<fran:link name="link3" destination_node="node2" />
-		</fran:node>
+        <fran:node name="node1" functional_type="DPI">
+            <fran:link name="link3" destination_node="node2"/>
+        </fran:node>
 
-		<fran:node name="node2" functional_type="CACHE">
-			<fran:link name="link4" destination_node="node3" />
-		</fran:node>
+        <fran:node name="node2" functional_type="CACHE">
+            <fran:link name="link4" destination_node="node3"/>
+        </fran:node>
 
-		<fran:node name="node3" functional_type="SPAM" />
+        <fran:node name="node3" functional_type="SPAM"/>
 
-	</fran:nffg>
+    </fran:nffg>
 
-	<fran:nffg name="nffg1" last_updated_time="2008-09-29T03:49:45">
+    <fran:nffg name="nffg1" last_updated_time="2008-09-29T03:49:45">
 
-		<fran:node name="node10" functional_type="MAIL_CLIENT">
-			<fran:link name="link0" destination_node="node1" />
-		</fran:node>
+        <fran:node name="node10" functional_type="MAIL_CLIENT">
+            <fran:link name="link0" destination_node="node1"/>
+        </fran:node>
 
-		<fran:node name="node1" functional_type="DPI">
-			<fran:link name="link1" destination_node="node2" />
-		</fran:node>
+        <fran:node name="node1" functional_type="DPI">
+            <fran:link name="link1" destination_node="node2"/>
+        </fran:node>
 
-		<fran:node name="node2" functional_type="CACHE" />
+        <fran:node name="node2" functional_type="CACHE"/>
 
-	</fran:nffg>
+    </fran:nffg>
 
-	<fran:policy name="policy0" nffg_name="nffg0" isPositive="true"
-		source_node="node0" destination_node="node1">
-		<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
-	</fran:policy>
+    <fran:policy name="policy0" nffg_name="nffg0" isPositive="true"
+                 source_node="node0" destination_node="node1">
+        <fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+    </fran:policy>
 
-	<fran:policy name="policy1" nffg_name="nffg0" isPositive="true"
-		source_node="node1" destination_node="node2">
-		<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
-	</fran:policy>
+    <fran:policy name="policy1" nffg_name="nffg0" isPositive="true"
+                 source_node="node1" destination_node="node2">
+        <fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+    </fran:policy>
 
-	<fran:policy name="policy2" nffg_name="nffg0" isPositive="true"
-		source_node="node20" destination_node="node3" />
+    <fran:policy name="policy2" nffg_name="nffg0" isPositive="true"
+                 source_node="node20" destination_node="node3"/>
 
-	<fran:policy name="policy3" nffg_name="nffg0" isPositive="true"
-		source_node="node2" destination_node="node1">
-		<fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
-	</fran:policy>
+    <fran:policy name="policy3" nffg_name="nffg0" isPositive="true"
+                 source_node="node2" destination_node="node1">
+        <fran:traversed_node>MAIL_CLIENT</fran:traversed_node>
+    </fran:policy>
 
-	<fran:verification_result policy="policy0"
-		time="2009-09-29T03:49:45" result="true" message="Policy is verified" />
-	<fran:verification_result policy="policy3"
-		time="2009-09-29T03:49:45" result="true" message="Policy is verified" />
+    <fran:verification_result policy="policy0"
+                              time="2009-09-29T03:49:45" result="true" message="Policy is verified"/>
+    <fran:verification_result policy="policy3"
+                              time="2009-09-29T03:49:45" result="true" message="Policy is verified"/>
 
 </fran:nffgs>

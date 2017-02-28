@@ -9,35 +9,34 @@ import it.polito.dp2.NFFG.VerificationResultReader;
  * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLReachabilityPolicyReader extends FLPolicyReader implements ReachabilityPolicyReader {
-	private NodeReader sourceNode;
-	private NodeReader destinationNode;
+    private NodeReader sourceNode;
+    private NodeReader destinationNode;
 
-	/**
-	 *
-	 * @param entityName
-	 * @param nffgReader
-	 * @param positive
-	 * @param sourceNode
-	 * @param destinationNode
-	 */
-	public FLReachabilityPolicyReader(String entityName, NffgReader nffgReader, Boolean positive, NodeReader sourceNode,
-			NodeReader destinationNode) {
-		super(entityName, nffgReader, positive);
-		this.sourceNode = sourceNode;
-		this.destinationNode = destinationNode;
-	}
+    /**
+     * @param entityName
+     * @param nffgReader
+     * @param positive
+     * @param sourceNode
+     * @param destinationNode
+     */
+    public FLReachabilityPolicyReader(String entityName, NffgReader nffgReader, Boolean positive, NodeReader sourceNode,
+                                      NodeReader destinationNode) {
+        super(entityName, nffgReader, positive);
+        this.sourceNode = sourceNode;
+        this.destinationNode = destinationNode;
+    }
 
-	@Override
-	public NodeReader getSourceNode() {
-		return sourceNode;
-	}
+    @Override
+    public NodeReader getSourceNode() {
+        return sourceNode;
+    }
 
-	@Override
-	public NodeReader getDestinationNode() {
-		return destinationNode;
-	}
+    @Override
+    public NodeReader getDestinationNode() {
+        return destinationNode;
+    }
 
-	public void setVerificationResultReader(VerificationResultReader verificationResultReader) {
-		super.setVerificationResultReader(verificationResultReader);
-	}
+    public void setVerificationResultReader(VerificationResultReader verificationResultReader) {
+        super.setVerificationResultReader(verificationResultReader);
+    }
 }
