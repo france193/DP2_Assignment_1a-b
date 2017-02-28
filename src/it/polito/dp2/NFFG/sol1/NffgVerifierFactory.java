@@ -1,5 +1,10 @@
 package it.polito.dp2.NFFG.sol1;
 
+/**
+ * Created by Francesco Longo (223428) on 10/02/2017.
+ * Assignment 1b.2
+ **/
+
 import it.polito.dp2.NFFG.NffgVerifier;
 import it.polito.dp2.NFFG.NffgVerifierException;
 

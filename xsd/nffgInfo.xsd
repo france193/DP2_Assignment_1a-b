@@ -62,7 +62,7 @@
 			<xsd:selector xpath="flo:policy" />
 			<xsd:field xpath="@name" />
 		</xsd:key>
-		
+
 		<!-- UNIQUENESS OF VERIFICATION_RESULT INSIDE NFFGS -->
 		<xsd:key name="verification_result_id">
 			<xsd:selector xpath="flo:verification_result" />
@@ -93,7 +93,7 @@
 			<!--.-.-.-.-.-. -->
 
 		</xsd:sequence>
-		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="name" type="flo:name" use="required" />
 		<xsd:attribute name="last_updated_time" type="xsd:dateTime"
 			use="required" />
 	</xsd:complexType>
@@ -105,13 +105,13 @@
 				maxOccurs="unbounded" />
 			<!--.-.-.-.-.-. -->
 		</xsd:sequence>
-		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="name" type="flo:name" use="required" />
 		<xsd:attribute name="functional_type" type="flo:FLNodeFunctionalType"
 			use="optional" />
 	</xsd:complexType>
 
 	<xsd:complexType name="linkType">
-		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="name" type="flo:name" use="required" />
 		<xsd:attribute name="destination_node" type="xsd:string"
 			use="required" />
 	</xsd:complexType>
@@ -125,7 +125,7 @@
 			<!--.-.-.-.-.-. -->
 
 		</xsd:sequence>
-		<xsd:attribute name="name" type="xsd:string" use="required" />
+		<xsd:attribute name="name" type="flo:name" use="required" />
 		<xsd:attribute name="nffg_name" type="xsd:string" use="required" />
 		<xsd:attribute name="isPositive" type="xsd:boolean" use="required" />
 		<xsd:attribute name="source_node" type="xsd:string" use="required" />
@@ -134,7 +134,7 @@
 	</xsd:complexType>
 
 	<xsd:complexType name="verificationResultType">
-		<xsd:attribute name="policy" type="xsd:string" use="required" />
+		<xsd:attribute name="policy" type="flo:name" use="required" />
 		<xsd:attribute name="result" type="xsd:boolean" use="required" />
 		<xsd:attribute name="time" type="xsd:dateTime" use="required" />
 		<xsd:attribute name="message" type="xsd:string" use="required" />
@@ -153,6 +153,12 @@
 			<xsd:enumeration value="VPN" />
 			<xsd:enumeration value="WEB_CLIENT" />
 			<xsd:enumeration value="WEB_SERVER" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="name">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([A-Z]|[a-z])(\w)+" />
 		</xsd:restriction>
 	</xsd:simpleType>
 

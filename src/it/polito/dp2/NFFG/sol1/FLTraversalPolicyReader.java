@@ -8,29 +8,29 @@ import java.util.Set;
  * Created by Francesco Longo (223428) on 10/02/2017.
  */
 public class FLTraversalPolicyReader extends FLReachabilityPolicyReader implements TraversalPolicyReader {
-    private Set<FunctionalType> traversedFunctionalType;
+	private Set<FunctionalType> traversedFunctionalType;
 
-    /**
-     *
-     * @param entityName
-     * @param nffgReader
-     * @param positive
-     * @param sourceNode
-     * @param destinationNode
-     * @param traversedFunctionalType
-     */
-    public FLTraversalPolicyReader(String entityName, NffgReader nffgReader, Boolean positive, NodeReader sourceNode,
-                                   NodeReader destinationNode, Set<FunctionalType> traversedFunctionalType) {
-        super(entityName, nffgReader, positive, sourceNode, destinationNode);
-        this.traversedFunctionalType = traversedFunctionalType;
-    }
+	/**
+	 *
+	 * @param entityName
+	 * @param nffgReader
+	 * @param positive
+	 * @param sourceNode
+	 * @param destinationNode
+	 * @param traversedFunctionalType
+	 */
+	public FLTraversalPolicyReader(String entityName, NffgReader nffgReader, Boolean positive, NodeReader sourceNode,
+			NodeReader destinationNode, Set<FunctionalType> traversedFunctionalType) {
+		super(entityName, nffgReader, positive, sourceNode, destinationNode);
+		this.traversedFunctionalType = traversedFunctionalType;
+	}
 
-    @Override
-    public Set<FunctionalType> getTraversedFuctionalTypes() {
-        return traversedFunctionalType;
-    }
+	@Override
+	public Set<FunctionalType> getTraversedFuctionalTypes() {
+		return traversedFunctionalType;
+	}
 
-    public void setVerificationResultReader(VerificationResultReader verificationResultReader) {
-        super.setVerificationResultReader(verificationResultReader);
-    }
+	public void setVerificationResultReader(VerificationResultReader verificationResultReader) {
+		super.setVerificationResultReader(verificationResultReader);
+	}
 }

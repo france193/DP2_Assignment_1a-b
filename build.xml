@@ -12,7 +12,7 @@
 	<property name="output" location="${java.io.tmpdir}/out1.xml"/>
 
 	<!-- The default test case -->
-	<property name="testcase" value="0" />
+	<property name="testcase" value="2" />
 	<!-- The default test class -->
 	<property name="test.class" value="it.polito.dp2.NFFG.lab1.tests.NFFGTests" />
 
